@@ -16,8 +16,9 @@ class Api::SessionsController < ApplicationController
     if current_user
       current_user.reset_session_token!
       @session_token = nil
+      render json: {}
+    else
+      render json: { errors: ['no current user'] }, status: 404
     end
-
-    render json: {}
   end
 end
