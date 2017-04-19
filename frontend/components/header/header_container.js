@@ -1,5 +1,5 @@
-import { connect } from 'redux';
-import { signup, login, logout } from '../../util/session_api_util';
+import { connect } from 'react-redux';
+import { signup, login } from '../../util/session_api_util';
 import Header from './header';
 
 const mapStateToProps = state => ({
@@ -7,7 +7,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    
+    signup: user => dispatch(signup(user)),
+    login: user => dispatch(login(user))
 });
 
 export default connect(
