@@ -3,7 +3,12 @@
   <head>
     <title>Singuist</title>
     <%= csrf_meta_tags %>
-
+    <script type="text/javascript">
+      <% if logged_in? %>
+      window.currentUser =
+      <%= render("api/users/show.json.jbuilder", user: current_user).html_safe %>
+      <% end %>
+    </script>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>

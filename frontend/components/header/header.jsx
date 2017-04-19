@@ -11,6 +11,7 @@ class Header extends React.Component {
     }
         
     render() {
+	const userContent = {}; // TODO: conditionally render form or username
 	return (
 	    <header className="header-bar">
 	      <p className="logo">SINGUIST</p>
