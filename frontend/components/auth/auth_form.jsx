@@ -54,6 +54,7 @@ class AuthForm extends Component {
 	e.preventDefault();
 	this.props.processForm(this.state.user);
 	this.closeModal();
+//	window.location.reload();
     }
 
     render() {

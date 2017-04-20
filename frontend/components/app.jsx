@@ -1,9 +1,9 @@
 import React from 'react';
-import HeaderContainer from './header/header_container';
+import NavContainer from './nav/nav_container';
 
 const App = ({children}) => (
     <div>
-      <HeaderContainer />
+      <NavContainer />
       {children}
     </div>
 );    
