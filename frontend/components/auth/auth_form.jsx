@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import { withRouter } from 'react-router';
 
 class AuthForm extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class AuthForm extends Component {
 	    this.state.user.email = '';
 	}
 
+	this.handleChange = this.handleChange.bind(this);
 	this.handleUsernameChange = this.handleUsernameChange.bind(this);
 	this.handlePasswordChange = this.handlePasswordChange.bind(this);
 	this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -31,30 +33,42 @@ class AuthForm extends Component {
     // }
 
     openModal() {
-	this.setState({ modal: { open: true } });
+	const newState = Object.assign(this.state, {modal: { open: true } });
+	this.setState(newState);
     }
 
     closeModal() {
-	this.setState({ modal: { open: false } });
+	const newState = Object.assign(this.state, {modal: { open: false } });
+	this.setState(newState);
+    }
+
+    handleChange(field) {
+	const that = this;
+	return e => {
+	    const newState = Object.assign({}, that.state);
+	    newState.user[field] = e.target.value;
+	    that.setState(newState);
+	};
     }
     
     handleUsernameChange(e) {
-	this.setState({ user: { username: e.currentTarget.value } });
+	this.handleChange('username')(e);
     }
 
     handlePasswordChange(e) {
-	this.setState({ user: { password: e.currentTarget.value } });
+	this.handleChange('password')(e);
     }
 
     handleEmailChange(e) {
-	this.setState({ user: { email: e.currentTarget.value } });
+	this.handleChange('email')(e);
     }
 
     handleSubmit(e) {
 	e.preventDefault();
-	this.props.processForm(this.state.user);
-	this.closeModal();
-//	window.location.reload();
+	this.props.processForm(this.state.user).then(() => {
+	    this.props.router.replace('/');
+	    this.closeModal();
+	});
     }
 
     render() {
@@ -100,4 +114,4 @@ class AuthForm extends Component {
     }
 }
 
-export default AuthForm;
+export default withRouter(AuthForm);

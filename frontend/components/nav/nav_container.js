@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { signup, login } from '../../util/session_api_util';
+import { signup, login, logout } from '../../util/session_api_util';
 import Nav from './nav';
 
 const mapStateToProps = state => ({
-    currentUser: state.currentUser 
+    currentUser: state.session.currentUser 
 });
 
 const mapDispatchToProps = dispatch => ({

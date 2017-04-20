@@ -3,18 +3,23 @@ import { connect } from 'react-redux';
 import { signup } from '../../actions/session_actions';
 import AuthForm from './auth_form';
 
-const SignupForm = () => (
-    <AuthForm
-       processForm={signup}
-       actionText="Sign Up" />
-);
+class SignupForm extends React.Component {
+    render() {
+	return(
+	    <AuthForm
+	       processForm={this.props.signup}
+	       session={this.props.session}
+	       actionText="Sign Up" />
+	);
+    }
+}
     
 const mapStateToProps = state => ({
     session: state.session
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    processForm: user => dispatch(signup(user))
+    signup: user => dispatch(signup(user))
 });
 
 export default connect(

@@ -4,9 +4,10 @@ class Api::SessionsController < ApplicationController
       params[:user][:username],
       params[:user][:password]
     )
+#    debugger
     if @user
       log_in(@user)
-      render 'api/users/show'
+      render :show
     else
       render json: { errors: ['invalid credentials'] }, status: 422
     end
