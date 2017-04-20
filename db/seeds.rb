@@ -30,7 +30,7 @@ Track.create([
                {
                  name: 'Di Mame Iz Gegangen',
                  lyrics: 'Di mame iz gegangen in mark arayn nokh koyln...',
-                 description: "This song is about a Jewish boy whose mother went out and found him a wife.",
+                 description: "This song is about a boy whose mother went out and found him a wife.",
                  language: 'Yiddish',
                  artist: 'Traditional'
                },
