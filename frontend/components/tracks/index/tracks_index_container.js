@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import TracksIndex from './tracks_index';
-import { fetchTracks } from '../../actions/tracks_actions';
+import { fetchTracks } from '../../../actions/tracks_actions';
 
-const mapStateToProps = state => {
+const mapStateToProps = ({tracks}) => {
     return {
-	tracks: state.tracks
+	tracks
     };
 };
 
