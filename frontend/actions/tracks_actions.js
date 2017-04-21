@@ -2,8 +2,6 @@ import * as TracksApiUtil from '../util/tracks_api_util';
 
 export const RECEIVE_TRACKS = 'RECEIVE_TRACKS';
 export const RECEIVE_TRACK = 'RECEIVE_TRACK';
-//export const UPDATE_TRACK = 'UPDATE_TRACK';
-//export const DESTROY_TRACK = 'DESTROY_TRACK';
 
 export const receiveTracks = tracks => ({
     type: RECEIVE_TRACKS,

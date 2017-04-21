@@ -8,6 +8,10 @@ class TrackDetail extends React.Component {
 	this.renderDescription = this.renderDescription.bind(this);
     }
 
+    componentDidMount() {
+	this.props.fetchTrack(this.props.params.trackId);
+    }
+    
     renderHeader() {
 	return (
 	    <header className="header">

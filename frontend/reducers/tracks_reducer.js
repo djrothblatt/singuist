@@ -6,9 +6,7 @@ const TracksReducer = (state = {}, action) => {
     case RECEIVE_TRACKS:
 	return action.tracks;
     case RECEIVE_TRACK:
-	return {
-	    [action.track.id]: action.track
-	};
+	return action.track;
     default:
 	return state;
     }
