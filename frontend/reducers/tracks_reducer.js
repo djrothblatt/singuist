@@ -1,4 +1,4 @@
-import { RECEIVE_TRACKS, RECEIVE_TRACK };
+import { RECEIVE_TRACKS, RECEIVE_TRACK } from '../actions/tracks_actions';
 
 const TracksReducer = (state = {}, action) => {
     Object.freeze(state);
