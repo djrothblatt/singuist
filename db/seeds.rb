@@ -10,6 +10,7 @@
 
 User.destroy_all
 User.create([
+              { username: 'guest', password: 'password', email: 'guest@example.com' },
               { username: 'daniel', password: 'daniel', email: 'drothblatt@uchicago.edu' },
               { username: 'garnet', password: 'rubysapphire', email: 'garnet@hotmail.com' },
               { username: 'amethyst', password: 'purplepuma', email: 'amethyst@hotmail.com' },

@@ -26,6 +26,8 @@ class AuthForm extends Component {
 
 	this.openModal = this.openModal.bind(this);
 	this.closeModal = this.closeModal.bind(this);
+
+	this.loginGuest = this.loginGuest.bind(this);
     }
 
     openModal() {
@@ -67,6 +69,13 @@ class AuthForm extends Component {
 	});
     }
 
+    loginGuest() {
+	const guestUser = { username: 'guest', password: 'password' };
+	this.props.processForm(guestUser).then(() => {
+	    this.props.router.replace('/');
+	});
+    }
+    
     render() {
 	const maybeEmail = this.props.actionText === 'Sign Up' ? (
 	    <label>email:
@@ -75,6 +84,10 @@ class AuthForm extends Component {
 		 onChange={ this.handleEmailChange }
 		 value={ this.state.email }/>
 	    </label>
+	) : (<div />);
+
+	const maybeGuest = this.props.actionText === 'Log In' ? (
+	    <button onClick={this.loginGuest}>Log In As Guest</button>
 	) : (<div />);
 	
 	return (
@@ -105,6 +118,8 @@ class AuthForm extends Component {
 		  <button>{this.props.actionText}!</button>
 		</form>
 	      </Modal>
+
+	      {maybeGuest}
 	    </div>
 	);
     }

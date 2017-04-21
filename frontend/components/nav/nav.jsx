@@ -17,7 +17,7 @@ class Nav extends React.Component {
     handleLogout() {
 	this.props.logout();
     }
-    
+
     render() {
 	let userContent;
 	const currentUser = this.props.currentUser;
