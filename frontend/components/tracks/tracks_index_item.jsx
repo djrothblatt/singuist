@@ -1,7 +1,12 @@
 import React from 'react';
 
-export default function TracksIndexItem({ track }) {
+export default function TracksIndexItem({ track, index }) {
     return (
-	<li>{track.name}</li>
+	<li>
+	  <label>{index + 1}
+	    <h1>{track.name}</h1>
+	    <h2>{track.artist}</h2>
+	  </label>	  
+	</li>
     );
 }
