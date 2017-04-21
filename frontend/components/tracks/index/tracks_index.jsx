@@ -11,9 +11,9 @@ class TracksIndex extends React.Component {
     }
 
     render() {
-	const tracks = Object.keys(this.props.tracks).map(id => {
+	const tracks = Object.keys(this.props.tracks).map((id, index) => {
 	    const track = this.props.tracks[id];
-	    return <TracksIndexItem key={id} track={track} />
+	    return <TracksIndexItem key={id} track={track} index={index} />;
 	});
 
 	return (
