@@ -5,10 +5,19 @@ import SignupForm from '../auth/signup_form';
 import LoginForm from '../auth/login_form';
 
 class Nav extends React.Component {    
+    constructor(props) {
+	super(props);
+	this.handleLogout = this.handleLogout.bind(this);
+    }
+    
     componentWillMount() {
 	Modal.setAppElement('body');
     }
-        
+
+    handleLogout() {
+	this.props.logout();
+    }
+    
     render() {
 	let userContent;
 	const currentUser = this.props.currentUser;
@@ -16,7 +25,7 @@ class Nav extends React.Component {
 	    userContent = (
 		<section className="auth">
 		  <p className="auth">NAME: {currentUser.username}</p>
-		  <button onClick={this.props.logout}>logout</button>
+		  <button onClick={this.handleLogout}>logout</button>
 		</section>
 	    );
 	} else {

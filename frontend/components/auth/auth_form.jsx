@@ -28,10 +28,6 @@ class AuthForm extends Component {
 	this.closeModal = this.closeModal.bind(this);
     }
 
-    // componentDidMount() {
-    // 	this.props.clearErrors();
-    // }
-
     openModal() {
 	const newState = Object.assign(this.state, {modal: { open: true } });
 	this.setState(newState);
@@ -80,7 +76,7 @@ class AuthForm extends Component {
 		 value={ this.state.email }/>
 	    </label>
 	) : (<div />);
-
+	
 	return (
 	    <div>
 	      <button onClick={this.openModal}>{this.props.actionText}</button>
