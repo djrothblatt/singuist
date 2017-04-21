@@ -30,6 +30,7 @@ class Nav extends React.Component {
 	
 	return (
 	    <nav className="nav-bar">
+	      <button className="add-song">Add song</button>
 	      <p className="logo">SINGUIST</p>
 	      {userContent}
 	    </nav>
