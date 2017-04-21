@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-modal';
-import AuthForm from '../auth/auth_form';
 import SignupForm from '../auth/signup_form';
 import LoginForm from '../auth/login_form';
 

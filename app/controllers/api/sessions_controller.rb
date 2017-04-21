@@ -9,7 +9,7 @@ class Api::SessionsController < ApplicationController
       log_in(@user)
       render :show
     else
-      render json: { errors: ['invalid credentials'] }, status: 422
+      render json: ['invalid credentials'], status: 422
     end
   end
 
@@ -19,7 +19,7 @@ class Api::SessionsController < ApplicationController
       @session_token = nil
       render json: {}
     else
-      render json: { errors: ['no current user'] }, status: 404
+      render json: ['no current user'], status: 404
     end
   end
 end

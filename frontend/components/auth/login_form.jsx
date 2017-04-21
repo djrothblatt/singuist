@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../actions/session_actions';
+import { login, clearErrors } from '../../actions/session_actions';
 import AuthForm from './auth_form';
 
 class LoginForm extends React.Component {
@@ -9,17 +9,19 @@ class LoginForm extends React.Component {
 	    <AuthForm
 	       processForm={this.props.login}
 	       session={this.props.session}
-	       actionText="Log In" />	    
+	       actionText="Log In"
+	       clearErrors={this.props.clearErrors}/>
 	);
     }
 }
-    
+
 const mapStateToProps = state => ({
     session: state.session
 });
 
 const mapDispatchToProps = dispatch => ({
-    login: user => dispatch(login(user))
+    login: data => dispatch(login(data)),
+    clearErrors: () => dispatch(clearErrors())
 });
 
 export default connect(

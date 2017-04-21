@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signup } from '../../actions/session_actions';
+import { signup, clearErrors } from '../../actions/session_actions';
 import AuthForm from './auth_form';
 
 class SignupForm extends React.Component {
@@ -9,7 +9,8 @@ class SignupForm extends React.Component {
 	    <AuthForm
 	       processForm={this.props.signup}
 	       session={this.props.session}
-	       actionText="Sign Up" />
+	       actionText="Sign Up"
+	       clearErrors={this.props.clearErrors}/>
 	);
     }
 }
@@ -19,7 +20,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    signup: user => dispatch(signup(user))
+    signup: user => dispatch(signup(user)),
+    clearErrors: () => dispatch(clearErrors())
 });
 
 export default connect(

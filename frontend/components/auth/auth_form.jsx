@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router';
 
-class AuthForm extends Component {
+class AuthForm extends React.Component {
     constructor(props) {
 	super(props);
 	this.state = {
@@ -36,6 +36,7 @@ class AuthForm extends Component {
     }
 
     closeModal() {
+	this.props.clearErrors();
 	const newState = Object.assign(this.state, {modal: { open: false } });
 	this.setState(newState);
     }
@@ -48,7 +49,7 @@ class AuthForm extends Component {
 	    that.setState(newState);
 	};
     }
-    
+
     handleUsernameChange(e) {
 	this.handleChange('username')(e);
     }
@@ -86,6 +87,10 @@ class AuthForm extends Component {
 	    </label>
 	) : (<div />);
 
+	const maybeErrors = (this.props.session.errors.length !== 0) ? (
+	    this.props.session.errors.map(err => <li>{err}</li>)
+	) : (<div />);
+
 	const maybeGuest = this.props.actionText === 'Log In' ? (
 	    <button onClick={this.loginGuest}>Log In As Guest</button>
 	) : (<div />);
@@ -99,6 +104,10 @@ class AuthForm extends Component {
 		 onRequestClose={this.closeModal}
 		 contentLabel={`Auth Modal ${this.props.actionText}`}>
 		<form onSubmit={this.handleSubmit}>
+		  <ul>
+		    {maybeErrors}
+		  </ul>
+
 		  {maybeEmail}
 
 		  <label>Username:
