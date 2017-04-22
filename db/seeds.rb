@@ -11,12 +11,15 @@
 User.destroy_all
 User.create([
               { username: 'guest', password: 'password', email: 'guest@example.com' },
-              { username: 'daniel', password: 'daniel', email: 'drothblatt@uchicago.edu' },
-              { username: 'garnet', password: 'rubysapphire', email: 'garnet@hotmail.com' },
-              { username: 'amethyst', password: 'purplepuma', email: 'amethyst@hotmail.com' },
-              { username: 'pearl', password: 'rosequartz', email: 'pearl@hotmail.com' },
-              { username: 'greg', password: 'steven', email: 'greg@hotmail.com' },
-              { username: 'steven', password: 'cheeseburger', email: 'steven@hotmail.com' }
+              { username: 'daniel', password: 'daniel', email: 'drothblatt@example.com' },
+              { username: 'garnet', password: 'rubysapphire', email: 'garnet@example.com' },
+              { username: 'amethyst', password: 'purplepuma', email: 'amethyst@example.com' },
+              { username: 'pearl', password: 'rosequartz', email: 'pearl@example.com' },
+              { username: 'greg', password: 'steven', email: 'greg@example.com' },
+              { username: 'steven', password: 'cheeseburger', email: 'steven@example.com' },
+              { username: 'spongebob', password: 'jellyfishing', email: 'spsqpants@example.com' },
+              { username: 'patrick', password: 'thisispatrick', email: 'pstar@example.com' },
+              { username: 'squidward', password: 'clarinet', email: 'stentacles@example.com' }
             ])
 
 Track.destroy_all

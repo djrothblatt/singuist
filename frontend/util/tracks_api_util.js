@@ -3,14 +3,14 @@ export const fetchTracks = () => {
 	method: 'GET',
 	url: 'api/tracks'
     });
-}
+};
 
 export const fetchTrack = id => {
     return $.ajax({
 	method: 'GET',
 	url: `api/tracks/${id}`
     });
-}
+};
 
 export const createNewTrack = track => {
     return $.ajax({
@@ -18,7 +18,7 @@ export const createNewTrack = track => {
 	url: 'api/tracks',
 	data: { track }
     });
-}
+};
 
 export const updateTrack = track => {
     return $.ajax({
@@ -26,11 +26,11 @@ export const updateTrack = track => {
 	url: `api/track/${track.id}`,
 	data: { track }
     });
-}
+};
 
 export const destroyTrack = id => {
     return $.ajax({
 	method: 'DELETE',
 	url: `api/track/${id}`
-    })
-}
+    });
+};

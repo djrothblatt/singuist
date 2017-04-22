@@ -11,9 +11,7 @@ const thunkAction = promise => user => dispatch => {
 };
 
 export const login = thunkAction(APIUtil.login);
-
 export const signup = thunkAction(APIUtil.signup);
-
 export const logout = () => dispatch => {
     return APIUtil.logout()
 	.then(() => dispatch(receiveCurrentUser(null)),
@@ -26,7 +24,6 @@ export const receiveCurrentUser = currentUser => ({
 });
 
 export const receiveErrors = errors => {
-    debugger
     return {
 	type: RECEIVE_ERRORS,
 	errors // errors: (array-of error)

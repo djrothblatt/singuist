@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import SignupForm from '../auth/signup_form';
 import LoginForm from '../auth/login_form';
 
@@ -34,7 +35,7 @@ class Nav extends React.Component {
 	return (
 	    <nav className="nav-bar">
 	      <button className="add-song">Add song</button>
-	      <p className="logo">SINGUIST</p>
+	      <Link to="/"><p className="logo">SINGUIST</p></Link>
 	      {userContent}
 	    </nav>
 	);

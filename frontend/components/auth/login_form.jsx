@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login, clearErrors } from '../../actions/session_actions';
+import { login } from '../../actions/session_actions';
 import AuthForm from './auth_form';
 
 class LoginForm extends React.Component {
@@ -8,20 +8,15 @@ class LoginForm extends React.Component {
 	return(
 	    <AuthForm
 	       processForm={this.props.login}
-	       session={this.props.session}
-	       actionText="Log In"
-	       clearErrors={this.props.clearErrors}/>
+	       actionText="Log In" />
 	);
     }
 }
 
-const mapStateToProps = state => ({
-    session: state.session
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-    login: data => dispatch(login(data)),
-    clearErrors: () => dispatch(clearErrors())
+    login: data => dispatch(login(data))
 });
 
 export default connect(

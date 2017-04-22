@@ -8,20 +8,15 @@ class SignupForm extends React.Component {
 	return(
 	    <AuthForm
 	       processForm={this.props.signup}
-	       session={this.props.session}
-	       actionText="Sign Up"
-	       clearErrors={this.props.clearErrors}/>
+	       actionText="Sign Up" />
 	);
     }
 }
     
-const mapStateToProps = state => ({
-    session: state.session
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    signup: user => dispatch(signup(user)),
-    clearErrors: () => dispatch(clearErrors())
+    signup: user => dispatch(signup(user))
 });
 
 export default connect(

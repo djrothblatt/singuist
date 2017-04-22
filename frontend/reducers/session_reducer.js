@@ -13,7 +13,6 @@ const SessionReducer = (state = _nullUser, action) => {
 	return Object.assign({}, _nullUser, {currentUser});
     case RECEIVE_ERRORS:
 	const errors = action.errors;
-	debugger
     	return Object.assign({}, _nullUser, {errors});
     case CLEAR_ERRORS:
 	return _nullUser;

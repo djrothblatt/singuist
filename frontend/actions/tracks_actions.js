@@ -18,20 +18,13 @@ export const fetchTracks = () => dispatch => {
 	.then(tracks => dispatch(receiveTracks(tracks)));
 };
 
-export const fetchTrack = id => dispatch => {
-    return TracksApiUtil.fetchTrack(id)
-	.then(track => dispatch(receiveTrack(track)));
+const thunkAction = promise => arg => dispatch => {
+    return promise(arg).then(track => dispatch(receiveTrack(track)));
 };
 
-export const createTrack = track => dispatch => {
-    return TracksApiUtil.createNewTrack(track)
-	.then(track => dispatch(receiveTrack(track)));
-};
-
-export const updateTrack = track => dispatch => {
-    return TracksApiUtil.updateTrack(track)
-	.then(track => dispatch(receiveTrack(track)));
-};
+export const fetchTrack = thunkAction(TracksApiUtil.fetchTrack);
+export const createTrack = thunkAction(TracksApiUtil.createNewTrack);
+export const updateTrack = thunkAction(TracksApiUtil.updateTrack);
 
 export const destroyTrack = id => dispatch => {
     return TracksApiUtil.destroyTrack(id)

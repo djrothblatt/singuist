@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { clearErrors } from '../../actions/session_actions';
 
 class AuthForm extends React.Component {
     constructor(props) {
@@ -38,22 +39,21 @@ class AuthForm extends React.Component {
     }
 
     openModal() {
-	const newState = Object.assign(this.state, {modal: { open: true } });
+	const newState = Object.assign(this.state, { modal: { open: true } });
 	this.setState(newState);
     }
 
     closeModal() {
 	this.props.clearErrors();
-	const newState = Object.assign(this.state, {modal: { open: false } });
+	const newState = Object.assign(this.state, { modal: { open: false } });
 	this.setState(newState);
     }
 
     handleChange(field) {
-	const that = this;
+	const newState = Object.assign({}, this.state);
 	return e => {
-	    const newState = Object.assign({}, that.state);
 	    newState.user[field] = e.target.value;
-	    that.setState(newState);
+	    this.setState(newState);
 	};
     }
 
@@ -71,16 +71,12 @@ class AuthForm extends React.Component {
 
     handleSubmit(e) {
 	e.preventDefault();
-	this.props.processForm(this.state.user).then(() => {
-	    this.props.router.replace('/');
-	});
+	this.props.processForm(this.state.user);
     }
 
     loginGuest() {
 	const guestUser = { username: 'guest', password: 'password' };
-	this.props.processForm(guestUser).then(() => {
-	    this.props.router.replace('/');
-	});
+	this.props.processForm(guestUser);
     }
 
     render() {
@@ -94,7 +90,7 @@ class AuthForm extends React.Component {
 	) : (<div />);
 
 	const maybeErrors = (this.props.session.errors.length !== 0) ? (
-	    this.props.session.errors.map(err => <li>{err}</li>)
+	    this.props.session.errors.map(err => <li className="error">{err}</li>)
 	) : (<div />);
 
 	const maybeGuest = this.props.actionText === 'Log In' ? (
@@ -110,7 +106,7 @@ class AuthForm extends React.Component {
 		 onRequestClose={this.closeModal}
 		 contentLabel={`Auth Modal ${this.props.actionText}`}>
 		<form onSubmit={this.handleSubmit}>
-		  <ul>
+		  <ul className="errors-list">
 		    {maybeErrors}
 		  </ul>
 
@@ -140,4 +136,12 @@ class AuthForm extends React.Component {
     }
 }
 
-export default withRouter(AuthForm);
+const mapStateToProps = ({session}) => ({session});
+const mapDispatchToProps = dispatch => ({
+    clearErrors: () => dispatch(clearErrors())
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AuthForm);
