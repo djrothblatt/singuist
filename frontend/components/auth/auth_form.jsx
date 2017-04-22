@@ -5,18 +5,21 @@ import { withRouter } from 'react-router';
 class AuthForm extends React.Component {
     constructor(props) {
 	super(props);
+
+	const user = {
+	    username: '',
+	    password: ''
+	};
+	if (this.props.actionText === 'Sign Up') {
+	    user.email = '';
+	}
+	
 	this.state = {
-	    user: {
-		username: '',
-		password: ''
-	    },
+	    user,
 	    modal: {
 		open: false
 	    }
 	};
-	if (this.props.actionText === 'Sign Up') {
-	    this.state.user.email = '';
-	}
 
 	this.handleChange = this.handleChange.bind(this);
 	this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -28,6 +31,10 @@ class AuthForm extends React.Component {
 	this.closeModal = this.closeModal.bind(this);
 
 	this.loginGuest = this.loginGuest.bind(this);
+    }
+
+    componentWillMount() {
+	Modal.setAppElement('body');
     }
 
     openModal() {
@@ -66,7 +73,6 @@ class AuthForm extends React.Component {
 	e.preventDefault();
 	this.props.processForm(this.state.user).then(() => {
 	    this.props.router.replace('/');
-	    this.closeModal();
 	});
     }
 
@@ -76,7 +82,7 @@ class AuthForm extends React.Component {
 	    this.props.router.replace('/');
 	});
     }
-    
+
     render() {
 	const maybeEmail = this.props.actionText === 'Sign Up' ? (
 	    <label>email:
@@ -94,7 +100,7 @@ class AuthForm extends React.Component {
 	const maybeGuest = this.props.actionText === 'Log In' ? (
 	    <button onClick={this.loginGuest}>Log In As Guest</button>
 	) : (<div />);
-	
+
 	return (
 	    <div>
 	      <button onClick={this.openModal}>{this.props.actionText}</button>

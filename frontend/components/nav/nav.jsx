@@ -1,5 +1,4 @@
 import React from 'react';
-import Modal from 'react-modal';
 import SignupForm from '../auth/signup_form';
 import LoginForm from '../auth/login_form';
 
@@ -9,10 +8,6 @@ class Nav extends React.Component {
 	this.handleLogout = this.handleLogout.bind(this);
     }
     
-    componentWillMount() {
-	Modal.setAppElement('body');
-    }
-
     handleLogout() {
 	this.props.logout();
     }
