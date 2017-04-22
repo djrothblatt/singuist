@@ -34,7 +34,7 @@ class Nav extends React.Component {
 	
 	return (
 	    <nav className="nav-bar">
-	      <button className="add-song">Add song</button>
+	      <Link to="/new-track/"><button className="add-song">Add song</button></Link>
 	      <Link to="/"><p className="logo">SINGUIST</p></Link>
 	      {userContent}
 	    </nav>
