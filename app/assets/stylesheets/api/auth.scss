@@ -1,4 +1,4 @@
-$nav-bar-blue: #64FDFD;
+$nav-bar-blue: #64CDFD;
 
 .nav-bar {
     display: flex;
@@ -10,9 +10,24 @@ $nav-bar-blue: #64FDFD;
 	padding: 0px 8px;
 	margin: 0 5px;
     }
-    .auth {
-	display: flex;
-	justify-content: flex-end;
-    }
 }
 
+.auth {
+    font-size: 80%;
+    display: flex;
+    justify-content: flex;
+    .auth-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	font-size: 120%;
+	margin: auto;
+    }    
+}
+
+/* ReactModal__Overlay { */
+/*     height: 200px; */
+/*     display: flex; */
+/*     background-color: green; */
+/*     flex-direction: column; */
+/* } */

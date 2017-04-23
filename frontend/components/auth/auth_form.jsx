@@ -65,13 +65,33 @@ class AuthForm extends React.Component {
     }
 
     render() {
+	const customStyle = {
+	    overlay: {
+		position: 'fixed',
+		top: 0,
+		left: 0,
+		bottom: 0,
+		right: 0
+	    },
+	    content: {
+		position                    : 'absolute',
+		height                      : '100px',
+		width                       : '400px',
+		border                      : '1px solid #ccc',
+		background                  : '#ccd',
+		overflow                    : 'auto',
+		borderRadius                : '4px',
+		outline                     : 'none',
+		padding                     : '20px'
+	    }
+	};
+	
 	const maybeEmail = this.props.actionText === 'Sign Up' ? (
-	    <label>email:
 	      <input
 		 type="text"
+		 placeholder="email"
 		 onChange={ this.handleChange('email') }
 		 value={ this.state.email }/>
-	    </label>
 	) : (<div />);
 
 	const maybeErrors = (this.props.session.errors.length !== 0) ? (
@@ -89,27 +109,26 @@ class AuthForm extends React.Component {
 	      <Modal
 		 isOpen={this.state.modal.open}
 		 onRequestClose={this.closeModal}
-		 contentLabel={`Auth Modal ${this.props.actionText}`}>
-		<form onSubmit={this.handleSubmit}>
+		 contentLabel={`Auth Modal ${this.props.actionText}`}
+		 style={customStyle}>
+		<form className="auth-form" onSubmit={this.handleSubmit}>
 		  <ul className="errors-list">
 		    {maybeErrors}
 		  </ul>
 
 		  {maybeEmail}
 
-		  <label>Username:
 		    <input
 		       type="text"
+		       placeholder="username"
 		       onChange={ this.handleChange('username') }
 		       value={ this.state.username } />
-		  </label>
 
-		  <label>Password:
 		    <input
 		       type="password"
+		       placeholder="password"
 		       onChange={ this.handleChange('password') }
 		       value={ this.state.password }/>
-		  </label>
 
 		  <button>{this.props.actionText}!</button>
 		</form>

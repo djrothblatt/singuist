@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-//import NewTrackForm from '../tracks/new_form';
 
 class TrackNav extends React.Component {
     render() {

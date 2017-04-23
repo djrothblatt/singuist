@@ -17,7 +17,7 @@ class TracksIndex extends React.Component {
 	});
 
 	return (
-	    <ul>
+	    <ul className="track-index">
 	      { tracks }
 	    </ul>
 	);

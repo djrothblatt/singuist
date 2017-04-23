@@ -1,3 +1,23 @@
 // Place all the styles related to the api/tracks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.track-nav {
+    background-color: black;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    a {
+	color: white;
+    }
+}
+
+.track-index {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .track-index-item {
+	height: 200px;
+	width: 710px;
+    }
+}
