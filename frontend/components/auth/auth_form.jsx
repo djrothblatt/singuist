@@ -113,9 +113,8 @@ class AuthForm extends React.Component {
 
 		  <button>{this.props.actionText}!</button>
 		</form>
+		{maybeGuest}
 	      </Modal>
-
-	      {maybeGuest}
 	    </div>
 	);
     }

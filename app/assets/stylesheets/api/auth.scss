@@ -1,15 +1,18 @@
-$nav-bar-blue: #64CCDD;
+$nav-bar-blue: #64FDFD;
 
 .nav-bar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     background-color: $nav-bar-blue;
+    height: 40px;
+    * {
+	padding: 0px 8px;
+	margin: 0 5px;
+    }
     .auth {
 	display: flex;
-	justify-content: right;
-	align-items: center;
-	* {
-	    margin: auto 10px;
-	}
+	justify-content: flex-end;
     }
 }
+

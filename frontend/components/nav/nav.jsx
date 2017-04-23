@@ -19,7 +19,7 @@ class Nav extends React.Component {
 	if (currentUser) {
 	    userContent = (
 		<section className="auth">
-		  <p className="auth">Welcome, {currentUser.username}!</p>
+		  <p>Welcome, {currentUser.username}!</p>
 		  <button onClick={this.handleLogout}>logout</button>
 		</section>
 	    );
@@ -34,8 +34,8 @@ class Nav extends React.Component {
 	
 	return (
 	    <nav className="nav-bar">
-	      <Link to="/new-track/"><button className="add-song">Add song</button></Link>
-	      <Link to="/"><p className="logo">SINGUIST</p></Link>
+	      <h1 className="search">Search</h1>
+	      <Link to="/"><h1 className="logo">SINGUIST</h1></Link>
 	      {userContent}
 	    </nav>
 	);
