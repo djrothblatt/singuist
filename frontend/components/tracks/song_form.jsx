@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { createTrack } from '../../actions/tracks_actions';
 
 class SongForm extends React.Component {
     constructor(props) {
@@ -15,11 +14,6 @@ class SongForm extends React.Component {
 	};
 
 	this.handleChange = this.handleChange.bind(this);
-	this.handleArtistChange = this.handleArtistChange.bind(this);
-	this.handleNameChange = this.handleNameChange.bind(this);
-	this.handleLanguageChange = this.handleLanguageChange.bind(this);
-	this.handleLyricsChange = this.handleLyricsChange.bind(this);
-	this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
 	this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -31,29 +25,9 @@ class SongForm extends React.Component {
 	};
     }
 
-    handleArtistChange(e) {
-	this.handleChange('artist')(e);
-    }
-
-    handleNameChange(e) {
-	this.handleChange('name')(e);
-    }
-
-    handleLanguageChange(e) {
-	this.handleChange('language')(e);
-    }
-
-    handleLyricsChange(e) {
-	this.handleChange('lyrics')(e);
-    }
-
-    handleDescriptionChange(e) {
-	this.handleChange('description')(e);
-    }
-
     handleSubmit(e) {
 	e.preventDefault();
-	this.props.createTrack(this.state);
+	this.props.processTrack(this.state);
 	this.props.router.push('/');
     }
     
@@ -73,19 +47,19 @@ class SongForm extends React.Component {
 	      {this.renderHeader()}
 	      <form onSubmit={this.handleSubmit}>
 		<label>Title *
-		  <input type="text" value={this.state.name} onChange={this.handleNameChange} />
+		  <input type="text" value={this.state.name} onChange={this.handleChange('Name')} />
 		</label>
 		<label>By *
-		  <input type="text" value={this.state.artist} onChange={this.handleArtistChange} />
+		  <input type="text" value={this.state.artist} onChange={this.handleChange('Artist')} />
 		</label>
 		<label>Language *
-		  <input type="text" value={this.state.language} onChange={this.handleLanguageChange} />
+		  <input type="text" value={this.state.language} onChange={this.handleChange('Language')} />
 		</label>
 		<label>Lyrics *
-		  <input type="textarea" value={this.state.lyrics} onChange={this.handleLyricsChange} />
+		  <input type="textarea" value={this.state.lyrics} onChange={this.handleChange('Lyrics')} />
 		</label>
 		<label>About
-		  <input type="textarea" value={this.state.description} onChange={this.handleDescriptionChange} />
+		  <input type="textarea" value={this.state.description} onChange={this.handleChange('Description')} />
 		</label>
 
 		<input type="submit" value="Submit" />
@@ -96,12 +70,4 @@ class SongForm extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({
-    createTrack: track => dispatch(createTrack(track))
-});
-
-export default withRouter(connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SongForm));
+export default withRouter(SongForm);
