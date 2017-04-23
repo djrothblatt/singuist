@@ -56,10 +56,10 @@ class SongForm extends React.Component {
 		  <input type="text" value={this.state.language} onChange={this.handleChange('language')} />
 		</label>
 		<label>Lyrics *
-		  <input type="textarea" value={this.state.lyrics} onChange={this.handleChange('lyrics')} />
+		  <textarea value={this.state.lyrics} onChange={this.handleChange('lyrics')} />
 		</label>
 		<label>About
-		  <input type="textarea" value={this.state.description} onChange={this.handleChange('description')} />
+		  <textarea value={this.state.description} onChange={this.handleChange('description')} />
 		</label>
 
 		<input type="submit" value="Submit" />

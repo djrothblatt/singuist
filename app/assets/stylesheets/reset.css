@@ -1,0 +1,10 @@
+div, p, button, h1, h2, h3, a, ul, input, label, textarea {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    list-style: none;
+    text-decoration: none;
+    color: black;
+    background: none;
+    border: none;
+}
