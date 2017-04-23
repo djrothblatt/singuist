@@ -5,7 +5,7 @@ import AuthForm from './auth_form';
 
 class LoginForm extends React.Component {
     render() {
-	return(
+	return (
 	    <AuthForm
 	       processForm={this.props.login}
 	       actionText="Log In" />

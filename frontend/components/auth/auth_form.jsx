@@ -23,9 +23,6 @@ class AuthForm extends React.Component {
 	};
 
 	this.handleChange = this.handleChange.bind(this);
-	this.handleUsernameChange = this.handleUsernameChange.bind(this);
-	this.handlePasswordChange = this.handlePasswordChange.bind(this);
-	this.handleEmailChange = this.handleEmailChange.bind(this);
 	this.handleSubmit = this.handleSubmit.bind(this);
 
 	this.openModal = this.openModal.bind(this);
@@ -57,18 +54,6 @@ class AuthForm extends React.Component {
 	};
     }
 
-    handleUsernameChange(e) {
-	this.handleChange('username')(e);
-    }
-
-    handlePasswordChange(e) {
-	this.handleChange('password')(e);
-    }
-
-    handleEmailChange(e) {
-	this.handleChange('email')(e);
-    }
-
     handleSubmit(e) {
 	e.preventDefault();
 	this.props.processForm(this.state.user);
@@ -84,7 +69,7 @@ class AuthForm extends React.Component {
 	    <label>email:
 	      <input
 		 type="text"
-		 onChange={ this.handleEmailChange }
+		 onChange={ this.handleChange('email') }
 		 value={ this.state.email }/>
 	    </label>
 	) : (<div />);
@@ -115,14 +100,14 @@ class AuthForm extends React.Component {
 		  <label>Username:
 		    <input
 		       type="text"
-		       onChange={ this.handleUsernameChange }
+		       onChange={ this.handleChange('username') }
 		       value={ this.state.username } />
 		  </label>
 
 		  <label>Password:
 		    <input
 		       type="password"
-		       onChange={ this.handlePasswordChange }
+		       onChange={ this.handleChange('password') }
 		       value={ this.state.password }/>
 		  </label>
 
