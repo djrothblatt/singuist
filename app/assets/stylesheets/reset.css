@@ -1,7 +1,9 @@
-div, p, button, h1, h2, h3, a, ul, input, label, textarea {
+div, p, button, h1, h2, h3, a, ul, input, label, textarea, nav {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
     font-size: 100%;
+    font-weight: normal;
     list-style: none;
     text-decoration: none;
     color: black;

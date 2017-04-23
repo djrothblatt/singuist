@@ -1,33 +1,64 @@
 $nav-bar-blue: #64CDFD;
+$auth-border: #ddd;
 
 .nav-bar {
+    margin: 0;
+    border-spacing: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: $nav-bar-blue;
     height: 40px;
     * {
-	padding: 0px 8px;
+	padding: 0px 3px;
 	margin: 0 5px;
     }
 }
 
 .auth {
-    font-size: 80%;
+    button {
+	margin: 5px;
+	border-bottom: 4px solid $nav-bar-blue;
+    }
+    button:hover {
+	transition: border-bottom 0.5s;
+	border-bottom: 4px solid maroon;
+    }
+
+    font-size: 90%;
     display: flex;
-    justify-content: flex;
-    .auth-form {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	font-size: 120%;
-	margin: auto;
-    }    
+    p {
+	margin: 5px;
+    }
 }
 
-/* ReactModal__Overlay { */
-/*     height: 200px; */
-/*     display: flex; */
-/*     background-color: green; */
-/*     flex-direction: column; */
-/* } */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: space-between;
+    text-align: left;
+    margin: auto;
+}
+
+.auth-input {
+    font-size: 140%;
+    margin: 4px;
+    border: 2px solid $auth-border;
+    background-color: white;
+}
+
+.auth-header {
+    font-size: 150%;
+    color: #baf;
+    padding: 3px;
+    margin: 3px;
+    border-bottom: 3px solid #baf;
+}
+
+.auth-submit {
+    width: 150px;
+    padding: 4px;
+    margin: 3px;
+    border: 2px solid black;
+}

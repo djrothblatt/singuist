@@ -14,7 +14,7 @@ class AuthForm extends React.Component {
 	if (this.props.actionText === 'Sign Up') {
 	    user.email = '';
 	}
-	
+
 	this.state = {
 	    user,
 	    modal: {
@@ -74,22 +74,22 @@ class AuthForm extends React.Component {
 		right: 0
 	    },
 	    content: {
-		position                    : 'absolute',
-		height                      : '100px',
-		width                       : '400px',
+		position                    : 'fixed',
+		left                        : '350px',
+		height                      : '220px',
+		width                       : '350px',
 		border                      : '1px solid #ccc',
 		background                  : '#ccd',
-		overflow                    : 'auto',
-		borderRadius                : '4px',
 		outline                     : 'none',
 		padding                     : '20px'
 	    }
 	};
-	
+
 	const maybeEmail = this.props.actionText === 'Sign Up' ? (
 	      <input
 		 type="text"
 		 placeholder="email"
+		 className="auth-input"
 		 onChange={ this.handleChange('email') }
 		 value={ this.state.email }/>
 	) : (<div />);
@@ -99,7 +99,7 @@ class AuthForm extends React.Component {
 	) : (<div />);
 
 	const maybeGuest = this.props.actionText === 'Log In' ? (
-	    <button onClick={this.loginGuest}>Log In As Guest</button>
+	    <button className="auth-submit" onClick={this.loginGuest}>Log In As Guest</button>
 	) : (<div />);
 
 	return (
@@ -111,6 +111,7 @@ class AuthForm extends React.Component {
 		 onRequestClose={this.closeModal}
 		 contentLabel={`Auth Modal ${this.props.actionText}`}
 		 style={customStyle}>
+		<h1 className="auth-header">{this.props.actionText}</h1>
 		<form className="auth-form" onSubmit={this.handleSubmit}>
 		  <ul className="errors-list">
 		    {maybeErrors}
@@ -121,16 +122,18 @@ class AuthForm extends React.Component {
 		    <input
 		       type="text"
 		       placeholder="username"
+		       className="auth-input"
 		       onChange={ this.handleChange('username') }
 		       value={ this.state.username } />
 
 		    <input
 		       type="password"
 		       placeholder="password"
+		       className="auth-input"
 		       onChange={ this.handleChange('password') }
 		       value={ this.state.password }/>
 
-		  <button>{this.props.actionText}!</button>
+		  <button className="auth-submit">{this.props.actionText}</button>
 		</form>
 		{maybeGuest}
 	      </Modal>

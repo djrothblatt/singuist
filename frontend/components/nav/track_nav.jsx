@@ -4,10 +4,10 @@ import { Link } from 'react-router';
 
 class TrackNav extends React.Component {
     render() {
-	const maybeAddSong = (this.props.currentUser) ? (<Link to="/new-track/">Add A Song</Link>) : (<div />);
+	const maybeAddSong = (this.props.currentUser) ? (<Link className="add-song" to="/new-track/">Add A Song</Link>) : (<p className="add-song"/>);
 	return (
 	    <nav className="track-nav">
-	      <Link to="/">Top Songs</Link>
+	      <Link to="/" className="index-link">Top Songs</Link>
 	      {maybeAddSong}
 	    </nav>
 	);

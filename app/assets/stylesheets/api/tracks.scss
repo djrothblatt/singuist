@@ -7,7 +7,12 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    a {
+    .add-song {
+	color: white;
+	width: 86px;
+    }
+    .index-link {
+	width: 77px;
 	color: white;
     }
 }
