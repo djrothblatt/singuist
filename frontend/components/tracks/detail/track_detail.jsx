@@ -23,16 +23,19 @@ class TrackDetail extends React.Component {
     }
 
     renderLyrics() {
+	const lyrics = this.props.track.lyrics;
 	return (
 	    <main className="detail-lyrics">
-	      <p>{this.props.track.lyrics}</p>
+	      <div dangerouslySetInnerHTML={ { __html: lyrics } }/>
 	    </main>
 	);
     }
+
     renderDescription() {
+	const description = this.props.track.description;
 	return (
 	    <aside className="detail-description">
-	      {this.props.track.description}
+	      <div dangerouslySetInnerHTML={ { __html: description } }/>
 	    </aside>
 	);
     }

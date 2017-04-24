@@ -2,6 +2,8 @@ import * as AnnotationsApiUtil from '../util/annotations_api_util';
 
 export const RECEIVE_ANNOTATIONS = 'RECEIVE_ANNOTATIONS';
 export const RECEIVE_ANNOTATION = 'RECEIVE_ANNOTATION';
+// export const TOGGLE_SELECTED = 'TOGGLE_SELECTED';
+// export const TOGGLE_EDITING = 'TOGGLE_EDITING';
 
 export const receiveAnnotations = annotations => ({
     type: RECEIVE_ANNOTATIONS,
@@ -12,6 +14,8 @@ export const receiveAnnotation = annotation => ({
     type: RECEIVE_ANNOTATION,
     annotation
 });
+
+// export const ;
 
 export const fetchAnnotations = () => dispatch => {
     return AnnotationsApiUtil.fetchAnnotations()
