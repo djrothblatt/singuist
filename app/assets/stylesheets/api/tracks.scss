@@ -1,12 +1,16 @@
 // Place all the styles related to the api/tracks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$singuist-blue: #64CDFD;
+$index-item-width: 710px;
+
 .track-nav {
     background-color: black;
     height: 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 25px;
     .add-song {
 	color: white;
 	width: 86px;
@@ -17,12 +21,69 @@
     }
 }
 
+.tracks-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.index-header {
+    width: $index-item-width;
+    margin-bottom: 10px;
+    padding: 9px;
+    border-bottom: 3px solid black;
+}
+
 .track-index {
     display: flex;
     align-items: center;
     flex-direction: column;
     .track-index-item {
-	height: 200px;
-	width: 710px;
+	height: 75px;
+	width: $index-item-width;
+	padding: 10px;
+	border-bottom: 1px solid gray;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	.index-container {
+	    display: flex;
+	    flex-direction: column;
+	}
+	h1 {
+	    font-size: 175%;
+	    font-weight: 700;
+	}
+	.index-counter {
+	    font-size: 175%;
+	    font-weight: 700;
+	    margin: 10px;
+	}
+	h3 {
+	}
+    }
+    .track-index-item:hover {
+	transition: background-color 1s;
+	background-color: rgba(190, 190, 190, 100);
+    }
+}
+
+.track {
+    .header {
+	background-color: rgba(100, 100, 100, 255);
+    }
+    .name {
+	color: $singuist-blue;
+	font-size: 28px;
+	font-weight: 700;
+    }
+    .artist {
+	color: white;
+	font-size: 21px;
+	font-weight: 700;
+    }
+    .language {
+	color: white;
+	font-size: 18px;
     }
 }

@@ -1,4 +1,4 @@
-$nav-bar-blue: #64CDFD;
+$singuist-blue: #64CDFD;
 $auth-border: #ddd;
 
 .nav-bar {
@@ -7,7 +7,7 @@ $auth-border: #ddd;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $nav-bar-blue;
+    background-color: $singuist-blue;
     height: 40px;
     * {
 	padding: 0px 3px;
@@ -18,7 +18,7 @@ $auth-border: #ddd;
 .auth {
     button {
 	margin: 5px;
-	border-bottom: 4px solid $nav-bar-blue;
+	border-bottom: 4px solid $singuist-blue;
     }
     button:hover {
 	transition: border-bottom 0.5s;

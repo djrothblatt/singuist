@@ -13,13 +13,16 @@ class TracksIndex extends React.Component {
     render() {
 	const tracks = Object.keys(this.props.tracks).map((id, index) => {
 	    const track = this.props.tracks[id];
-	    return <TracksIndexItem key={id} track={track} index={index} />;
+	    return <TracksIndexItem key={id} track={track} index={index}/>;
 	});
 
 	return (
-	    <ul className="track-index">
-	      { tracks }
-	    </ul>
+	    <main className="tracks-main">
+	      <h1 className="index-header">Top Songs</h1>
+	      <ol className="track-index">
+		{ tracks }
+	      </ol>
+	    </main>
 	);
     }
 }

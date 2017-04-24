@@ -17,7 +17,7 @@ class TrackDetail extends React.Component {
 	    <header className="header">
 	      <h1 className="name">{this.props.track.name}</h1>
 	      <h2 className="artist">{this.props.track.artist}</h2>
-	      <h3 className="language">Language: {this.props.track.language}</h3>
+	      <h3 className="language">{this.props.track.language}</h3>
 	    </header>
 	);
     }
@@ -25,6 +25,7 @@ class TrackDetail extends React.Component {
     renderLyrics() {
 	return (
 	    <main className="lyrics">
+	      <h3>{this.props.track.name} lyrics</h3>
 	      {this.props.track.lyrics}
 	    </main>
 	);

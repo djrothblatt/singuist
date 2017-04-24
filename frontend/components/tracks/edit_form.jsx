@@ -12,7 +12,9 @@ class EditTrackForm extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+    
+});
 
 const mapDispatchToProps = dispatch => ({
     updateTrack: track => dispatch(updateTrack(track))

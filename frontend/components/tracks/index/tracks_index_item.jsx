@@ -3,11 +3,14 @@ import { Link } from 'react-router';
 
 export default function TracksIndexItem({ track, index }) {
     return (
-	<li className="track-index-item">
-	  <label>{index + 1}
-	    <h1><Link to={`/tracks/${track.id}/`}>{track.name}</Link></h1>
-	    <h2>{track.artist}</h2>
-	  </label>	  
-	</li>
+	<Link to={`/tracks/${track.id}/`}>
+	  <li className="track-index-item">
+	    <h2 className="index-counter">{index + 1}</h2>
+	    <div className="info-container">
+	      <h1>{track.name}</h1>
+	      <h3>{track.artist}</h3>
+	    </div>
+	  </li>
+	</Link>
     );
 }
