@@ -23,7 +23,7 @@ export const createNewTrack = track => {
 export const updateTrack = track => {
     return $.ajax({
 	method: 'PATCH',
-	url: `api/track/${track.id}`,
+	url: `api/tracks/${track.id}`,
 	data: { track }
     });
 };
@@ -31,6 +31,6 @@ export const updateTrack = track => {
 export const destroyTrack = id => {
     return $.ajax({
 	method: 'DELETE',
-	url: `api/track/${id}`
+	url: `api/tracks/${id}`
     });
 };
