@@ -1,4 +1,4 @@
-div, p, button, h1, h2, h3, a, ul, input, label, textarea, nav {
+html, body, div, p, button, h1, h2, h3, a, ul, input, label, textarea, nav {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
