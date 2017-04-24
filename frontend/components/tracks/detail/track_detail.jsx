@@ -14,7 +14,7 @@ class TrackDetail extends React.Component {
     
     renderHeader() {
 	return (
-	    <header className="header">
+	    <header className="detail-header">
 	      <h1 className="name">{this.props.track.name}</h1>
 	      <h2 className="artist">{this.props.track.artist}</h2>
 	      <h3 className="language">{this.props.track.language}</h3>
@@ -24,16 +24,14 @@ class TrackDetail extends React.Component {
 
     renderLyrics() {
 	return (
-	    <main className="lyrics">
-	      <h3>{this.props.track.name} lyrics</h3>
-	      {this.props.track.lyrics}
+	    <main className="detail-lyrics">
+	      <p>{this.props.track.lyrics}</p>
 	    </main>
 	);
     }
-
     renderDescription() {
 	return (
-	    <aside className="description">
+	    <aside className="detail-description">
 	      {this.props.track.description}
 	    </aside>
 	);
@@ -41,10 +39,12 @@ class TrackDetail extends React.Component {
 
     render() {
 	return (
-	    <section className="track">
+	    <section className="track-detail">
 	      {this.renderHeader()}
-	      {this.renderLyrics()}
-	      {this.renderDescription()}
+	      <section className="body">
+		{this.renderLyrics()}
+		{this.renderDescription()}
+	      </section>
 	    </section>
 	);
     }

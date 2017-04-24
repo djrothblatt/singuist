@@ -26,7 +26,14 @@ Track.destroy_all
 Track.create([
                {
                  name: 'Txoria Txori',
-                 lyrics: 'Hegoak ebaki banizkio, nerea izango zen...',
+                 lyrics: <<LYRICS,
+                   Hegoak ebaki banizkio
+                   nerea izango zen,
+                   ez zuen aldegingo.
+                   Bainan, honela
+                   ez zen gehiago txoria izango
+                   eta nik txoria nuen maite.
+LYRICS
                  description: 'This is a Basque song, popular since adapted to music by Mikel Laboa',
                  language: 'Basque',
                  artist: 'Mikel Laboa'
