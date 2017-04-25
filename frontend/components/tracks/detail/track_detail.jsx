@@ -1,6 +1,15 @@
 import React from 'react';
 import { Editor, EditorState } from 'draft-js';
 
+const _defaultTrackState = {
+    selectedText: null,
+    annotation: {
+	start: null,
+	end: null,
+	body: ''
+    }
+};
+
 class TrackDetail extends React.Component {
     constructor(props) {
 	super(props);
@@ -17,7 +26,9 @@ class TrackDetail extends React.Component {
     }
 
     componentDidMount() {
- 	this.props.fetchTrack(this.props.params.trackId);
+	const trackId = this.props.params.trackId;
+ 	this.props.fetchTrack(trackId);
+	this.props.fetchAnnotations(trackId);
     }
 
     handleSelection() {
@@ -37,64 +48,59 @@ class TrackDetail extends React.Component {
     }
 
     stringToSpans(string) {
-	const annotationStarts = this.props.annotations.map(anno => anno.startIndex);
-	const annotationEnds = this.props.annotations.map(anno => anno.endIndex);
-//	const annotationEnds = [3,5,7];
+	const annotationStarts = this.props.annotations.map(anno => anno.start);
+	const annotationEnds = this.props.annotations.map(anno => anno.end);
+
 	let inAnnotation = false;
 	let spans = [];
-
 	let start = 0;
 	const length = string.length;
 	for (let position = 0; position < length; position++) {
 	    if (inAnnotation) {
 		if (annotationEnds.includes(position)) {
-		    debugger
-		    const span = <span className="annotation">{string.slice(start, position)}</span>;
+		    const span = `<span class="annotation">${string.slice(start, position)}</span>`;
 		    spans.push(span);
 		    start = position;
 		    inAnnotation = false;
 		}
 	    } else if (annotationStarts.includes(position)) {
-		const span = <span>{string.slice(start, position)}</span>;
+		const span = `<span>${string.slice(start, position)}</span>`;
 		spans.push(span);
 		start = position;
 		inAnnotation = true;
 	    }
 	}
+	spans.push(string.slice(start, length));
 	if (spans.length === 0) {
 	    spans = [string];
 	}
-	return spans;
+	return spans.join('');
     }
     
     
     renderHeader() {
 	return (
 	    <header className="detail-header">
-	      <h1 className="name">{this.props.track.name}</h1>
-	      <h2 className="artist">{this.props.track.artist}</h2>
-	      <h3 className="language">{this.props.track.language}</h3>
+	      <h1 className="name">{this.props.trackDetail.name}</h1>
+	      <h2 className="artist">{this.props.trackDetail.artist}</h2>
+	      <h3 className="language">{this.props.trackDetail.language}</h3>
 	    </header>
 	);
     }
 
     renderLyrics() {
-//	const lyrics = this.stringToSpans(this.props.track.lyrics);
-	const lyrics = this.props.track.lyrics;
-	//	      {lyrics}
+	const lyrics = this.stringToSpans(this.props.trackDetail.lyrics);
 	return (
 	    <main className="detail-lyrics">
-
 	      <div
 	      	 dangerouslySetInnerHTML={ { __html: lyrics } }
 	      	 onMouseUp={this.handleSelection}/>
-
 	    </main>
 	);
     }
 	      
     renderDescription() {
-	const description = this.props.track.description;
+	const description = this.props.trackDetail.description;
 
 	if (this.state.selectedText) {
 	    return (
@@ -143,15 +149,5 @@ class MyEditor extends React.Component {
 	);
     }
 }
-
-const _defaultTrackState = {
-    selectedText: null,
-    annotation: {
-	startIndex: null,
-	endIndex: null,
-	body: ''
-    }
-};
-
 
 export default TrackDetail;

@@ -1,7 +1,7 @@
 export const fetchAnnotations = trackId => {
     return $.ajax({
 	method: 'GET',
-	url: `api/${trackId}/annotations`
+	url: `api/tracks/${trackId}/annotations`
     });
 };
 

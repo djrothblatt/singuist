@@ -1,10 +1,18 @@
 import { RECEIVE_TRACK } from '../actions/tracks_actions';
 
-const TrackDetailReducer = (state = {}, action) => {
+const _defaultState = {
+    name: '',
+    lyrics: '',
+    description: '',
+    language: '',
+    artist: ''
+};
+
+const TrackDetailReducer = (state = _defaultState, action) => {
     Object.freeze(state);
     switch (action.type) {
     case RECEIVE_TRACK:
-	return action.trackDetail;
+	return action.track;
     default:
 	return state;
     }

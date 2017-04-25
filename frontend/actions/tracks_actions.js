@@ -22,7 +22,12 @@ const thunkAction = promise => arg => dispatch => {
     return promise(arg).then(track => dispatch(receiveTrack(track)));
 };
 
-export const fetchTrack = thunkAction(TracksApiUtil.fetchTrack);
+export const fetchTrack = id => dispatch => {
+    return TracksApiUtil.fetchTrack(id)
+	.then(track => dispatch(receiveTrack(track)));
+}
+
+//export const fetchTrack = thunkAction(TracksApiUtil.fetchTrack);
 export const createTrack = thunkAction(TracksApiUtil.createNewTrack);
 export const updateTrack = thunkAction(TracksApiUtil.updateTrack);
 

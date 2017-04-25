@@ -1,16 +1,21 @@
 import { connect } from 'react-redux';
 import TrackDetail from './track_detail';
 import { fetchTrack } from '../../../actions/tracks_actions';
-import { fetchAnnotations } from '../../../util/annotations_api_util';
+import { fetchAnnotations } from '../../../actions/annotations_actions';
 
-const mapStateToProps = ({ tracks, annotations }, ownProps) => ({
-    track: tracks[ownProps.params.trackId],
-    annotations: Object.keys(annotations).map(id => annotations[id])
-});
+const mapStateToProps = ({ trackDetail, annotations }, ownProps) => {
+    return {
+	trackDetail,
+	annotations: Object.keys(annotations).map(id => annotations[id])
+    };
+};
 
-const mapDispatchToProps = dispatch => ({
-    fetchTrack: id => dispatch(fetchTrack(id))
-});
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+	fetchTrack: trackId => dispatch(fetchTrack(trackId)),
+	fetchAnnotations: trackId => dispatch(fetchAnnotations(trackId))
+    };
+};
 
 export default connect(
     mapStateToProps,
