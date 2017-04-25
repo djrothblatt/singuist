@@ -1,12 +1,35 @@
 import React from 'react';
-import AnnotationForm from '../../annotations/annotation_form';
-import ReactQuill from 'react-quill';
+import { Editor, EditorState } from 'draft-js';
+
+
+class MyEditor extends React.Component {
+    constructor(props) {
+	super(props);
+	this.state = {body: EditorState.createEmpty()};
+	this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(body) {
+	this.setState({body});
+    }
+
+    render() {
+	return (
+	    <Editor editorState={this.state.body} onChange={this.onChange}/>
+	);
+    }
+}
 
 class TrackDetail extends React.Component {
     constructor(props) {
 	super(props);
 	this.state = {
-	    selectedText: null
+	    selectedText: null,
+	    annotation: {
+		startIndex: null,
+		endIndex: null,
+		body: ''
+	    }
 	};
 	this.renderHeader = this.renderHeader.bind(this);
 	this.renderLyrics = this.renderLyrics.bind(this);
@@ -31,7 +54,7 @@ class TrackDetail extends React.Component {
 
     handleSubmit(e) {
 	e.preventDefault();
-	console.log(this.state.selectedText);
+	console.log(e.target.textContent);
     }
 
     renderHeader() {
@@ -59,17 +82,19 @@ class TrackDetail extends React.Component {
 	const description = this.props.track.description;
 	const content = this.state.selectedText ? <div className="annotator-container" /> : <div dangerouslySetInnerHTML={ { __html: description } }/>;
 
+	const modules = {
+	    clipboard: {}
+	};
+
 	if (this.state.selectedText) {
 	    return (
-		<form onSubmit={this.handleSubmit}>
-		  <ReactQuill
-		     type="textarea"
-		     value={this.state.body}
-		     onChange={this.handleBodyChange}
-		     placeholder="Translate it!"
-		     theme="bubble"/>
-		  <input type="submit">submit</input>
-		</form>
+		<section className="annotation-form">
+		  <h2>Start Translating!</h2>
+		  <form onSubmit={this.handleSubmit}>
+		    <MyEditor />
+		    <input type="submit" value="Submit Annotation" />
+		  </form>
+		</section>
 	    );
 	} else {
 	    return (
@@ -77,6 +102,16 @@ class TrackDetail extends React.Component {
 	    );
 	}
     }
+//		    <input type="textarea" value=""/>
+		    // <ReactQuill
+		    //    type="text"
+		    //    value={this.state.annotation.body}
+		    //    placeholder="Translate it!"
+		    //    theme="bubble"
+		    //    modules={modules}>
+		    //   <div className="editor"/>
+		    // </ReactQuill>
+
     
     render() {
 	return (

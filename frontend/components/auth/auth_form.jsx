@@ -75,7 +75,7 @@ class AuthForm extends React.Component {
 	    },
 	    content: {
 		position                    : 'fixed',
-		left                        : '400px',
+		left                        : '700px',
 		height                      : '250px',
 		width                       : '350px',
 		border                      : '1px solid #ccc',
