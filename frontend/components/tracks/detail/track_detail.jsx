@@ -20,17 +20,19 @@ class MyEditor extends React.Component {
     }
 }
 
+const _defaultTrackState = {
+    selectedText: null,
+    annotation: {
+	startIndex: null,
+	endIndex: null,
+	body: ''
+    }
+};
+
 class TrackDetail extends React.Component {
     constructor(props) {
 	super(props);
-	this.state = {
-	    selectedText: null,
-	    annotation: {
-		startIndex: null,
-		endIndex: null,
-		body: ''
-	    }
-	};
+	this.state = _defaultTrackState;
 	this.renderHeader = this.renderHeader.bind(this);
 	this.renderLyrics = this.renderLyrics.bind(this);
 	this.renderDescription = this.renderDescription.bind(this);
@@ -55,6 +57,7 @@ class TrackDetail extends React.Component {
     handleSubmit(e) {
 	e.preventDefault();
 	console.log(e.target.textContent);
+	this.setState(_defaultTrackState);
     }
 
     renderHeader() {

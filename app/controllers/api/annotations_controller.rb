@@ -1,6 +1,6 @@
 class Api::AnnotationsController < ApplicationController
   def index
-    @track = Track.find(params[:annotation][:track_id])
+    @track = Track.find(params[:track_id])
     @annotations = @track.annotations
     
     render :index

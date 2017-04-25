@@ -68,12 +68,10 @@ $index-item-width: 710px;
 }
 
 .track-detail {
-    display: flex;
+    display: block;
+    margin: 0 auto;
     background-color: #000;
     padding: 15px;
-    flex-direction: column;
-    position: relative;
-    left: 375px;
     width: 1100px;    
     .body {
 	border: 1px solid #ccc;
