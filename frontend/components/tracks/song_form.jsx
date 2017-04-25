@@ -47,22 +47,37 @@ class SongForm extends React.Component {
 	      {this.renderHeader()}
 	      <form onSubmit={this.handleSubmit}>
 		<label>Title *
-		  <input type="text" value={this.state.name} onChange={this.handleChange('name')} />
+		  <input
+		     type="text"
+		     value={this.state.name}
+		     onChange={this.handleChange('name')} />
 		</label>
 		<label>By *
-		  <input type="text" value={this.state.artist} onChange={this.handleChange('artist')} />
+		  <input
+		     type="text"
+		     value={this.state.artist}
+		     onChange={this.handleChange('artist')} />
 		</label>
 		<label>Language *
-		  <input type="text" value={this.state.language} onChange={this.handleChange('language')} />
+		  <input
+		     type="text"
+		     value={this.state.language}
+		     onChange={this.handleChange('language')} />
 		</label>
 		<label>Lyrics *
-		  <textarea value={this.state.lyrics} onChange={this.handleChange('lyrics')} />
+		  <textarea
+		     value={this.state.lyrics}
+		     onChange={this.handleChange('lyrics')} />
 		</label>
 		<label>About
-		  <textarea value={this.state.description} onChange={this.handleChange('description')} />
+		  <textarea
+		     value={this.state.description}
+		     onChange={this.handleChange('description')} />
 		</label>
 
-		<input type="submit" value="Submit" />
+		<input
+		   type="submit"
+		   value="Submit" />
 	      </form>
 	    </section>
 	    

@@ -1,6 +1,6 @@
 import React from 'react';
 import AnnotationForm from '../../annotations/annotation_form';
-import Quill from 'quill';
+import ReactQuill from 'react-quill';
 
 class TrackDetail extends React.Component {
     constructor(props) {
@@ -12,6 +12,7 @@ class TrackDetail extends React.Component {
 	this.renderLyrics = this.renderLyrics.bind(this);
 	this.renderDescription = this.renderDescription.bind(this);
 	this.handleSelection = this.handleSelection.bind(this);
+	this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -23,15 +24,16 @@ class TrackDetail extends React.Component {
 	const text = selection.toString();
 	if (text.length > 0) {
 	    this.setState({ selectedText: text });
-	    this.quill = new Quill('.annotator-container', {
-		placeholder: 'Translate this song!',
-		theme: 'snow'
-	    });
 	} else {
 	    this.setState({ selectedText: null });
 	}
     }
-    
+
+    handleSubmit(e) {
+	e.preventDefault();
+	console.log(this.state.selectedText);
+    }
+
     renderHeader() {
 	return (
 	    <header className="detail-header">
@@ -56,19 +58,26 @@ class TrackDetail extends React.Component {
     renderDescription() {
 	const description = this.props.track.description;
 	const content = this.state.selectedText ? <div className="annotator-container" /> : <div dangerouslySetInnerHTML={ { __html: description } }/>;
-	  
-	return (
-	    <aside className="detail-description">
-	      <div className="annotator-container">
-		<p>Edit here!</p>
-		<p>This is editable <b>text</b></p>
-	      </div>
-	    </aside>
-	);
-    }
-	      // <div dangerouslySetInnerHTML={ { __html: description } }/>
-	      // <AnnotationForm />
 
+	if (this.state.selectedText) {
+	    return (
+		<form onSubmit={this.handleSubmit}>
+		  <ReactQuill
+		     type="textarea"
+		     value={this.state.body}
+		     onChange={this.handleBodyChange}
+		     placeholder="Translate it!"
+		     theme="bubble"/>
+		  <input type="submit">submit</input>
+		</form>
+	    );
+	} else {
+	    return (
+		<p dangerouslySetInnerHTML={ { __html: description } }/>
+	    );
+	}
+    }
+    
     render() {
 	return (
 	    <section className="track-detail">

@@ -1,5 +1,6 @@
 import React from 'react';
-import Quill from 'quill';
+// import Quill from 'quill';
+import ReactQuill from 'react-quill';
 import { RECEIVE_ANNOTATION } from '../../actions/annotations_actions';
 
 class AnnotationForm extends React.Component {
@@ -8,6 +9,7 @@ class AnnotationForm extends React.Component {
 	this.state = {
 	    body: ''
 	};
+	this.handleBodyChange = this.handleBodyChange.bind(this);
     }
 
     componentDidMount() {
@@ -24,10 +26,24 @@ class AnnotationForm extends React.Component {
 
     render() {
 	return (
-	    <div id="annotator-container">
-	    </div>
+	    <form onSubmit={this.handleSubmit}>
+	      <ReactQuill
+		 type="textarea"
+		 value={this.state.body}
+		 onChange={this.handleBodyChange}
+		 placeholder={this.props.placeholder}
+		 theme="bubble"/>
+	    </form>
+
 	);
     }
 }
+	    //   <form onSubmit={this.handleSubmit}>
+	    // 	<input
+	    // 	   type="text"
+	    // 	   value={this.state.body}
+	    // 	   onChange={this.handleBodyChange}/>
+	    //   </form>
+	    // </ReactQuill>
 
 export default AnnotationForm;
