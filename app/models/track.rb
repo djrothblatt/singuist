@@ -14,4 +14,5 @@
 
 class Track < ApplicationRecord
   validates :name, :lyrics, presence: true
+  has_many :annotations
 end

@@ -60,6 +60,8 @@ class TrackDetail extends React.Component {
 	this.setState(_defaultTrackState);
     }
 
+    
+    
     renderHeader() {
 	return (
 	    <header className="detail-header">
@@ -83,11 +85,6 @@ class TrackDetail extends React.Component {
 
     renderDescription() {
 	const description = this.props.track.description;
-	const content = this.state.selectedText ? <div className="annotator-container" /> : <div dangerouslySetInnerHTML={ { __html: description } }/>;
-
-	const modules = {
-	    clipboard: {}
-	};
 
 	if (this.state.selectedText) {
 	    return (
@@ -105,16 +102,6 @@ class TrackDetail extends React.Component {
 	    );
 	}
     }
-//		    <input type="textarea" value=""/>
-		    // <ReactQuill
-		    //    type="text"
-		    //    value={this.state.annotation.body}
-		    //    placeholder="Translate it!"
-		    //    theme="bubble"
-		    //    modules={modules}>
-		    //   <div className="editor"/>
-		    // </ReactQuill>
-
     
     render() {
 	return (
