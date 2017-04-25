@@ -74,6 +74,7 @@ class TrackDetail extends React.Component {
 
     renderLyrics() {
 	const lyrics = this.props.track.lyrics;
+	
 	return (
 	    <main className="detail-lyrics">
 	      <div
