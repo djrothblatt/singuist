@@ -60,3 +60,42 @@ LYRICS
                  artist: 'Traditional'
                }
              ])
+
+Annotation.destroy_all
+Annotation.create([
+                    {
+                      track_id: Track.find_by(name: 'Txoria Txori').id,
+                      user_id: User.find_by(username: 'daniel').id,
+                      body: 'text',
+                      start_index: 0,
+                      end_index: 5
+                    },
+                    {
+                      track_id: Track.find_by(name: 'Txoria Txori').id,
+                      user_id: User.find_by(username: 'garnet').id,
+                      body: 'This is Basque. Look at it move!',
+                      start_index: 10,
+                      end_index: 12
+                    },
+                    {
+                      track_id: Track.find_by(name: 'Wave').id,
+                      user_id: User.find_by(username: 'guest').id,
+                      body: 'I do not speak this language',
+                      start_index: 6,
+                      end_index: 16
+                    },
+                    {
+                      track_id: Track.find_by(name: 'Di Mame Iz Gegangen').id,
+                      user_id: User.find_by(username: 'daniel').id,
+                      body: 'Yiddish is the future!',
+                      start_index: 17,
+                      end_index: 19
+                    },
+                    {
+                      track_id: Track.find_by(name: 'Txoria Txori').id,
+                      user_id: User.find_by(username: 'daniel').id,
+                      body: 'text',
+                      start_index: 17,
+                      end_index: 20
+                    }
+                  ])
