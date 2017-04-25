@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import SessionReducer from './session_reducer';
 import TracksReducer from './tracks_reducer';
+import AnnotationsReducer from './annotations_reducer';
 
 const rootReducer = combineReducers({
     session: SessionReducer,
-    tracks: TracksReducer
+    tracks: TracksReducer,
+    annotations: AnnotationsReducer
 });
 
 export default rootReducer;
