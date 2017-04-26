@@ -53,10 +53,20 @@ class TrackDetail extends React.Component {
     handleSelection() {
 	this.closeAnnotation();
 	const selection = window.getSelection();
-
 	const text = selection.toString();
+
 	if (text.length > 0) {
-	    this.setState({ selectedText: text });
+	    const lyrics = this.props.trackDetail.lyrics;
+	    const index = lyrics.indexOf(text);
+	    const range = selection.getRangeAt(0);
+	    const start = range.startOffset + index;
+	    const end = range.endOffset + index;
+
+	    const newState = Object.assign(this.state);
+	    newState.newAnnotation.start = start;
+	    newState.newAnnotation.end = end;
+	    newState.selectedText = text;
+	    this.setState(newState);
 	} else {
 	    this.setState({ selectedText: null });
 	}
@@ -64,6 +74,8 @@ class TrackDetail extends React.Component {
 
     handleSubmit(e) {
 	e.preventDefault();
+	const newAnnotation = this.state.newAnnotation;
+	newAnnotation.body = e.target.textContent;
 	this.props.createAnnotation(this.state.newAnnotation);
 	this.setState(_defaultTrackState);
     }

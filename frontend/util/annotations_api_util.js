@@ -16,7 +16,15 @@ export const createNewAnnotation = annotation => {
     return $.ajax({
 	method: 'POST',
 	url: 'api/annotations',
-	data: { annotation }
+	data: {
+	    annotation: {
+		body: annotation.body,
+		start_index: annotation.start,
+		end_index: annotation.end,
+		user_id: annotation.userId,
+		track_id: annotation.trackId
+	    }
+	}
     });
 };
 
