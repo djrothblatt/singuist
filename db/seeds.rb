@@ -209,7 +209,7 @@ Annotation.create([
                     {
                       track_id: Track.find_by(name: 'Txoria Txori').id,
                       user_id: User.find_by(username: 'daniel').id,
-                      body: 'text',
+                      body: 'Basque is awesome, right?',
                       start_index: 17,
                       end_index: 20
                     }
