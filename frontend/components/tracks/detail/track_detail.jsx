@@ -3,11 +3,12 @@ import { Editor, EditorState } from 'draft-js';
 
 const _defaultTrackState = {
     selectedText: null,
-    annotation: {
+    newAnnotation: {
 	start: null,
 	end: null,
 	body: '',
-	userId: ''
+	userId: null,
+	trackId: null
     },
     annotationOpen: false
 };
@@ -16,7 +17,8 @@ class TrackDetail extends React.Component {
     constructor(props) {
 	super(props);
 	this.state = _defaultTrackState;
-	this.state.trackId = this.props.params.trackId;
+	this.state.newAnnotation.trackId = this.props.params.trackId;
+	this.state.newAnnotation.userId = this.props.session.currentUser.id;
 
 	this.renderHeader = this.renderHeader.bind(this);
 	this.renderLyrics = this.renderLyrics.bind(this);
@@ -24,8 +26,12 @@ class TrackDetail extends React.Component {
 
 	this.handleSelection = this.handleSelection.bind(this);
 	this.handleSubmit = this.handleSubmit.bind(this);
+	this.handleAnnotationClick = this.handleAnnotationClick.bind(this);
 
 	this.stringToSpans = this.stringToSpans.bind(this);
+
+	this.openAnnotation = this.openAnnotation.bind(this);
+	this.closeAnnotation = this.closeAnnotation.bind(this);
     }
 
     componentDidMount() {
@@ -36,6 +42,7 @@ class TrackDetail extends React.Component {
     }
 
     closeAnnotation() {
+	this.props.clearAnnotation();
 	this.setState(Object.assign(this.state, { annotationOpen: false }));
     }
 
@@ -44,9 +51,9 @@ class TrackDetail extends React.Component {
     }
 
     handleSelection() {
-	this.props.clearAnnotation();
 	this.closeAnnotation();
 	const selection = window.getSelection();
+
 	const text = selection.toString();
 	if (text.length > 0) {
 	    this.setState({ selectedText: text });
@@ -57,13 +64,13 @@ class TrackDetail extends React.Component {
 
     handleSubmit(e) {
 	e.preventDefault();
-	console.log(e.target.textContent);
+	this.props.createAnnotation(this.state.newAnnotation);
 	this.setState(_defaultTrackState);
     }
 
     handleAnnotationClick(e, annoId) {
-	this.props.fetchAnnotation(annoId);
 	this.openAnnotation();
+	this.props.fetchAnnotation(annoId);
     }
 
     stringToSpans(string) {

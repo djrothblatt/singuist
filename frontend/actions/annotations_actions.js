@@ -36,6 +36,6 @@ export const destroyAnnotation = id => dispatch => {
 	.then(() => dispatch(receiveAnnotation(null)));
 };
 
-export const clearAnnotation = () => dispatch => {
-    receiveAnnotation(null);
+export const clearAnnotation = () => {
+    return receiveAnnotation(null);
 }
