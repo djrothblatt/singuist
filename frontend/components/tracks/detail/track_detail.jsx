@@ -6,7 +6,9 @@ const _defaultTrackState = {
     annotation: {
 	start: null,
 	end: null,
-	body: ''
+	body: '',
+	userId: '',
+	trackId: this.props.params.trackId
     }
 };
 
@@ -27,8 +29,14 @@ class TrackDetail extends React.Component {
 
     componentDidMount() {
 	const trackId = this.props.params.trackId;
- 	this.props.fetchTrack(trackId);
 	this.props.fetchAnnotations(trackId);
+	this.props.fetchTrack(trackId);
+    }
+
+    componentWillReceiveProps(newProps) {
+	if (this.props.params.annotationId !== newProps.params.annotationId) {
+	    this.props.fetchAnnotation(newProps.params.annotationId);
+	}
     }
 
     handleSelection() {
@@ -48,36 +56,47 @@ class TrackDetail extends React.Component {
     }
 
     stringToSpans(string) {
-	const annotationStarts = this.props.annotations.map(anno => anno.start);
-	const annotationEnds = this.props.annotations.map(anno => anno.end);
+	const annotationStarts = {};
+	const annotationEnds = {};
+	this.props.annotations.forEach(anno => {
+	    annotationStarts[anno.start] = anno.id;
+	    annotationEnds[anno.end] = anno.id;
+	});
 
 	let inAnnotation = false;
 	let spans = [];
 	let start = 0;
 	const length = string.length;
+
 	for (let position = 0; position < length; position++) {
 	    if (inAnnotation) {
-		if (annotationEnds.includes(position)) {
-		    const span = `<span class="annotation">${string.slice(start, position)}</span>`;
+		const annoId = annotationEnds[position];
+		if (annoId) {
+		    const span = (
+			<span
+			   key={position}
+			   className="annotation"
+			   onClick={() => this.props.fetchAnnotation(annoId)}
+			  dangerouslySetInnerHTML={ { __html: string.slice(start, position) } }/>
+		    );
 		    spans.push(span);
 		    start = position;
 		    inAnnotation = false;
 		}
-	    } else if (annotationStarts.includes(position)) {
-		const span = `<span>${string.slice(start, position)}</span>`;
+	    } else if (annotationStarts[position]) {
+		const span = (
+		    <span key={position} dangerouslySetInnerHTML={ { __html: string.slice(start, position) } }/>
+		);
 		spans.push(span);
 		start = position;
 		inAnnotation = true;
 	    }
 	}
-	spans.push(string.slice(start, length));
-	if (spans.length === 0) {
-	    spans = [string];
-	}
-	return spans.join('');
+
+	spans.push(<span key={length} dangerouslySetInnerHTML={ { __html: string.slice(start, length)}}/>);
+	return spans;
     }
-    
-    
+
     renderHeader() {
 	return (
 	    <header className="detail-header">
@@ -92,13 +111,11 @@ class TrackDetail extends React.Component {
 	const lyrics = this.stringToSpans(this.props.trackDetail.lyrics);
 	return (
 	    <main className="detail-lyrics">
-	      <div
-	      	 dangerouslySetInnerHTML={ { __html: lyrics } }
-	      	 onMouseUp={this.handleSelection}/>	      
+	      {lyrics}
 	    </main>
 	);
     }
-	      
+
     renderDescription() {
 	const description = this.props.trackDetail.description;
 
@@ -112,13 +129,17 @@ class TrackDetail extends React.Component {
 		  </form>
 		</section>
 	    );
+	} else if (this.props.annotation) {
+	    return (
+		<p dangerouslySetInnerHTML={ { __html: this.props.annotation.body } } />
+	    );
 	} else {
 	    return (
 		<p dangerouslySetInnerHTML={ { __html: description } }/>
 	    );
 	}
     }
-    
+
     render() {
 	return (
 	    <section className="track-detail">

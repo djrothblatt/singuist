@@ -7,8 +7,6 @@ const AnnotationsReducer = (state = _defaultState, action) => {
     switch(action.type) {
     case RECEIVE_ANNOTATIONS:
 	return action.annotations;
-    case RECEIVE_ANNOTATION:
-	return action.annotation;
     default:
 	return state;
     }

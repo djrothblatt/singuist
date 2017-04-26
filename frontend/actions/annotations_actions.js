@@ -18,12 +18,16 @@ export const fetchAnnotations = id => dispatch => {
 	.then(annotations => dispatch(receiveAnnotations(annotations)));
 };
 
+export const fetchAnnotation = id => dispatch => {
+    return AnnotationsApiUtil.fetchAnnotation(id)
+	.then(annotation => dispatch(receiveAnnotation(annotation)));
+};
+
 const thunkAction = promise => arg => dispatch => {
     return promise(arg)
 	.then(annotation => dispatch(receiveAnnotation(annotation)));
 };
 
-export const fetchAnnotation = thunkAction(AnnotationsApiUtil.fetchAnnotation);
 export const createAnnotation = thunkAction(AnnotationsApiUtil.createNewAnnotation);
 export const updateAnnotation = thunkAction(AnnotationsApiUtil.updateAnnotation);
 
