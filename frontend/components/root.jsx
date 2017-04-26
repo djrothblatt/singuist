@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from './app';
 import TracksIndexContainer from './tracks/index/tracks_index_container';
 import TrackDetailContainer from './tracks/detail/track_detail_container';
+import AnnotationContainer from './annotations/detail/annotation_container';
 import NewTrackForm from './tracks/new_form';
 
 const Root = ({ store }) => (
@@ -11,8 +12,10 @@ const Root = ({ store }) => (
       <Router history={hashHistory}>
 	<Route path="/" component={App}>
 	  <IndexRoute component={TracksIndexContainer}/>
-	  <Route path="/tracks/:trackId/" component={TrackDetailContainer}/>
 	  <Route path="/new-track/" component={NewTrackForm}/>
+	  <Route path="/tracks/:trackId/" component={TrackDetailContainer}>
+	    <Route path="/tracks/:trackId/annotations/:annotationId/" component={AnnotationContainer}/>
+	  </Route>
 	</Route>
       </Router>
     </Provider>  
