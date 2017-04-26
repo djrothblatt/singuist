@@ -118,3 +118,49 @@ $index-item-width: 710px;
     width: 650px;
 }
 
+.form-container {
+    display: block;
+    text-align: left;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #000;
+}
+
+.song-form-header {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    h1, h2, h3 {
+	color: #fff;
+    }
+    h1 {
+	font-size: 32px;
+	font-weight: 700;
+    }
+    h2 {
+	font-weight: 600;
+    }
+}
+
+.song-form {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    label {
+	display: block;
+	color: #999;
+	margin: 20px;
+	input, textarea {
+	    padding: 2px;
+	    width: 400px;
+	    display: block;
+	    background-color: #fff;
+	}
+    }
+
+    .song-submit {
+	margin: 20px;
+	color: #999;
+    }
+}

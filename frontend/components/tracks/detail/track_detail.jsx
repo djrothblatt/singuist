@@ -94,7 +94,7 @@ class TrackDetail extends React.Component {
 	    <main className="detail-lyrics">
 	      <div
 	      	 dangerouslySetInnerHTML={ { __html: lyrics } }
-	      	 onMouseUp={this.handleSelection}/>
+	      	 onMouseUp={this.handleSelection}/>	      
 	    </main>
 	);
     }
