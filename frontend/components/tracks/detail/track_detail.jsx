@@ -18,8 +18,9 @@ class TrackDetail extends React.Component {
 	super(props);
 	this.state = _defaultTrackState;
 	this.state.newAnnotation.trackId = this.props.params.trackId;
-	this.state.newAnnotation.userId = this.props.session.currentUser.id;
-
+	if (this.props.session.currentUser) {
+	    this.state.newAnnotation.userId = this.props.session.currentUser.id;
+	}
 	this.renderHeader = this.renderHeader.bind(this);
 	this.renderLyrics = this.renderLyrics.bind(this);
 	this.renderDescription = this.renderDescription.bind(this);
@@ -42,8 +43,8 @@ class TrackDetail extends React.Component {
     }
 
     closeAnnotation() {
-	this.props.clearAnnotation();
 	this.setState(Object.assign(this.state, { annotationOpen: false }));
+	this.props.clearAnnotation();
     }
 
     openAnnotation() {
@@ -51,24 +52,24 @@ class TrackDetail extends React.Component {
     }
 
     handleSelection() {
-	this.closeAnnotation();
 	const selection = window.getSelection();
 	const text = selection.toString();
 
 	if (text.length > 0) {
 	    const lyrics = this.props.trackDetail.lyrics;
 	    const index = lyrics.indexOf(text);
-	    const range = selection.getRangeAt(0);
-	    const start = range.startOffset + index;
-	    const end = range.endOffset + index;
+	    const start = index;
+	    const end = text.length + index;
 
 	    const newState = Object.assign(this.state);
 	    newState.newAnnotation.start = start;
 	    newState.newAnnotation.end = end;
 	    newState.selectedText = text;
+	    newState.annotationOpen = false;
+	    this.props.clearAnnotation();
 	    this.setState(newState);
 	} else {
-	    this.setState({ selectedText: null });
+	    this.setState({ selectedText: null, annotationOpen: false });
 	}
     }
 
@@ -148,24 +149,33 @@ class TrackDetail extends React.Component {
 
     renderDescription() {
 	const description = this.props.trackDetail.description;
+	const currentUser = this.props.session.currentUser;
 
 	if (this.state.selectedText) {
-	    return (
-		<section className="annotation-form">
-		  <h2>Start Translating!</h2>
-		  <form onSubmit={this.handleSubmit}>
-		    <MyEditor />
-		    <input type="submit" value="Submit Annotation" />
-		  </form>
-		</section>
-	    );
+	    if (currentUser) {
+		return (
+		    <section className="detail-description annotation-form">
+		      <h2>Start Translating!</h2>
+		      <form onSubmit={this.handleSubmit}>
+			<MyEditor />
+			<input type="submit" value="Submit Annotation" />
+		      </form>
+		    </section>
+		);
+	    } else {
+		return (
+		    <section className="detail-description">
+		      <h2>Sign up to annotate!</h2>
+		    </section>
+		);
+	    }
 	} else if (this.state.annotationOpen && this.props.annotation) {
 	    return (
-		<p dangerouslySetInnerHTML={ { __html: this.props.annotation.body } } />
+		<p className="detail-description" dangerouslySetInnerHTML={ { __html: this.props.annotation.body } } />
 	    );
 	} else {
 	    return (
-		<p dangerouslySetInnerHTML={ { __html: description } }/>
+		<p className="detail-description" dangerouslySetInnerHTML={ { __html: description } }/>
 	    );
 	}
     }
