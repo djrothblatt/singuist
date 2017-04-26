@@ -8,7 +8,8 @@ const _defaultTrackState = {
 	end: null,
 	body: '',
 	userId: ''
-    }
+    },
+    annotationOpen: false
 };
 
 class TrackDetail extends React.Component {
@@ -34,8 +35,17 @@ class TrackDetail extends React.Component {
 	this.props.fetchTrack(trackId);
     }
 
+    closeAnnotation() {
+	this.setState(Object.assign(this.state, { annotationOpen: false }));
+    }
+
+    openAnnotation() {
+	this.setState(Object.assign(this.state, { annotationOpen: true }));
+    }
+
     handleSelection() {
 	this.props.clearAnnotation();
+	this.closeAnnotation();
 	const selection = window.getSelection();
 	const text = selection.toString();
 	if (text.length > 0) {
@@ -49,6 +59,11 @@ class TrackDetail extends React.Component {
 	e.preventDefault();
 	console.log(e.target.textContent);
 	this.setState(_defaultTrackState);
+    }
+
+    handleAnnotationClick(e, annoId) {
+	this.props.fetchAnnotation(annoId);
+	this.openAnnotation();
     }
 
     stringToSpans(string) {
@@ -72,7 +87,7 @@ class TrackDetail extends React.Component {
 			<span
 			   key={position}
 			   className="annotation"
-			   onClick={() => this.props.fetchAnnotation(annoId)}
+			   onClick={(e) => this.handleAnnotationClick(e, annoId)}
 			  dangerouslySetInnerHTML={ { __html: string.slice(start, position) } }/>
 		    );
 		    spans.push(span);
@@ -125,7 +140,7 @@ class TrackDetail extends React.Component {
 		  </form>
 		</section>
 	    );
-	} else if (this.props.annotation) {
+	} else if (this.state.annotationOpen && this.props.annotation) {
 	    return (
 		<p dangerouslySetInnerHTML={ { __html: this.props.annotation.body } } />
 	    );
