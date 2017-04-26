@@ -35,3 +35,7 @@ export const destroyAnnotation = id => dispatch => {
     return AnnotationsApiUtil.destroyAnnotation(id)
 	.then(() => dispatch(receiveAnnotation(null)));
 };
+
+export const clearAnnotation = () => dispatch => {
+    receiveAnnotation(null);
+}

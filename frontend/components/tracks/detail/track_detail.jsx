@@ -7,8 +7,7 @@ const _defaultTrackState = {
 	start: null,
 	end: null,
 	body: '',
-	userId: '',
-	trackId: this.props.params.trackId
+	userId: ''
     }
 };
 
@@ -16,6 +15,7 @@ class TrackDetail extends React.Component {
     constructor(props) {
 	super(props);
 	this.state = _defaultTrackState;
+	this.state.trackId = this.props.params.trackId;
 
 	this.renderHeader = this.renderHeader.bind(this);
 	this.renderLyrics = this.renderLyrics.bind(this);
@@ -29,17 +29,13 @@ class TrackDetail extends React.Component {
 
     componentDidMount() {
 	const trackId = this.props.params.trackId;
+	this.props.clearAnnotation();
 	this.props.fetchAnnotations(trackId);
 	this.props.fetchTrack(trackId);
     }
 
-    componentWillReceiveProps(newProps) {
-	if (this.props.params.annotationId !== newProps.params.annotationId) {
-	    this.props.fetchAnnotation(newProps.params.annotationId);
-	}
-    }
-
     handleSelection() {
+	this.props.clearAnnotation();
 	const selection = window.getSelection();
 	const text = selection.toString();
 	if (text.length > 0) {
@@ -110,7 +106,7 @@ class TrackDetail extends React.Component {
     renderLyrics() {
 	const lyrics = this.stringToSpans(this.props.trackDetail.lyrics);
 	return (
-	    <main className="detail-lyrics">
+	    <main className="detail-lyrics" onMouseUp={this.handleSelection}>
 	      {lyrics}
 	    </main>
 	);

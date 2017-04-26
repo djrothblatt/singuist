@@ -1,6 +1,6 @@
 import { RECEIVE_ANNOTATION } from '../actions/annotations_actions';
 
-const _defaultState = {};
+const _defaultState = null;
 
 const AnnotationReducer = (state = _defaultState, action) => {
     switch (action.type) {
