@@ -26,15 +26,18 @@ p {
     .DraftEditor-editorContainer {
 	background-color: #eee;
 	border: 3px solid #ddd;
-	margin: 15px 0;
-	width: 400px;
-	height: 200px;
+	padding: 15px 5px;
+	margin: 10px 0;
     }
-    input {
+    .annotation-submit {
 	color: #3a3;
 	border: 3px solid #3a3;
 	padding: 4px;
     }
+    .annotation-submit:hover {
+	cursor: pointer;
+    }
+    
 }
 
 .annotation-display:before {
