@@ -43,7 +43,7 @@ class TrackDetail extends React.Component {
 	this.props.fetchAnnotations(trackId);
 	this.props.fetchTrack(trackId);
     }
-    
+
     closeAnnotation() {
 	this.setState(Object.assign(this.state, { annotationOpen: false }));
 	this.props.clearAnnotation();
@@ -54,6 +54,7 @@ class TrackDetail extends React.Component {
     }
 
     handleSelection() {
+	this.closeAnnotation();
 	const selection = window.getSelection();
 	const text = selection.toString().trim();
 
@@ -66,8 +67,10 @@ class TrackDetail extends React.Component {
 	    newState.newAnnotation.start = index;
 	    newState.newAnnotation.end = end;
 	    newState.selectedText = text;
+
 	    newState.annotationOpen = false;
 	    this.props.clearAnnotation();
+
 	    this.setState(newState);
 	} else {
 	    this.setState({ selectedText: null, annotationOpen: false });
@@ -77,8 +80,9 @@ class TrackDetail extends React.Component {
     handleSubmit(e) {
 	e.preventDefault();
 	const newAnnotation = this.state.newAnnotation;
-	newAnnotation.body = e.target.textContent;
+	newAnnotation.body = e.target.innerText;
 	this.props.createAnnotation(this.state.newAnnotation);
+	
 	this.setState(_defaultTrackState);
     }
 
@@ -163,7 +167,7 @@ class TrackDetail extends React.Component {
 		      <h2>Start Translating!</h2>
 		      <form className='annotation-form' onSubmit={this.handleSubmit}>
 			<MyEditor className='editor'/>
-			<input type="submit" value="Submit Annotation" />
+			<input className='annotation-submit' type="submit" value="Submit Annotation" />
 		      </form>
 		    </section>
 		);
