@@ -37,15 +37,21 @@ p {
     .annotation-submit:hover {
 	cursor: pointer;
     }
-    
 }
 
-.annotation-display:before {
+.annotation-display {
+    border-left: 4px solid $singuist-blue;
+    padding: 20px 0px;
+}
+
+.edit-container:before {
     content: "";
     display: inline-block;
     width: 0;
     height: 0;
-    border-top: 10px solid #fff;
-    border-bottom: 10px solid #fff;
+    margin-right: 5px;
+    border-top: 5px solid #fff;
+    border-bottom: 5px solid #fff;
     border-right: 20px solid $singuist-blue;
 }
+
