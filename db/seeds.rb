@@ -409,24 +409,24 @@ LYRICS
 Annotation.destroy_all
 Annotation.create([
                     {
-                      track_id: Track.find_by(name: 'Txoria Txori').id,
-                      user_id: User.find_by(username: 'daniel').id,
-                      body: 'text',
-                      start_index: 5,
-                      end_index: 10
+                      start_index: 136,
+                      end_index: 162,
+                      user_id: User.find_by(username: 'guest'),
+                      track_id: Track.find_by(name: 'Txoria Txori'),
+                      body: 'If I had clipped her wings'
                     },
                     {
-                      track_id: Track.find_by(name: 'Txoria Txori').id,
-                      user_id: User.find_by(username: 'garnet').id,
-                      body: 'This is Basque. Look at it move!',
-                      start_index: 10,
-                      end_index: 15
+                      start_index: 31,
+                      end_index: 48,
+                      user_id: User.find_by(username: 'guest'),
+                      track_id: Track.find_by(name: 'Txoria Txori'),
+                      body: 'Mumble mumble'
                     },
                     {
-                      track_id: Track.find_by(name: 'Txoria Txori').id,
-                      user_id: User.find_by(username: 'daniel').id,
-                      body: 'Basque is awesome, right?',
-                      start_index: 17,
-                      end_index: 20
+                      start_index: 3,
+                      end_index: 47,
+                      user_id: User.find_by(username: 'guest'),
+                      track_id: Track.find_by(name: 'Di Mame Iz Gegangen'),
+                      body: 'Stuff about stuff'
                     }
                   ])
