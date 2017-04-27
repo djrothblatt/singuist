@@ -36,12 +36,14 @@ class TrackDetail extends React.Component {
     }
 
     componentDidMount() {
-	const trackId = this.props.params.trackId;
+	this.props.clearTrack();
 	this.props.clearAnnotation();
+
+	const trackId = this.props.params.trackId;
 	this.props.fetchAnnotations(trackId);
 	this.props.fetchTrack(trackId);
     }
-
+    
     closeAnnotation() {
 	this.setState(Object.assign(this.state, { annotationOpen: false }));
 	this.props.clearAnnotation();
@@ -139,6 +141,10 @@ class TrackDetail extends React.Component {
     }
 
     renderLyrics() {
+	if (!this.props.trackDetail.lyrics) {
+	    return <main className="detail-lyrics" />;
+	}
+
 	const lyrics = this.stringToSpans(this.props.trackDetail.lyrics);
 	return (
 	    <main className="detail-lyrics" onMouseUp={this.handleSelection}>
