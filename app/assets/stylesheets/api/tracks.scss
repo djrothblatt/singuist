@@ -119,18 +119,11 @@ $index-item-width: 710px;
 }
 
 .form-container {
-    display: block;
-    text-align: left;
+    width: 1000px;
     margin: 0 auto;
     padding: 20px;
     background-color: #000;
-}
-
-.song-form-header {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    h1, h2, h3 {
+    h1, h2 {
 	color: #fff;
     }
     h1 {
@@ -140,27 +133,56 @@ $index-item-width: 710px;
     h2 {
 	font-weight: 600;
     }
+    h3 {
+	color: #ccc;
+	text-align: bottom;
+    }
+}
+
+.song-form-header {
+    margin-bottom: 10px;
 }
 
 .song-form {
-    width: 700px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    border-bottom: 1px solid #555;
+    div {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #555;
+	padding-bottom: 3px;
+    }
     label {
 	display: block;
-	color: #999;
-	margin: 20px;
-	input, textarea {
-	    padding: 2px;
-	    width: 400px;
-	    display: block;
-	    background-color: #fff;
-	}
+	color: #555;
+	margin: 10px;
+    }
+    input, textarea {
+	padding: 2px;
+	border-radius: 3px;
+	border: 1px solid #aaa;
+	width: 500px;
+	display: block;
+	background-color: #fff;
+    }
+    input {
+	height: 20px;
+    }
+    textarea {
+	height: 400px;
     }
 
     .song-submit {
-	margin: 20px;
 	color: #999;
+	background-color: #222;
+	border: 1px solid #444;
+	width: 80px;
+	height: 25px;
+	margin: 10px;
+	
+    }
+    .song-submit:hover {
+	cursor: pointer;
     }
 }

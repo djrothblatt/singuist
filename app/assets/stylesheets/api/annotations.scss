@@ -1,6 +1,8 @@
 // Place all the styles related to the api/annotations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$singuist-blue: #64CDFD;
+
 .annotation {
     background-color: #ccc;
     border: 1px solid #ddd;
@@ -8,6 +10,8 @@
 
 .annotation:hover {
     cursor: pointer;
+    background-color: $singuist-blue;
+    transition: 1s;
 }
 
 p {

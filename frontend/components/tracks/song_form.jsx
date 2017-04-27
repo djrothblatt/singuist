@@ -35,20 +35,19 @@ class SongForm extends React.Component {
 	return (
 	    <section className="song-form-header">
 	      <h1>Add Song</h1>
-	      <div>
-		<h2>Song Details</h2>
-		<h3>* required</h3>
-	      </div>
 	    </section>
 	);
     }
     
     render() {
 	return (
-	    <section className="form-container">
-	      <section className="song-form">
+	    <main className="form-container">
 		{this.renderHeader()}
-		<form onSubmit={this.handleSubmit}>
+		<form className="song-form" onSubmit={this.handleSubmit}>
+		  <div>
+		    <h2>Song Details</h2>
+		    <h3>* required</h3>
+		  </div>
 		  <label>Title *
 		    <input
 		       type="text"
@@ -81,12 +80,11 @@ class SongForm extends React.Component {
 		  <input
 		     className="song-submit"
 		     type="submit"
-		     value="Submit Song" />
+		     value="Submit" />
 		</form>
-	      </section>
 	      <section className="side-panel">
 	      </section>
-	    </section>
+	    </main>
 	    
 	);
     }

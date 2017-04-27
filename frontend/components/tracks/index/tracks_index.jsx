@@ -18,7 +18,7 @@ class TracksIndex extends React.Component {
 
 	return (
 	    <main className="tracks-main">
-	      <h1 className="index-header">Top Songs</h1>
+	      <h1 className="index-header">Your Top Songs</h1>
 	      <ol className="track-index">
 		{ tracks }
 	      </ol>
