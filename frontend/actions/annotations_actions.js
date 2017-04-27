@@ -28,7 +28,12 @@ const thunkAction = promise => arg => dispatch => {
 	.then(annotation => dispatch(receiveAnnotation(annotation)));
 };
 
-export const createAnnotation = thunkAction(AnnotationsApiUtil.createNewAnnotation);
+export const createAnnotation = annotation => dispatch => {
+    return AnnotationsApiUtil.createNewAnnotation(annotation)
+	.then(annotation => dispatch(fetchAnnotations(annotation.track_id)));
+};
+
+//export const createAnnotation = thunkAction(AnnotationsApiUtil.createNewAnnotation);
 export const updateAnnotation = thunkAction(AnnotationsApiUtil.updateAnnotation);
 
 export const destroyAnnotation = id => dispatch => {
