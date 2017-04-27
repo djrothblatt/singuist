@@ -42,50 +42,49 @@ class SongForm extends React.Component {
     render() {
 	return (
 	    <main className="form-container">
-		{this.renderHeader()}
-		<form className="song-form" onSubmit={this.handleSubmit}>
-		  <div>
-		    <h2>Song Details</h2>
-		    <h3>* required</h3>
-		  </div>
-		  <label>Title *
-		    <input
-		       type="text"
-		       value={this.state.name}
-		       onChange={this.handleChange('name')} />
-		  </label>
-		  <label>By *
-		    <input
-		       type="text"
-		       value={this.state.artist}
-		       onChange={this.handleChange('artist')} />
-		  </label>
-		  <label>Language *
-		    <input
-		       type="text"
-		       value={this.state.language}
-		       onChange={this.handleChange('language')} />
-		  </label>
-		  <label>Lyrics *
-		    <textarea
-		       value={this.state.lyrics}
-		       onChange={this.handleChange('lyrics')} />
-		  </label>
-		  <label>About
-		    <textarea
-		       value={this.state.description}
-		       onChange={this.handleChange('description')} />
-		  </label>
-
+	      {this.renderHeader()}
+	      <form className="song-form" onSubmit={this.handleSubmit}>
+		<div>
+		  <h2>Song Details</h2>
+		  <h3>* required</h3>
+		</div>
+		<label>Title *
 		  <input
-		     className="song-submit"
-		     type="submit"
-		     value="Submit" />
-		</form>
+		     type="text"
+		     value={this.state.name}
+		     onChange={this.handleChange('name')} />
+		</label>
+		<label>By *
+		  <input
+		     type="text"
+		     value={this.state.artist}
+		     onChange={this.handleChange('artist')} />
+		</label>
+		<label>Language *
+		  <input
+		     type="text"
+		     value={this.state.language}
+		     onChange={this.handleChange('language')} />
+		</label>
+		<label>Lyrics *
+		  <textarea
+		     value={this.state.lyrics}
+		     onChange={this.handleChange('lyrics')} />
+		</label>
+		<label>About
+		  <textarea
+		     value={this.state.description}
+		     onChange={this.handleChange('description')} />
+		</label>
+
+		<input
+		   className="song-submit"
+		   type="submit"
+		   value="Submit" />
+	      </form>
 	      <section className="side-panel">
 	      </section>
 	    </main>
-	    
 	);
     }
 }
