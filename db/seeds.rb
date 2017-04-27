@@ -411,22 +411,22 @@ Annotation.create([
                     {
                       start_index: 136,
                       end_index: 162,
-                      user_id: User.find_by(username: 'guest'),
-                      track_id: Track.find_by(name: 'Txoria Txori'),
+                      user_id: User.find_by(username: 'guest').id,
+                      track_id: Track.find_by(name: 'Txoria Txori').id,
                       body: 'If I had clipped her wings'
                     },
                     {
                       start_index: 31,
                       end_index: 48,
-                      user_id: User.find_by(username: 'guest'),
-                      track_id: Track.find_by(name: 'Txoria Txori'),
+                      user_id: User.find_by(username: 'guest').id,
+                      track_id: Track.find_by(name: 'Txoria Txori').id,
                       body: 'Mumble mumble'
                     },
                     {
                       start_index: 3,
                       end_index: 47,
-                      user_id: User.find_by(username: 'guest'),
-                      track_id: Track.find_by(name: 'Di Mame Iz Gegangen'),
+                      user_id: User.find_by(username: 'guest').id,
+                      track_id: Track.find_by(name: 'Di Mame Iz Gegangen').id,
                       body: 'Stuff about stuff'
                     }
                   ])
