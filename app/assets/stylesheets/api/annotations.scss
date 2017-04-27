@@ -17,3 +17,32 @@ $singuist-blue: #64CDFD;
 p {
     display: inline
 }
+
+.annotation-form {
+    h2 {
+	font-weight: 700;
+	color: $singuist-blue;
+    }
+    .DraftEditor-editorContainer {
+	background-color: #eee;
+	border: 3px solid #ddd;
+	margin: 15px 0;
+	width: 400px;
+	height: 200px;
+    }
+    input {
+	color: #3a3;
+	border: 3px solid #3a3;
+	padding: 4px;
+    }
+}
+
+.annotation-display:before {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 10px solid #fff;
+    border-bottom: 10px solid #fff;
+    border-right: 20px solid $singuist-blue;
+}

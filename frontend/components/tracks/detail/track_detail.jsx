@@ -162,7 +162,7 @@ class TrackDetail extends React.Component {
 		    <section className="detail-description annotation-form">
 		      <h2>Start Translating!</h2>
 		      <form className='annotation-form' onSubmit={this.handleSubmit}>
-			<MyEditor />
+			<MyEditor className='editor'/>
 			<input type="submit" value="Submit Annotation" />
 		      </form>
 		    </section>
@@ -176,7 +176,7 @@ class TrackDetail extends React.Component {
 	    }
 	} else if (this.state.annotationOpen && this.props.annotation) {
 	    return (
-		<p className="detail-description" dangerouslySetInnerHTML={ { __html: this.props.annotation.body } } />
+		<p className="detail-description annotation-display" dangerouslySetInnerHTML={ { __html: this.props.annotation.body } } />
 	    );
 	} else {
 	    return (
