@@ -60,11 +60,10 @@ class TrackDetail extends React.Component {
 	if (text.length > 0) {
 	    const lyrics = this.props.trackDetail.lyrics;
 	    const index = lyrics.indexOf(text);
-	    const start = index;
 	    const end = text.length + index;
 
 	    const newState = Object.assign(this.state);
-	    newState.newAnnotation.start = start;
+	    newState.newAnnotation.start = index;
 	    newState.newAnnotation.end = end;
 	    newState.selectedText = text;
 	    newState.annotationOpen = false;
