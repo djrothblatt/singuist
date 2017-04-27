@@ -45,12 +45,12 @@ class TrackDetail extends React.Component {
     }
 
     closeAnnotation() {
-	this.setState(Object.assign(this.state, { annotationOpen: false }));
+	this.setState({ annotationOpen: false });
 	this.props.clearAnnotation();
     }
 
     openAnnotation() {
-	this.setState(Object.assign(this.state, { annotationOpen: true }));
+	this.setState({ annotationOpen: true });
     }
 
     handleSelection() {
@@ -63,7 +63,7 @@ class TrackDetail extends React.Component {
 	    const index = lyrics.indexOf(text);
 	    const end = text.length + index;
 
-	    const newState = Object.assign(this.state);
+	    const newState = Object.assign({}, this.state);
 	    newState.newAnnotation.start = index;
 	    newState.newAnnotation.end = end;
 	    newState.selectedText = text;
@@ -82,7 +82,7 @@ class TrackDetail extends React.Component {
 	const newAnnotation = this.state.newAnnotation;
 	newAnnotation.body = e.target.innerText;
 	this.props.createAnnotation(this.state.newAnnotation);
-	
+
 	this.setState(_defaultTrackState);
     }
 
@@ -167,20 +167,23 @@ class TrackDetail extends React.Component {
 		      <h2>Start Translating!</h2>
 		      <form className='annotation-form' onSubmit={this.handleSubmit}>
 			<MyEditor className='editor'/>
-			<input className='annotation-submit' type="submit" value="Submit Annotation" />
+			<input className='annotation-submit' type="submit" value="Submit" />
 		      </form>
 		    </section>
 		);
 	    } else {
 		return (
 		    <section className="detail-description">
-		      <h2>Sign up to annotate!</h2>
+		      <h2 className="sign-up-disclaimer">Sign up to annotate!</h2>
 		    </section>
 		);
 	    }
 	} else if (this.state.annotationOpen && this.props.annotation) {
 	    return (
-		<p className="detail-description annotation-display" dangerouslySetInnerHTML={ { __html: this.props.annotation.body } } />
+		<p
+		   className="detail-description annotation-display"
+		   dangerouslySetInnerHTML={ { __html: this.props.annotation.body } } />
+
 	    );
 	} else {
 	    return (
@@ -205,7 +208,8 @@ class TrackDetail extends React.Component {
 class MyEditor extends React.Component {
     constructor(props) {
 	super(props);
-	this.state = {body: EditorState.createEmpty()};
+	const body = this.props.body ? EditorState.createWithContent(this.props.body) : EditorState.createEmpty();
+	this.state = { body };
 	this.onChange = this.onChange.bind(this);
     }
 

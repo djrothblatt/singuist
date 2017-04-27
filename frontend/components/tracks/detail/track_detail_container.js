@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TrackDetail from './track_detail';
-import { fetchTrack, clearTrack } from '../../../actions/tracks_actions';
+import { fetchTrack, clearTrack, updateTrack } from '../../../actions/tracks_actions';
 import { fetchAnnotation, fetchAnnotations, clearAnnotation, createAnnotation } from '../../../actions/annotations_actions';
 
 const mapStateToProps = ({ trackDetail, annotation, annotations, session }, ownProps) => {
@@ -16,6 +16,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
 	fetchTrack: trackId => dispatch(fetchTrack(trackId)),
 	clearTrack: () => dispatch(clearTrack()),
+	updateTrack: track => dispatch(updateTrack(track)),
 	fetchAnnotations: trackId => dispatch(fetchAnnotations(trackId)),
 	fetchAnnotation: annotationId => dispatch(fetchAnnotation(annotationId)),
 	clearAnnotation: () => dispatch(clearAnnotation()),
