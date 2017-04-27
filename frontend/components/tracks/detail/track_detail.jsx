@@ -55,7 +55,7 @@ class TrackDetail extends React.Component {
 
     handleSelection() {
 	const selection = window.getSelection();
-	const text = selection.toString();
+	const text = selection.toString().trim();
 
 	if (text.length > 0) {
 	    const lyrics = this.props.trackDetail.lyrics;
@@ -162,7 +162,7 @@ class TrackDetail extends React.Component {
 		return (
 		    <section className="detail-description annotation-form">
 		      <h2>Start Translating!</h2>
-		      <form onSubmit={this.handleSubmit}>
+		      <form className='annotation-form' onSubmit={this.handleSubmit}>
 			<MyEditor />
 			<input type="submit" value="Submit Annotation" />
 		      </form>
