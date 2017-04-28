@@ -19,6 +19,7 @@ class Nav extends React.Component {
 	if (currentUser) {
 	    userContent = (
 		<section className="auth">
+		  <div className="avatar"/>
 		  <p>Welcome, {currentUser.username}!</p>
 		  <button onClick={this.handleLogout}>logout</button>
 		</section>

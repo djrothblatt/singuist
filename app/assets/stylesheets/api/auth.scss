@@ -16,6 +16,8 @@ $auth-border: #ddd;
 }
 
 .auth {
+    font-size: 90%;
+    display: flex;
     button {
 	margin: 5px;
 	border-bottom: 4px solid $singuist-blue;
@@ -24,9 +26,13 @@ $auth-border: #ddd;
 	transition: border-bottom 0.5s;
 	border-bottom: 4px solid maroon;
     }
-
-    font-size: 90%;
-    display: flex;
+    .avatar {
+    	background-image: asset_url('takeda_shingen.jpg');
+    	background-size: cover;
+    	background-repeat: no-repeat;
+    	width: 30px;
+	border-radius: 50%;
+    }
     p {
 	margin: 5px;
     }
