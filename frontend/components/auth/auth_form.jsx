@@ -65,26 +65,6 @@ class AuthForm extends React.Component {
     }
 
     render() {
-	const customStyle = {
-	    overlay: {
-		position: 'fixed',
-		top: 0,
-		left: 0,
-		bottom: 0,
-		right: 0
-	    },
-	    content: {
-		position                    : 'fixed',
-		left                        : '700px',
-		height                      : '250px',
-		width                       : '350px',
-		border                      : '1px solid #ccc',
-		background                  : '#ccd',
-		outline                     : 'none',
-		padding                     : '20px'
-	    }
-	};
-
 	const maybeEmail = this.props.actionText === 'Sign Up' ? (
 	      <input
 		 type="text"
@@ -110,7 +90,8 @@ class AuthForm extends React.Component {
 		 isOpen={this.state.modal.open}
 		 onRequestClose={this.closeModal}
 		 contentLabel={`Auth Modal ${this.props.actionText}`}
-		 style={customStyle}>
+		 className="auth-modal"
+		 overlayClassName="auth-modal-overlay">
 		<h1 className="auth-header">{this.props.actionText}</h1>
 		<form className="auth-form" onSubmit={this.handleSubmit}>
 		  <ul className="errors-list">

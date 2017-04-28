@@ -47,6 +47,25 @@ $auth-border: #ddd;
     text-shadow: 1px -1px #000000;
 }
 
+.auth-modal {
+    position: relative;
+    left: 400px;
+    height: 250px;
+    width: 350px;
+    border: 1px solid #ccc;
+    background-color: #ccd;
+    outline: none;
+    padding: 20px;
+}
+
+.auth-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
 .auth-input {
     font-size: 140%;
     margin: 4px;
