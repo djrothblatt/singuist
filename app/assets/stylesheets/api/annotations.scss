@@ -40,11 +40,11 @@ p {
 }
 
 .annotation-display {
-    border-left: 4px solid $singuist-blue;
     padding: 20px 0px;
+    margin-left: 20px;
 }
 
-.edit-container:before {
+.annotation-display:before {
     content: "";
     display: inline-block;
     width: 0;
@@ -52,5 +52,5 @@ p {
     margin-right: 5px;
     border-top: 5px solid #fff;
     border-bottom: 5px solid #fff;
-    border-right: 20px solid $singuist-blue;
+    border-right: 20px solid $singuist-blue;    
 }
