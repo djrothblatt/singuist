@@ -1,5 +1,5 @@
 import React from 'react';
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, ContentState } from 'draft-js';
 
 const _defaultTrackState = {
     selectedText: null,
@@ -10,7 +10,8 @@ const _defaultTrackState = {
 	userId: null,
 	trackId: null
     },
-    annotationOpen: false
+    annotationOpen: false,
+    editingAnnotation: false
 };
 
 class TrackDetail extends React.Component {
@@ -28,11 +29,13 @@ class TrackDetail extends React.Component {
 	this.handleSelection = this.handleSelection.bind(this);
 	this.handleSubmit = this.handleSubmit.bind(this);
 	this.handleAnnotationClick = this.handleAnnotationClick.bind(this);
-
+	this.handleUpdate = this.handleUpdate.bind(this);
+	
 	this.stringToSpans = this.stringToSpans.bind(this);
 
 	this.openAnnotation = this.openAnnotation.bind(this);
 	this.closeAnnotation = this.closeAnnotation.bind(this);
+	this.openEditing = this.openEditing.bind(this);
     }
 
     componentDidMount() {
@@ -53,8 +56,17 @@ class TrackDetail extends React.Component {
 	this.setState({ annotationOpen: true });
     }
 
+    openEditing() {
+	this.setState({ editingAnnotation: true});
+    }
+
+    closeEditing() {
+	this.setState({ editingAnnotation: false});
+    }
+    
     handleSelection() {
 	this.closeAnnotation();
+	this.closeEditing();
 	const selection = window.getSelection();
 	const text = selection.toString().trim();
 
@@ -87,7 +99,17 @@ class TrackDetail extends React.Component {
 	this.setState(_defaultTrackState);
     }
 
+    handleUpdate(e) {
+	e.preventDefault();
+	const updatedAnnotation = this.props.annotation;
+	updatedAnnotation.body = e.target.innerText;
+	this.props.updateAnnotation(updatedAnnotation);
+
+	this.setState(_defaultTrackState);
+    }
+    
     handleAnnotationClick(e, annoId) {
+	this.closeEditing();
 	this.openAnnotation();
 	this.props.fetchAnnotation(annoId);
     }
@@ -180,11 +202,35 @@ class TrackDetail extends React.Component {
 		);
 	    }
 	} else if (this.state.annotationOpen && this.props.annotation) {
-	    return (
-		<p
-		   className="detail-description annotation-display"
-		   dangerouslySetInnerHTML={ { __html: this.props.annotation.body } } />
-	    );
+	    if (this.state.editingAnnotation) {
+		if (!currentUser) {
+		    return (
+			<section className="detail-description">
+			  <h2 className="sign-up-disclaimer">Sign up to annotate!</h2>
+			</section>
+		    );
+		}
+		return (
+		    <section className="detail-description annotation-form">
+		      <h2>Edit this Translation!</h2>
+		      <form className='annotation-form' onSubmit={this.handleUpdate}>
+			<MyEditor
+			   body={$(this.props.annotation.body).text()}
+			   className='editor' />
+			<input className='annotation-submit' type="submit" value="Submit Changes"/>
+		      </form>
+		    </section>
+		    );
+	    } else {
+		return (
+		    <div className="detail-description annotation-display">
+		      <p dangerouslySetInnerHTML={ { __html: this.props.annotation.body } } />
+		      <button
+			 className="edit-button"
+			 onClick={this.openEditing}>Edit</button>
+		    </div>
+		);		
+	    }
 	} else {
 	    return (
 		<div>
@@ -192,8 +238,7 @@ class TrackDetail extends React.Component {
 		    Highlight a line of lyrics and start translating!
 		  </h3>
 		  <p className="detail-description" dangerouslySetInnerHTML={ { __html: description } }/>
-		</div>
-		
+		</div>		
 	    );
 	}
     }
@@ -214,7 +259,7 @@ class TrackDetail extends React.Component {
 class MyEditor extends React.Component {
     constructor(props) {
 	super(props);
-	const body = this.props.body ? EditorState.createWithContent(this.props.body) : EditorState.createEmpty();
+	const body = this.props.body ? EditorState.createWithContent(ContentState.createFromText(this.props.body)) : EditorState.createEmpty();
 	this.state = { body };
 	this.onChange = this.onChange.bind(this);
     }

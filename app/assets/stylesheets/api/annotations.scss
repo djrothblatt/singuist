@@ -29,14 +29,15 @@ p {
 	padding: 15px 5px;
 	margin: 10px 0;
     }
-    .annotation-submit {
-	color: #3a3;
-	border: 3px solid #3a3;
-	padding: 4px;
-    }
     .annotation-submit:hover {
 	cursor: pointer;
     }
+}
+.annotation-submit, .edit-button {
+    display: block;
+    color: #3a3;
+    border: 3px solid #3a3;
+    padding: 4px;
 }
 
 .annotation-display {
