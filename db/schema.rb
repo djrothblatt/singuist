@@ -58,5 +58,4 @@ ActiveRecord::Schema.define(version: 20170425152618) do
     t.index ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
-
 end
