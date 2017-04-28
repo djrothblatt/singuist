@@ -187,7 +187,13 @@ class TrackDetail extends React.Component {
 	    );
 	} else {
 	    return (
-		<p className="detail-description" dangerouslySetInnerHTML={ { __html: description } }/>
+		<div>
+		  <h3 className="start-highlighting">
+		    Highlight a line of lyrics and start translating!
+		  </h3>
+		  <p className="detail-description" dangerouslySetInnerHTML={ { __html: description } }/>
+		</div>
+		
 	    );
 	}
     }
