@@ -409,6 +409,14 @@ LYRICS
 txori_id = Track.find_by(name: 'Txoria Txori').id
 mame_id = Track.find_by(name: 'Di Mame Iz Gegangen').id
 wave_id = Track.find_by(name: 'Wave').id
+charlie_id = Track.find_by(name: "Wha'll be King But Cherlie").id
+port_id = Track.find_by(name: "Língua Portuguesa").id
+elsker_id = Track.find_by(name: 'Ja vi elsker dette landet').id
+mazurek_id = Track.find_by(name: 'Mazurek Dąbrowskiego').id
+koro_id = Track.find_by(name: 'Korobeiniki').id
+finn_id = Track.find_by(name: 'Finlandia').id
+tum_id = Track.find_by(name: 'Tumbalalaika').id
+
 guest_id = User.find_by(username: 'guest').id
 
 
@@ -426,6 +434,34 @@ Annotation.create([
                       end_index: 48,
                       user_id: guest_id,
                       track_id: txori_id,
+                      body: 'Hi, how are you?'
+                    },
+                    {
+                      start_index: 20,
+                      end_index: 23,
+                      user_id: guest_id,
+                      track_id: charlie_id,
+                      body: 'squid?'
+                    },
+                    {
+                      start_index: 31,
+                      end_index: 36,
+                      user_id: guest_id,
+                      track_id: charlie_id,
+                      body: 'Hi, how are you?'
+                    },
+                    {
+                      start_index: 0,
+                      end_index: 3,
+                      user_id: guest_id,
+                      track_id: port_id,
+                      body: 'Where is my brother?'
+                    },
+                    {
+                      start_index: 2,
+                      end_index: 6,
+                      user_id: guest_id,
+                      track_id: port_id,
                       body: 'Hi, how are you?'
                     },
                     {
@@ -454,7 +490,7 @@ Annotation.create([
                       user_id: guest_id,
                       body: "I'm going to tell you,\nThe eyes can't see yet\n",
                       start_index: 0,
-                      end_index: 39
+                      end_index: 10
                     },
                     {
                       track_id: wave_id,
@@ -469,6 +505,68 @@ Annotation.create([
                       body: "hello goodbye",
                       start_index: 55,
                       end_index: 65
+                    },
+                    {
+                      start_index: 10,
+                      end_index: 13,
+                      user_id: guest_id,
+                      track_id: elsker_id,
+                      body: 'Yeah'
+                    },
+                    {
+                      start_index: 70,
+                      end_index: 75,
+                      user_id: guest_id,
+                      track_id: elsker_id,
+                      body: 'Hi!'
+                    },
+                    {
+                      start_index: 14,
+                      end_index: 17,
+                      user_id: guest_id,
+                      track_id: mazurek_id,
+                      body: 'Lizards are cool'
+                    },
+                    {
+                      start_index: 100,
+                      end_index: 106,
+                      user_id: guest_id,
+                      track_id: mazurek_id,
+                      body: 'I do not speak Polish'
+                    },
+                    {
+                      start_index: 50,
+                      end_index: 60,
+                      user_id: guest_id,
+                      track_id: koro_id,
+                      body: 'Hi!'
+                    },
+                    {
+                      start_index: 10,
+                      end_index: 13,
+                      user_id: guest_id,
+                      track_id: koro_id,
+                      body: 'This Russian is really weird!'
+                    },
+                    {
+                      start_index: 10,
+                      end_index: 13,
+                      user_id: guest_id,
+                      track_id: finn_id,
+                      body: "This Russian is really weird! So weird it's actually Finnish!"
+                    },
+                    {
+                      start_index: 60,
+                      end_index: 64,
+                      user_id: guest_id,
+                      track_id: finn_id,
+                      body: 'Finnish is spoken in Finland'
+                    },
+                    {
+                      start_index: 4,
+                      end_index: 13,
+                      user_id: guest_id,
+                      track_id: tum_id,
+                      body: 'Yiddish is great!'
                     }
-
                   ])
