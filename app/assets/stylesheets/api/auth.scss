@@ -56,6 +56,7 @@ $auth-border: #ddd;
 .auth-modal {
     position: relative;
     left: 400px;
+    top: 40px;
     height: 250px;
     width: 350px;
     border: 1px solid #ccc;
@@ -66,7 +67,7 @@ $auth-border: #ddd;
 
 .auth-modal-overlay {
     position: fixed;
-    top: 0;
+    top: 0px;
     left: 0;
     bottom: 0;
     right: 0;

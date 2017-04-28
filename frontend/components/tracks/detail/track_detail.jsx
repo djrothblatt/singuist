@@ -43,7 +43,7 @@ class TrackDetail extends React.Component {
 	this.props.fetchAnnotations(trackId);
 	this.props.fetchTrack(trackId);
     }
-
+    
     closeAnnotation() {
 	this.setState({ annotationOpen: false });
 	this.props.clearAnnotation();
@@ -81,7 +81,8 @@ class TrackDetail extends React.Component {
 	e.preventDefault();
 	const newAnnotation = this.state.newAnnotation;
 	newAnnotation.body = e.target.innerText;
-	this.props.createAnnotation(this.state.newAnnotation);
+	newAnnotation.userId = this.props.session.currentUser.id;
+	this.props.createAnnotation(newAnnotation);
 
 	this.setState(_defaultTrackState);
     }
