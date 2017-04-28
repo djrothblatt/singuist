@@ -46,8 +46,8 @@ hot zi mir gebrakht a meydele fun poyln.
 Oy iz dos a meydele a sheyns un a feyns,
 mit di shvartse eygelekh, oy ketsele du mayns.
 
-Di mame iy gegangen in mark arayn nach kroyt,
-hot zi mir gebrakht a meydele fun boyd,
+Di mame iz gegangen in mark arayn nach kroyt,
+hot zi mir gebrakht a meydele fun boyt,
 Oy iz dos a meydele a sheyns un a feyns,
 mit di vayse tseyndelekh, oy ketsele du mayns.
 
@@ -146,6 +146,7 @@ Come through the heather, around him gather,
 Ye're all the welcomer early;
 Around him cling with a your kin,
 For wha'll be King but Charlie?
+
 Come through the heather, around him gather
 Come Ronald, come Donald, come a thegither;
 And crown your rightfu lawfu King
@@ -386,7 +387,6 @@ tracht un tracht a gantze nacht.
 Vemen tsu nemen un nit far shemen, 
 vemen tsu nemen un nit far shemen. 
 
-Refrain: 
 Tumbala, tumbala, tumbalalaika, 
 Tumbala, tumbala, tumbalalaika
 tumbalalaika, shpiel balalaika
@@ -406,27 +406,69 @@ LYRICS
                }
              ])
 
+txori_id = Track.find_by(name: 'Txoria Txori').id
+mame_id = Track.find_by(name: 'Di Mame Iz Gegangen').id
+wave_id = Track.find_by(name: 'Wave').id
+guest_id = User.find_by(username: 'guest').id
+
+
 Annotation.destroy_all
 Annotation.create([
                     {
                       start_index: 136,
                       end_index: 162,
-                      user_id: User.find_by(username: 'guest').id,
-                      track_id: Track.find_by(name: 'Txoria Txori').id,
-                      body: 'If I had clipped her wings'
+                      user_id: guest_id,
+                      track_id: txori_id,
+                      body: 'And it was the bird I loved'
                     },
                     {
                       start_index: 31,
                       end_index: 48,
-                      user_id: User.find_by(username: 'guest').id,
-                      track_id: Track.find_by(name: 'Txoria Txori').id,
-                      body: 'Mumble mumble'
+                      user_id: guest_id,
+                      track_id: txori_id,
+                      body: 'Hi, how are you?'
                     },
                     {
                       start_index: 3,
                       end_index: 47,
-                      user_id: User.find_by(username: 'guest').id,
-                      track_id: Track.find_by(name: 'Di Mame Iz Gegangen').id,
+                      user_id: guest_id,
+                      track_id: mame_id,
                       body: 'Stuff about stuff'
+                    },
+                    {
+                      start_index: 80,
+                      end_index: 94,
+                      track_id: txori_id,
+                      user_id: guest_id,
+                      body: "But that way\n"                      
+                    },
+                    {
+                      start_index: 3,
+                      end_index: 24,
+                      track_id: txori_id,
+                      user_id: guest_id,
+                      body: "If I had clipped her wings"
+                    },
+                    {
+                      track_id: wave_id,
+                      user_id: guest_id,
+                      body: "I'm going to tell you,\nThe eyes can't see yet\n",
+                      start_index: 0,
+                      end_index: 39
+                    },
+                    {
+                      track_id: wave_id,
+                      user_id: guest_id,
+                      body: "Elmer Fudd",
+                      start_index: 40,
+                      end_index: 46
+                    },
+                    {
+                      track_id: wave_id,
+                      user_id: guest_id,
+                      body: "hello goodbye",
+                      start_index: 55,
+                      end_index: 65
                     }
+
                   ])

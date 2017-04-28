@@ -27,8 +27,8 @@ class SongForm extends React.Component {
 
     handleSubmit(e) {
 	e.preventDefault();
-	this.props.processTrack(this.state);
-	this.props.router.push('/');
+	this.props.processTrack(this.state)
+	    .then(() => this.props.router.push('/'));
     }
     
     renderHeader() {
