@@ -184,7 +184,6 @@ class TrackDetail extends React.Component {
 		<p
 		   className="detail-description annotation-display"
 		   dangerouslySetInnerHTML={ { __html: this.props.annotation.body } } />
-
 	    );
 	} else {
 	    return (
