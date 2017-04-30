@@ -1,5 +1,5 @@
 import React from 'react';
-import { Editor, EditorState, ContentState } from 'draft-js';
+import AnnotationForm from '../../annotations/annotation_form';
 
 const _defaultTrackState = {
     selectedText: null,
@@ -188,10 +188,7 @@ class TrackDetail extends React.Component {
 		return (
 		    <section className="detail-description annotation-form">
 		      <h2>Start Translating!</h2>
-		      <form className='annotation-form' onSubmit={this.handleSubmit}>
-			<MyEditor className='editor'/>
-			<input className='annotation-submit' type="submit" value="Submit" />
-		      </form>
+		      <AnnotationForm onSubmit={this.handleSubmit} body={undefined}/>
 		    </section>
 		);
 	    } else {
@@ -213,14 +210,11 @@ class TrackDetail extends React.Component {
 		return (
 		    <section className="detail-description annotation-form">
 		      <h2>Edit this Translation!</h2>
-		      <form className='annotation-form' onSubmit={this.handleUpdate}>
-			<MyEditor
-			   body={$(this.props.annotation.body).text()}
-			   className='editor' />
-			<input className='annotation-submit' type="submit" value="Submit Changes"/>
-		      </form>
+		      <AnnotationForm
+			 onSubmit={this.handleUpdate}
+			 body={$(this.props.annotation.body).text()} />
 		    </section>
-		    );
+		);
 	    } else {
 		return (
 		    <div className="detail-description annotation-display">
@@ -252,25 +246,6 @@ class TrackDetail extends React.Component {
 		{this.renderDescription()}
 	      </section>
 	    </section>
-	);
-    }
-}
-
-class MyEditor extends React.Component {
-    constructor(props) {
-	super(props);
-	const body = this.props.body ? EditorState.createWithContent(ContentState.createFromText(this.props.body)) : EditorState.createEmpty();
-	this.state = { body };
-	this.onChange = this.onChange.bind(this);
-    }
-
-    onChange(body) {
-	this.setState({body});
-    }
-
-    render() {
-	return (
-	    <Editor editorState={this.state.body} onChange={this.onChange}/>
 	);
     }
 }
