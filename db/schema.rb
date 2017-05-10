@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425152618) do
+ActiveRecord::Schema.define(version: 20170510144238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,12 @@ ActiveRecord::Schema.define(version: 20170425152618) do
   end
 
   create_table "upvotes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "annotation_id", null: false
+    t.integer  "user_id",       null: false
+    t.index ["annotation_id"], name: "index_upvotes_on_annotation_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_upvotes_on_user_id", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,4 +62,5 @@ ActiveRecord::Schema.define(version: 20170425152618) do
     t.index ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
+
 end
