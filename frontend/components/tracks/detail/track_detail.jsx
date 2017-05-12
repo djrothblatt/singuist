@@ -1,4 +1,5 @@
 import React from 'react';
+import ClickOutHandler from 'react-onclickout';
 import AnnotationContainer from '../../annotations/detail/annotation_container';
 import AnnotationFormContainer from '../../annotations/annotation_form';
 import * as UpvotesApiUtil from '../../../util/upvotes_api_util';
@@ -157,32 +158,42 @@ class TrackDetail extends React.Component {
 
     renderDescription() {
         const description = this.props.trackDetail.description;
+        const handleClickOut = (e => {
+            this.closeAnnotation();
+            this.closeEditing();
+        }).bind(this);
 
         if (this.state.selectedText) {
             return (
-                <AnnotationFormContainer
-                   body={undefined}
-                   editing={false}
-                   trackId={this.props.params.trackId}
-                   start={this.state.start}
-                   end={this.state.end} />
+                <ClickOutHandler onClickOut={handleClickOut}>
+                  <AnnotationFormContainer
+                     body={undefined}
+                     editing={false}
+                     trackId={this.props.params.trackId}
+                     start={this.state.start}
+                     end={this.state.end} />
+                </ClickOutHandler>
             );
         } else if (this.state.annotationOpen && this.props.annotation) {
             if (this.state.editingAnnotation) {
                 return (
-                    <AnnotationFormContainer
-                       body={$(this.props.annotation.body).text()}
-                       editing={true}
-                       trackId={this.props.params.trackId} />
+                    <ClickOutHandler onClickOut={handleClickOut}>
+                      <AnnotationFormContainer
+                         body={$(this.props.annotation.body).text()}
+                         editing={true}
+                         trackId={this.props.params.trackId} />
+                    </ClickOutHandler>
                 );
             } else {
                 return (
-                    <div className='detail-description annotation-display'>
-                      <AnnotationContainer/>
-                      <button
-                         className='edit-button'
-                         onClick={this.openEditing}>Edit</button>
-                    </div>
+                    <ClickOutHandler onClickOut={handleClickOut}>
+                      <div className='detail-description annotation-display'>
+                        <AnnotationContainer/>
+                        <button
+                           className='edit-button'
+                           onClick={this.openEditing}>Edit</button>
+                      </div>
+                    </ClickOutHandler>
                 );
             }
         } else {

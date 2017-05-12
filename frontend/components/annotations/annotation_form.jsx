@@ -1,4 +1,5 @@
 import React from 'react';
+import ClickOutHandler from 'react-onclickout';
 import { connect } from 'react-redux';
 import { Editor, EditorState, ContentState } from 'draft-js';
 import { createAnnotation, updateAnnotation } from '../../actions/annotations_actions';

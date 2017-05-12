@@ -2,7 +2,7 @@ class Api::AnnotationsController < ApplicationController
   def index
     @track = Track.find(params[:track_id])
     @annotations = @track.annotations
-    
+
     render :index
   end
 
@@ -37,7 +37,7 @@ class Api::AnnotationsController < ApplicationController
     @annotation.destroy
     render :index
   end
-  
+
   private
   def annotation_params
     params.require(:annotation).permit(:track_id, :user_id, :body, :start_index, :end_index)

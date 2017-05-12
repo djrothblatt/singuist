@@ -10,15 +10,19 @@ class Annotation extends React.Component {
         this.state.upvoted = annotation ? !!annotation.upvote : false;
 
         this.handleUpvoteClick = this.handleUpvoteClick.bind(this);
+        this.tickUpvotes = this.tickUpvotes.bind(this);
     }
 
     handleUpvoteClick(e) {
+        let annotation = this.props.annotation;
         if (this.state.upvoted) {
             this.tickUpvotes(-1);
-            UpvotesApiUtil.destroyUpvote(this.props.annotation.upvote.id);
+            UpvotesApiUtil.destroyUpvote(annotation.upvote.id)
+                .then(() => this.props.fetchAnnotation(annotation.id));
         } else {
             this.tickUpvotes(1);
-            UpvotesApiUtil.createUpvote(this.props.annotation, this.props.currentUser);
+            UpvotesApiUtil.createUpvote(this.props.annotation, this.props.currentUser)
+                .then(() => this.props.fetchAnnotation(this.props.annotation.id));
         };
     }
 
@@ -32,12 +36,23 @@ class Annotation extends React.Component {
     render() {
         const annotation = this.props.annotation;
         const upvotesClassName = annotation.upvoted ? 'upvoted' : '';
+        const upvoteTag = this.props.currentUser ? (
+            <button className={upvotesClassName} onClick={this.handleUpvoteClick}>
+              <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+            </button>
+        ) : (
+            <p>
+              <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+            </p>
+        );
+
         return (
             <div>
-              <p dangerouslySetInnerHTML={ { __html: this.props.annotation.body} }/>
-              <button onClick={this.handleUpvoteClick}>
-                <i className="fa fa-thumbs-up" aria-hidden="true"></i>{this.state.upvotes}
-              </button>
+              <p dangerouslySetInnerHTML={ { __html: annotation.body} }/>
+              <div className=''>
+                {upvoteTag}
+                <p>{this.state.upvotes}</p>
+              </div>
             </div>
         );
     }

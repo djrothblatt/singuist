@@ -10,15 +10,15 @@ import NewTrackForm from './tracks/new_form';
 const Root = ({ store }) => (
     <Provider store={store}>
       <Router history={hashHistory}>
-	<Route path="/" component={App}>
-	  <IndexRoute component={TracksIndexContainer}/>
-	  <Route path="/new-track/" component={NewTrackForm}/>
-	  <Route path="/tracks/:trackId/" component={TrackDetailContainer}>
-	    <Route path="/tracks/:trackId/annotations/:annotationId/" component={AnnotationContainer}/>
-	  </Route>
-	</Route>
+        <Route path="/" component={App}>
+          <IndexRoute component={TracksIndexContainer}/>
+          <Route path="/new-track/" component={NewTrackForm}/>
+          <Route path="/tracks/:trackId/" component={TrackDetailContainer}>
+            <Route path="/tracks/:trackId/annotations/:annotationId/" component={AnnotationContainer}/>
+          </Route>
+        </Route>
       </Router>
-    </Provider>  
+    </Provider>
 );
 
 export default Root;
