@@ -10,6 +10,7 @@ class Api::UpvotesController < ApplicationController
   end
 
   def destroy
+    @upvote = Upvote.find(params[:id])
     annotation_id = @upvote.annotation.id
     @upvote = Upvote.find(params[:id])
     @upvote.destroy

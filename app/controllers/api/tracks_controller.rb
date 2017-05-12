@@ -18,7 +18,7 @@ class Api::TracksController < ApplicationController
       render json: @track.errors.full_messages
     end
   end
-  
+
   def update
     @track = Track.find(params[:id])
 

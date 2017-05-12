@@ -9,5 +9,6 @@ Rails.application.routes.draw do
       resources :annotations, only: [:index]
     end
     resources :annotations, only: [:create, :update, :destroy, :show]
+    resources :upvotes, only: [:create, :destroy]
   end
 end

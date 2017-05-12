@@ -10,7 +10,7 @@
 #
 
 class Upvote < ApplicationRecord
-  validates :annotation, :user, presence: true, uniqueness: true
+  validates :annotation, :user, presence: true
   belongs_to :annotation
   belongs_to :user
 end
