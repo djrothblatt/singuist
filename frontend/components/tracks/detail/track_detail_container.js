@@ -5,23 +5,23 @@ import { fetchAnnotation, fetchAnnotations, clearAnnotation, createAnnotation, u
 
 const mapStateToProps = ({ trackDetail, annotation, annotations, session }, ownProps) => {
     return {
-	session,
-	trackDetail,
-	annotation,
-	annotations: Object.keys(annotations).map(id => annotations[id])
+        session,
+        trackDetail,
+        annotation,
+        annotations: Object.keys(annotations).map(id => annotations[id])
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-	fetchTrack: trackId => dispatch(fetchTrack(trackId)),
-	clearTrack: () => dispatch(clearTrack()),
-	updateTrack: track => dispatch(updateTrack(track)),
-	fetchAnnotations: trackId => dispatch(fetchAnnotations(trackId)),
-	fetchAnnotation: annotationId => dispatch(fetchAnnotation(annotationId)),
-	clearAnnotation: () => dispatch(clearAnnotation()),
-	createAnnotation: annotation => dispatch(createAnnotation(annotation)),
-	updateAnnotation: annotation => dispatch(updateAnnotation(annotation))
+        fetchTrack: trackId => dispatch(fetchTrack(trackId)),
+        clearTrack: () => dispatch(clearTrack()),
+        updateTrack: track => dispatch(updateTrack(track)),
+        fetchAnnotations: trackId => dispatch(fetchAnnotations(trackId)),
+        fetchAnnotation: annotationId => dispatch(fetchAnnotation(annotationId)),
+        clearAnnotation: () => dispatch(clearAnnotation())
+        // createAnnotation: annotation => dispatch(createAnnotation(annotation)),
+        // updateAnnotation: annotation => dispatch(updateAnnotation(annotation))
     };
 };
 

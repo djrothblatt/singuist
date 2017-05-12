@@ -8,6 +8,6 @@ const App = ({children}) => (
       <TrackNav />
       {children}
     </div>
-);    
+);
 
 export default App;

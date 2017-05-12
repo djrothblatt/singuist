@@ -15,27 +15,27 @@ export const receiveAnnotation = annotation => ({
 
 export const fetchAnnotations = id => dispatch => {
     return AnnotationsApiUtil.fetchAnnotations(id)
-	.then(annotations => dispatch(receiveAnnotations(annotations)));
+        .then(annotations => dispatch(receiveAnnotations(annotations)));
 };
 
 export const fetchAnnotation = id => dispatch => {
     return AnnotationsApiUtil.fetchAnnotation(id)
-	.then(annotation => dispatch(receiveAnnotation(annotation)));
+        .then(annotation => dispatch(receiveAnnotation(annotation)));
 };
 
 export const createAnnotation = annotation => dispatch => {
     return AnnotationsApiUtil.createNewAnnotation(annotation)
-	.then(annotation => dispatch(fetchAnnotations(annotation.track_id)));
+        .then(annotation => dispatch(fetchAnnotations(annotation.track_id)));
 };
 
 export const updateAnnotation = annotation => dispatch => {
     return AnnotationsApiUtil.updateAnnotation(annotation)
-	.then(annotation => dispatch(fetchAnnotations(annotation.track_id)));
+        .then(annotation => dispatch(fetchAnnotations(annotation.track_id)));
 };
 
 export const destroyAnnotation = id => dispatch => {
     return AnnotationsApiUtil.destroyAnnotation(id)
-	.then(() => dispatch(receiveAnnotation(null)));
+        .then(() => dispatch(receiveAnnotation(null)));
 };
 
 export const clearAnnotation = () => {
