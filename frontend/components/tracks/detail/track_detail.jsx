@@ -24,6 +24,7 @@ class TrackDetail extends React.Component {
 
         this.handleSelection = this.handleSelection.bind(this);
         this.handleAnnotationClick = this.handleAnnotationClick.bind(this);
+        this.handleClickOut = this.handleClickOut.bind(this);
 
         this.stringToSpans = this.stringToSpans.bind(this);
 
@@ -90,6 +91,11 @@ class TrackDetail extends React.Component {
         this.openAnnotation();
         this.props.fetchAnnotation(annoId);
     }
+
+    handleClickOut(e) {
+        this.closeAnnotation();
+        this.closeEditing();
+    };
 
     stringToSpans(string) {
         const annotationStarts = {};
@@ -158,35 +164,27 @@ class TrackDetail extends React.Component {
 
     renderDescription() {
         const description = this.props.trackDetail.description;
-        const handleClickOut = (e => {
-            this.closeAnnotation();
-            this.closeEditing();
-        }).bind(this);
 
         if (this.state.selectedText) {
             return (
-                <ClickOutHandler onClickOut={handleClickOut}>
-                  <AnnotationFormContainer
-                     body={undefined}
-                     editing={false}
-                     trackId={this.props.params.trackId}
-                     start={this.state.start}
-                     end={this.state.end} />
-                </ClickOutHandler>
+                <AnnotationFormContainer
+                   body={undefined}
+                   editing={false}
+                   trackId={this.props.params.trackId}
+                   start={this.state.start}
+                   end={this.state.end} />
             );
         } else if (this.state.annotationOpen && this.props.annotation) {
             if (this.state.editingAnnotation) {
                 return (
-                    <ClickOutHandler onClickOut={handleClickOut}>
-                      <AnnotationFormContainer
-                         body={$(this.props.annotation.body).text()}
-                         editing={true}
-                         trackId={this.props.params.trackId} />
-                    </ClickOutHandler>
+                    <AnnotationFormContainer
+                       body={$(this.props.annotation.body).text()}
+                       editing={true}
+                       trackId={this.props.params.trackId} />
                 );
             } else {
                 return (
-                    <ClickOutHandler onClickOut={handleClickOut}>
+                    <ClickOutHandler onClickOut={this.handleClickOut}>
                       <div className='detail-description annotation-display'>
                         <AnnotationContainer/>
                         <button

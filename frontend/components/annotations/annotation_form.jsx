@@ -9,16 +9,16 @@ class MyEditor extends React.Component {
         super(props);
         const body = this.props.body ? EditorState.createWithContent(ContentState.createFromText(this.props.body)) : EditorState.createEmpty();
         this.state = { body };
-        this.onChange = this.onChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    onChange(body) {
+    handleChange(body) {
         this.setState({body});
     }
 
     render() {
         return (
-            <Editor editorState={this.state.body} onChange={this.onChange}/>
+            <Editor editorState={this.state.body} onChange={this.handleChange}/>
         );
     }
 }
