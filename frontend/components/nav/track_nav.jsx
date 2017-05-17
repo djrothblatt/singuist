@@ -8,6 +8,17 @@ class TrackNav extends React.Component {
 	return (
 	    <nav className="track-nav">
 	      <Link to="/" className="index-link">Top Songs</Link>
+
+              <section className='portfolio'>
+                <a className='portfolio-link'
+                   href='https://www.github.com/djrothblatt'>
+                  <i className="fa fa-github" aria-hidden="true"></i>
+                </a>
+                <a className='portfolio-link'
+                   href='https://www.linkedin.com/in/daniel-rothblatt-056267bb/'>
+                  <i className="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+              </section>
 	      {maybeAddSong}
 	    </nav>
 	);

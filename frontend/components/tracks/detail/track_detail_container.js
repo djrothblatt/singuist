@@ -20,8 +20,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         fetchAnnotations: trackId => dispatch(fetchAnnotations(trackId)),
         fetchAnnotation: annotationId => dispatch(fetchAnnotation(annotationId)),
         clearAnnotation: () => dispatch(clearAnnotation())
-        // createAnnotation: annotation => dispatch(createAnnotation(annotation)),
-        // updateAnnotation: annotation => dispatch(updateAnnotation(annotation))
     };
 };
 

@@ -10,13 +10,23 @@ $index-item-width: 710px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     .add-song {
 	color: white;
 	width: 86px;
     }
+
     .index-link {
 	width: 77px;
 	color: white;
+    }
+
+    .portfolio-link {
+        background-color: white;
+        border: 5px solid white;
+        border-radius: 150%;
+        padding: 0 3px;
+        margin: 5px;
     }
 }
 
@@ -111,35 +121,19 @@ $index-item-width: 710px;
 }
 
 .detail-lyrics {
-    width: 650px;
+    width: 70%;
     height: auto;
     font-size: 20px;
     margin: 10px 5px;
     h3 {
 	margin-bottom: 10px;
     }
-    button {
-	display: block;
-	text-align: center;
-	padding: 5px;
-	border-radius: 10%;
-    }
-    
-    button:hover {
-	cursor: pointer;
-    }
-    .edit-button {
-	border: 3px solid #0f0;
-    }
-    .cancel-button {
-	border: 3px solid #f00;
-    }
 }
 
 .detail-description {
     padding-top: 5px;
     padding-right: 20px;
-    width: 400px;
+    width: 30%;
 }
 
 .start-highlighting {
@@ -204,8 +198,8 @@ $index-item-width: 710px;
     }
 
     .song-submit {
-	color: #999;
 	background-color: #222;
+	color: #999;
 	border: 1px solid #444;
 	width: 80px;
 	height: 25px;

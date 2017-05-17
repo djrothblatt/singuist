@@ -37,17 +37,17 @@ class Annotation extends React.Component {
         const annotation = this.props.annotation;
         const upvotesClassName = annotation.upvoted ? 'upvoted' : '';
         const upvoteTag = this.props.currentUser ? (
-            <button className={upvotesClassName} onClick={this.handleUpvoteClick}>
+            <button className={`upvote ${upvotesClassName}`} onClick={this.handleUpvoteClick}>
               <i className="fa fa-thumbs-up" aria-hidden="true"></i>
             </button>
         ) : (
-            <p>
+            <p className="upvote">
               <i className="fa fa-thumbs-up" aria-hidden="true"></i>
             </p>
         );
 
         return (
-            <div>
+            <div className='annotation-detail'>
               <p dangerouslySetInnerHTML={ { __html: annotation.body} }/>
               <div className=''>
                 {upvoteTag}

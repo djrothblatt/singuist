@@ -15,7 +15,7 @@ $singuist-blue: #64CDFD;
 }
 
 p {
-    display: inline
+    display: inline;
 }
 
 .annotation-form {
@@ -31,15 +31,20 @@ p {
     }
 }
 
-.annotation-submit, .edit-button {
-    display: block;
+.annotation-submit, .edit-button, .create-button {
+    /* display: block; */
     color: #3a3;
     border: 3px solid #3a3;
     padding: 4px;
+    height: 33px;
 }
 
-.annotation-submit:hover, .edit-button:hover {
+.annotation-submit:hover, .edit-button:hover, .create-button:hover {
     cursor: pointer;
+}
+
+.upvote {
+    padding-right: 5px;
 }
 
 .annotation-display {
@@ -55,4 +60,10 @@ p {
     border-top: 5px solid #fff;
     border-bottom: 5px solid #fff;
     border-right: 20px solid $singuist-blue;    
+}
+
+.create-flex {
+    display: flex;
+    width: 40%;
+    justify-content: center;
 }

@@ -5,11 +5,13 @@ import AnnotationFormContainer from '../../annotations/annotation_form';
 import * as UpvotesApiUtil from '../../../util/upvotes_api_util';
 
 const _defaultTrackState = {
+    selection: null,
     selectedText: null,
     start: null,
     end: null,
     annotationOpen: false,
-    editingAnnotation: false
+    editingAnnotation: false,
+    creatingAnnotation: false
 };
 
 class TrackDetail extends React.Component {
@@ -31,6 +33,7 @@ class TrackDetail extends React.Component {
         this.openAnnotation = this.openAnnotation.bind(this);
         this.closeAnnotation = this.closeAnnotation.bind(this);
         this.openEditing = this.openEditing.bind(this);
+        this.openCreating = this.openCreating.bind(this);
     }
 
     componentDidMount() {
@@ -42,13 +45,13 @@ class TrackDetail extends React.Component {
         this.props.fetchTrack(trackId);
     }
 
+    openAnnotation() {
+        this.setState({ annotationOpen: true });
+    }
+
     closeAnnotation() {
         this.setState({ annotationOpen: false });
         this.props.clearAnnotation();
-    }
-
-    openAnnotation() {
-        this.setState({ annotationOpen: true });
     }
 
     openEditing() {
@@ -59,9 +62,22 @@ class TrackDetail extends React.Component {
         this.setState({ editingAnnotation: false });
     }
 
+    openCreating() {
+        this.setState({ creatingAnnotation: true });
+    }
+
+    closeCreating() {
+        this.setState({ creatingAnnotation: false });
+    }
+
+    focus() {
+        this.form.focus();
+    }
+
     handleSelection() {
         this.closeAnnotation();
         this.closeEditing();
+        this.closeCreating();
         const selection = window.getSelection();
         const text = selection.toString().trim();
 
@@ -73,6 +89,7 @@ class TrackDetail extends React.Component {
             const newState = Object.assign({}, this.state);
             newState.start = index;
             newState.end = end;
+            newState.selection = selection;
             newState.selectedText = text;
 
             newState.annotationOpen = false;
@@ -166,14 +183,31 @@ class TrackDetail extends React.Component {
         const description = this.props.trackDetail.description;
 
         if (this.state.selectedText) {
-            return (
-                <AnnotationFormContainer
-                   body={undefined}
-                   editing={false}
-                   trackId={this.props.params.trackId}
-                   start={this.state.start}
-                   end={this.state.end} />
-            );
+            if (this.state.creatingAnnotation) {
+                return (
+                    <AnnotationFormContainer
+                       body={undefined}
+                       editing={false}
+                       trackId={this.props.params.trackId}
+                       start={this.state.start}
+                       end={this.state.end}
+                       ref={(form => {
+                           this.form = form;
+                           debugger
+                           this.focus();
+                      }).bind(this)}/>
+                );
+            } else {
+                return (
+                    <div className='create-flex'>
+                      <button
+                         className='create-button'
+                         onClick={this.openCreating}>Create Annotation</button>
+                    </div>
+
+                );
+            }
+
         } else if (this.state.annotationOpen && this.props.annotation) {
             if (this.state.editingAnnotation) {
                 return (

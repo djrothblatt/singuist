@@ -2,8 +2,7 @@
 
 [Singuist Live][heroku]
 
-[heroku]: http://singuist.herokuapp.com
-
+[heroku]: http://singuist.com
 
 Singuist is a full-stack web application inspired by Genius (Rap
 Genius). It uses a Ruby on Rails backend, a PostgreSQL database, and

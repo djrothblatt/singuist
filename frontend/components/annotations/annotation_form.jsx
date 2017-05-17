@@ -10,15 +10,20 @@ class MyEditor extends React.Component {
         const body = this.props.body ? EditorState.createWithContent(ContentState.createFromText(this.props.body)) : EditorState.createEmpty();
         this.state = { body };
         this.handleChange = this.handleChange.bind(this);
+        this.focus = this.focus.bind(this);
     }
 
     handleChange(body) {
         this.setState({body});
     }
 
+    focus() {
+        this.editor.focus();
+    }
+
     render() {
         return (
-            <Editor editorState={this.state.body} onChange={this.handleChange}/>
+            <Editor editorState={this.state.body} onChange={this.handleChange} ref={editor => { this.editor = editor; }}/>
         );
     }
 }
@@ -34,6 +39,7 @@ class AnnotationForm extends React.Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
+        this.focus = this.focus.bind(this);
     }
 
     handleSubmit(e) {
@@ -56,6 +62,10 @@ class AnnotationForm extends React.Component {
         this.props.updateAnnotation(updatedAnnotation);
     }
 
+    focus() {
+        this.editor.focus();
+    }
+
     render() {
         const {body, editing, currentUser} = this.props;
         const onSubmit = editing ? this.handleUpdate : this.handleSubmit;
@@ -66,7 +76,14 @@ class AnnotationForm extends React.Component {
             <section className="detail-description annotation-form">
               <h2>{text}</h2>
               <form className='annotation-form' onSubmit={onSubmit}>
-                <MyEditor className='editor' body={body} />
+                <MyEditor
+                   className='editor'
+                   body={body}
+                   ref={(editor => {
+                       this.editor = editor;
+                       this.focus();
+                      }).bind(this)
+                  } />
                 <input className='annotation-submit' type="submit" value="Submit" />
               </form>
             </section>
