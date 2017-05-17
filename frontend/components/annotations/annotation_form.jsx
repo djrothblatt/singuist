@@ -37,9 +37,24 @@ const SignupDisclaimer = () => (
 class AnnotationForm extends React.Component {
     constructor(props) {
         super(props);
+        const {body, editing, currentUser} = this.props;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
-        this.focus = this.focus.bind(this);
+        this.editor = (
+            <MyEditor
+               className='editor'
+               body={body}
+               ref={(editor => {
+                   this.editor = editor;
+                  }).bind(this)
+              } />);
+
+    }
+
+    componentDidMount() {
+        if (this.editor) {
+            this.editor.focus();
+        }
     }
 
     handleSubmit(e) {
@@ -62,9 +77,9 @@ class AnnotationForm extends React.Component {
         this.props.updateAnnotation(updatedAnnotation);
     }
 
-    focus() {
-        this.editor.focus();
-    }
+    // focus() {
+    //     this.editor.focus();
+    // }
 
     render() {
         const {body, editing, currentUser} = this.props;
@@ -76,20 +91,21 @@ class AnnotationForm extends React.Component {
             <section className="detail-description annotation-form">
               <h2>{text}</h2>
               <form className='annotation-form' onSubmit={onSubmit}>
-                <MyEditor
-                   className='editor'
-                   body={body}
-                   ref={(editor => {
-                       this.editor = editor;
-                       this.focus();
-                      }).bind(this)
-                  } />
+                {this.editor}
                 <input className='annotation-submit' type="submit" value="Submit" />
               </form>
             </section>
         );
     }
 };
+                // <MyEditor
+                //    className='editor'
+                //    body={body}
+                //    ref={(editor => {
+                //        this.editor = editor;
+                //        this.focus();
+                //       }).bind(this)
+                //   } />
 
 const mapStateToProps = ({session, annotation}) => {
     return {

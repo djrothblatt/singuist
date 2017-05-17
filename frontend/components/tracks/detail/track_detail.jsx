@@ -64,6 +64,7 @@ class TrackDetail extends React.Component {
 
     openCreating() {
         this.setState({ creatingAnnotation: true });
+        //debugger
     }
 
     closeCreating() {
@@ -97,10 +98,10 @@ class TrackDetail extends React.Component {
 
             this.setState(newState);
         } else {
-            this.setState({
-                selectedText: null,
-                annotationOpen: false
+            const newState = Object.assign({}, this.state, {
+                selectedText: null, annotationOpen: false
             });
+            this.setState(newState);
         }
     }
 
@@ -115,41 +116,47 @@ class TrackDetail extends React.Component {
     };
 
     stringToSpans(string) {
-        const annotationStarts = {};
-        const annotationEnds = {};
+        const annotationStarts = {},
+              annotationEnds = {};
         this.props.annotations.forEach(anno => {
             annotationStarts[anno.start] = anno.id;
             annotationEnds[anno.end] = anno.id;
         });
 
-        let inAnnotation = false;
-        let spans = [];
-        let start = 0;
+        let inAnnotation = false,
+            spans = [],
+            body = '',
+            start = 0;
         const length = string.length;
-
         for (let position = 0; position < length; position++) {
             if (inAnnotation) {
                 const annoId = annotationEnds[position];
-                if (annoId) {
+
+                if (annoId || position === this.state.start) {
+                    if (position === this.state.start || this.state.start) debugger;
+                    const onClick = annoId ? (e => { this.handleAnnotationClick(e, annoId); }).bind(this) : (e => {console.log("Here we are");});
                     const span = (
                         <span
                            key={position}
                            className="annotation"
-                           onClick={(e) => this.handleAnnotationClick(e, annoId)}
-                          dangerouslySetInnerHTML={ { __html: string.slice(start, position) } }/>
+                           onClick={onClick}
+                          dangerouslySetInnerHTML={ { __html: body } }/>
                     );
                     spans.push(span);
                     start = position;
                     inAnnotation = false;
+                    body = '';
                 }
             } else if (annotationStarts[position]) {
                 const span = (
-                    <span key={position} dangerouslySetInnerHTML={ { __html: string.slice(start, position) } }/>
+                    <span key={position} dangerouslySetInnerHTML={ { __html: body } }/>
                 );
                 spans.push(span);
                 start = position;
                 inAnnotation = true;
+                body = '';
             }
+            body += string[position];
         }
 
         spans.push(<span key={length} dangerouslySetInnerHTML={ { __html: string.slice(start, length)}}/>);
@@ -191,11 +198,7 @@ class TrackDetail extends React.Component {
                        trackId={this.props.params.trackId}
                        start={this.state.start}
                        end={this.state.end}
-                       ref={(form => {
-                           this.form = form;
-                           debugger
-                           this.focus();
-                      }).bind(this)}/>
+                       ref={(form => { this.form = form; }).bind(this)} />
                 );
             } else {
                 return (
