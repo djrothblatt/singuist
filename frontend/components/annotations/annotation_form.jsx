@@ -77,10 +77,6 @@ class AnnotationForm extends React.Component {
         this.props.updateAnnotation(updatedAnnotation);
     }
 
-    // focus() {
-    //     this.editor.focus();
-    // }
-
     render() {
         const {body, editing, currentUser} = this.props;
         const onSubmit = editing ? this.handleUpdate : this.handleSubmit;
@@ -98,14 +94,6 @@ class AnnotationForm extends React.Component {
         );
     }
 };
-                // <MyEditor
-                //    className='editor'
-                //    body={body}
-                //    ref={(editor => {
-                //        this.editor = editor;
-                //        this.focus();
-                //       }).bind(this)
-                //   } />
 
 const mapStateToProps = ({session, annotation}) => {
     return {
