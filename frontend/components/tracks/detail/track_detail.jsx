@@ -2,7 +2,6 @@ import React from 'react';
 import ClickOutHandler from 'react-onclickout';
 import AnnotationContainer from '../../annotations/detail/annotation_container';
 import AnnotationFormContainer from '../../annotations/annotation_form';
-import * as UpvotesApiUtil from '../../../util/upvotes_api_util';
 
 const _defaultTrackState = {
     selection: null,
@@ -19,7 +18,6 @@ class TrackDetail extends React.Component {
         super(props);
 
         this.state = _defaultTrackState;
-        const annotation = this.props.annotation;
         this.renderHeader = this.renderHeader.bind(this);
         this.renderLyrics = this.renderLyrics.bind(this);
         this.renderDescription = this.renderDescription.bind(this);
@@ -31,11 +29,8 @@ class TrackDetail extends React.Component {
         this.stringToSpans = this.stringToSpans.bind(this);
 
         this.openAnnotation = this.openAnnotation.bind(this);
-        this.closeAnnotation = this.closeAnnotation.bind(this);
         this.openEditing = this.openEditing.bind(this);
-        this.closeEditing = this.closeEditing.bind(this);
         this.openCreating = this.openCreating.bind(this);
-        this.closeCreating = this.closeCreating.bind(this);
     }
 
     componentDidMount() {
@@ -51,29 +46,12 @@ class TrackDetail extends React.Component {
         this.setState(Object.assign({}, this.state, { annotationOpen: true }));
     }
 
-    closeAnnotation() {
-        this.setState(Object.assign({}, this.state, { annotationOpen: false }));
-        this.props.clearAnnotation();
-    }
-
     openEditing() {
         this.setState(Object.assign({}, this.state, { editingAnnotation: true }));
     }
 
-    closeEditing() {
-        this.setState(Object.assign({}, this.state, { editingAnnotation: false }));
-    }
-
     openCreating() {
         this.setState(Object.assign({}, this.state, { creatingAnnotation: true }));
-    }
-
-    closeCreating() {
-        this.setState(Object.assign({}, this.state, { creatingAnnotation: false }));
-    }
-
-    focus() {
-        this.form.focus();
     }
 
     handleSelection() {
@@ -145,13 +123,13 @@ class TrackDetail extends React.Component {
                 const annoId = annotationEnds[position];
 
                 if (annoId) {
-                    const onClick = annoId ? (e => { this.handleAnnotationClick(e, annoId); }).bind(this) : (e => {console.log("Here we are");});
+                    const onClick = annoId ? (e => { this.handleAnnotationClick(e, annoId); }).bind(this) : (e => {});
                     const span = (
                         <span
                            key={position}
                            className="annotation"
                            onClick={onClick}
-                          dangerouslySetInnerHTML={ { __html: body } }/>
+                           dangerouslySetInnerHTML={ { __html: body } }/>
                     );
                     changeStates(span);
                 }
@@ -164,7 +142,7 @@ class TrackDetail extends React.Component {
             body += string[position];
         }
 
-        spans.push(<span key={length} dangerouslySetInnerHTML={ { __html: string.slice(start, length)}}/>);
+        spans.push(<span key={length} dangerouslySetInnerHTML={ { __html: body }}/>);
         return spans;
     }
 
@@ -209,11 +187,11 @@ class TrackDetail extends React.Component {
                 );
             } else {
                 return (
-                      <div className='create-flex'>
-                        <button
-                           className='create-button'
-                           onClick={this.openCreating}>Create Annotation</button>
-                      </div>
+                    <div className='create-flex'>
+                      <button
+                         className='create-button'
+                         onClick={this.openCreating}>Create Annotation</button>
+                    </div>
                 );
             }
 
