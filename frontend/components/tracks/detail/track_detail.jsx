@@ -107,6 +107,9 @@ class TrackDetail extends React.Component {
             annotationEnds[anno.end] = anno.id;
         });
 
+        annotationStarts[this.state.start] = null;
+        annotationEnds[this.state.end] = null;
+
         let inAnnotation = false,
             spans = [],
             body = '',
@@ -118,12 +121,13 @@ class TrackDetail extends React.Component {
             inAnnotation = !inAnnotation;
             body = '';
         }
+
         for (position = 0; position < length; position++) {
             if (inAnnotation) {
                 const annoId = annotationEnds[position];
 
-                if (annoId) {
-                    const onClick = annoId ? (e => { this.handleAnnotationClick(e, annoId); }).bind(this) : (e => {});
+                if (annoId || annoId === null) {
+                    const onClick = annoId ? (e => { this.handleAnnotationClick(e, annoId); }).bind(this) : (e => { this.openAnnotation(); }).bind(this);
                     const span = (
                         <span
                            key={position}
@@ -133,7 +137,7 @@ class TrackDetail extends React.Component {
                     );
                     changeStates(span);
                 }
-            } else if (annotationStarts[position]) {
+            } else if (annotationStarts[position] || annotationStarts[position] === null) {
                 const span = (
                     <span key={position} dangerouslySetInnerHTML={ { __html: body } }/>
                 );
