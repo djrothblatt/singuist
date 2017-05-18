@@ -15,7 +15,7 @@ class TrackNav extends React.Component {
                   <i className="fa fa-github" aria-hidden="true"></i>
                 </a>
                 <a className='portfolio-link'
-                   href='https://www.linkedin.com/in/daniel-rothblatt-056267bb/'>
+                   href='https://www.linkedin.com/in/daniel-rothblatt'>
                   <i className="fa fa-linkedin" aria-hidden="true"></i>
                 </a>
               </section>
