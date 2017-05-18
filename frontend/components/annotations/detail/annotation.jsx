@@ -34,9 +34,9 @@ class Annotation extends React.Component {
     }
 
     render() {
-        const annotation = this.props.annotation;
-        const upvotesClassName = annotation.upvoted ? 'upvoted' : '';
-        const upvoteTag = this.props.currentUser ? (
+        const annotation = this.props.annotation,
+              upvotesClassName = annotation.upvoted ? 'upvoted' : '',
+              upvoteTag = this.props.currentUser ? (
             <button className={`upvote ${upvotesClassName}`} onClick={this.handleUpvoteClick}>
               <i className="fa fa-thumbs-up" aria-hidden="true"></i>
             </button>

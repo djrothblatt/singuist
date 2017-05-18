@@ -55,13 +55,13 @@ class TrackDetail extends React.Component {
     }
 
     handleSelection() {
-        const selection = window.getSelection();
-        const text = selection.toString().trim();
+        const selection = window.getSelection(),
+              text = selection.toString().trim();
 
         if (text.length > 0) {
-            const lyrics = this.props.trackDetail.lyrics;
-            const index = lyrics.indexOf(text);
-            const end = text.length + index;
+            const lyrics = this.props.trackDetail.lyrics,
+                  index = lyrics.indexOf(text),
+                  end = text.length + index;
 
             const newState = Object.assign({}, this.state, {
                 start: index,
@@ -139,7 +139,7 @@ class TrackDetail extends React.Component {
                 }
             } else if (annotationStarts[position] || annotationStarts[position] === null) {
                 const span = (
-                    <span key={position} dangerouslySetInnerHTML={ { __html: body } }/>
+                    <span key={position || 0} dangerouslySetInnerHTML={ { __html: body } }/>
                 );
                 changeStates(span);
             }

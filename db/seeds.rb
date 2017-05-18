@@ -318,56 +318,56 @@ LYRICS
 Молодецкого плеча!
 Пожалей, душа моя, зазнобушка,
 Молодецкого плеча!
- 
+
 Выйдy, выйдy в рожь высокую
 Там до ночки погожу.
 А завижу черноокую
 Все товары разложу.
 А завижу черноокую
 Все товары разложу.
- 
+
 Цены сам платил немалые,
 Не торгуйся, не скупись:
 Подставляй-ка губы алые,
 Ближе к молодцу садись.
 Подставляй-ка губы алые,
 Ближе к молодцу садись.
- 
+
 Вот уж пала ночь туманная,
 Ждет удалый молодец.
 Вот, идет- пришла желанная,
 Продает товар купец.
 Вот, идет- пришла желанная,
 Продает товар купец.
- 
+
 Девка бережно торгуется
 Все боится передать.
 Парень с девицей целуется
 Просит цену набавлять.
 Парень с девицей целуется
 Просит цену набавлять.
- 
+
 Знает только ночь глубокая
 Как поладили они.
 Распрямись ты, рожь высокая,
 Тайну свято сохрани!
 Распрямись ты, рожь высокая,
 Тайну свято сохрани!
- 
+
 Ой! Легка, легка коробушка,
 Плеч не режет ремешок!
 А всего взяла зазнобушка
 Бирюзовый перстенек.
 А всего взяла зазнобушка
 Бирюзовый перстенек.
- 
+
 Дал ей ситцу штуку целую,
 Ленту алую для кос.
 Поясок-рубаху белую
 Подпоясать в сенокос.
 Поясок-рубаху белую
 Подпоясать в сенокос.
- 
+
 Все поклала ненаглядная
 В короб кроме перстенька:
 "Не хочу ходить нарядная
@@ -382,25 +382,25 @@ LYRICS
                  artist: 'Traditional',
                  language: 'Yiddish',
                  lyrics: <<LYRICS
-Shteyt a bocher, shteyt un tracht, 
-tracht un tracht a gantze nacht. 
-Vemen tsu nemen un nit far shemen, 
-vemen tsu nemen un nit far shemen. 
+Shteyt a bocher, shteyt un tracht,
+tracht un tracht a gantze nacht.
+Vemen tsu nemen un nit far shemen,
+vemen tsu nemen un nit far shemen.
 
-Tumbala, tumbala, tumbalalaika, 
+Tumbala, tumbala, tumbalalaika,
 Tumbala, tumbala, tumbalalaika
 tumbalalaika, shpiel balalaika
-tumbalalaika - freylach zol zayn. 
+tumbalalaika - freylach zol zayn.
 
-Meydl, meydl, ch'vel bay dir fregen, 
+Meydl, meydl, ch'vel bay dir fregen,
 Vos kan vaksn, vaksn on regn?
-Vos kon brenen un nit oyfhern? 
-Vos kon benken, veynen on treren? 
+Vos kon brenen un nit oyfhern?
+Vos kon benken, veynen on treren?
 
 
-Narisher bocher, vos darfstu fregn? 
-A shteyn ken vaksn, vaksn on regn. 
-Libeh ken brenen un nit oyfhern. 
+Narisher bocher, vos darfstu fregn?
+A shteyn ken vaksn, vaksn on regn.
+Libeh ken brenen un nit oyfhern.
 A harts kon benkn, veynen on treren.
 LYRICS
                }
@@ -476,7 +476,7 @@ Annotation.create([
                       end_index: 94,
                       track_id: txori_id,
                       user_id: guest_id,
-                      body: "But that way\n"                      
+                      body: "But that way\n"
                     },
                     {
                       start_index: 3,

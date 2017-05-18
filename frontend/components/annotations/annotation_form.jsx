@@ -2,7 +2,7 @@ import React from 'react';
 import ClickOutHandler from 'react-onclickout';
 import { connect } from 'react-redux';
 import { Editor, EditorState, ContentState } from 'draft-js';
-import { createAnnotation, updateAnnotation } from '../../actions/annotations_actions';
+import { createAnnotation, updateAnnotation, clearAnnotation } from '../../actions/annotations_actions';
 
 class MyEditor extends React.Component {
     constructor(props) {
@@ -47,8 +47,8 @@ class AnnotationForm extends React.Component {
                ref={(editor => {
                    this.editor = editor;
                   }).bind(this)
-              } />);
-
+              }/>
+        );
     }
 
     componentDidMount() {
@@ -59,28 +59,27 @@ class AnnotationForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let { start, end, currentUser, trackId } = this.props;
-        const newAnnotation = {
-            body: e.target.innerText,
-            start,
-            end,
-            userId: currentUser.id,
-            trackId
-        };
+        let { start, end, currentUser, trackId } = this.props,
+            newAnnotation = {
+                body: e.target.innerText,
+                start,
+                end,
+                userId: currentUser.id,
+                trackId
+            };
         this.props.createAnnotation(newAnnotation);
     }
 
     handleUpdate(e) {
         e.preventDefault();
-        const updatedAnnotation = this.props.annotation;
-        updatedAnnotation.body = e.target.innerText;
+        const updatedAnnotation = Object.assign({}, this.props.annotation, {body: e.target.innerText});
         this.props.updateAnnotation(updatedAnnotation);
     }
 
     render() {
-        const {body, editing, currentUser} = this.props;
-        const onSubmit = editing ? this.handleUpdate : this.handleSubmit;
-        const text = editing ? 'Edit this translation!' : 'Start translating!';
+        const {body, editing, currentUser} = this.props,
+              onSubmit = editing ? this.handleUpdate : this.handleSubmit,
+              text = editing ? 'Edit this translation!' : 'Start translating!';
         if (!currentUser) { return (<SignupDisclaimer/>); }
 
         return (
@@ -105,7 +104,8 @@ const mapStateToProps = ({session, annotation}) => {
 const mapDispatchToProps = dispatch => {
     return {
         createAnnotation: annotation => dispatch(createAnnotation(annotation)),
-        updateAnnotation: annotation => dispatch(updateAnnotation(annotation))
+        updateAnnotation: annotation => dispatch(updateAnnotation(annotation)),
+        clearAnnotation: annotation => dispatch(clearAnnotation())
     };
 };
 
