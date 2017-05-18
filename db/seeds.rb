@@ -434,42 +434,42 @@ Annotation.create([
                       end_index: 48,
                       user_id: guest_id,
                       track_id: txori_id,
-                      body: 'Hi, how are you?'
+                      body: 'She would be mine'
                     },
                     {
-                      start_index: 20,
-                      end_index: 23,
+                      start_index: 17,
+                      end_index: 24,
                       user_id: guest_id,
                       track_id: charlie_id,
-                      body: 'squid?'
+                      body: 'Moidart is a village in Scotland'
                     },
                     {
-                      start_index: 31,
-                      end_index: 36,
+                      start_index: 29,
+                      end_index: 37,
                       user_id: guest_id,
                       track_id: charlie_id,
-                      body: 'Hi, how are you?'
+                      body: 'yesterday'
                     },
                     {
-                      start_index: 0,
-                      end_index: 3,
+                      start_index: 3,
+                      end_index: 9,
                       user_id: guest_id,
                       track_id: port_id,
-                      body: 'Where is my brother?'
+                      body: 'Final/last'
                     },
                     {
-                      start_index: 2,
-                      end_index: 6,
+                      start_index: 25,
+                      end_index: 32,
                       user_id: guest_id,
                       track_id: port_id,
-                      body: 'Hi, how are you?'
+                      body: 'uncultivated'
                     },
                     {
                       start_index: 3,
                       end_index: 47,
                       user_id: guest_id,
                       track_id: mame_id,
-                      body: 'Stuff about stuff'
+                      body: 'Mother went to market for coals'
                     },
                     {
                       start_index: 80,
@@ -495,78 +495,78 @@ Annotation.create([
                     {
                       track_id: wave_id,
                       user_id: guest_id,
-                      body: "Elmer Fudd",
-                      start_index: 40,
-                      end_index: 46
+                      body: "can (3pl.pres) see",
+                      start_index: 39,
+                      end_index: 48
                     },
                     {
                       track_id: wave_id,
                       user_id: guest_id,
-                      body: "hello goodbye",
+                      body: "things that",
                       start_index: 55,
                       end_index: 65
                     },
                     {
-                      start_index: 10,
-                      end_index: 13,
+                      start_index: 7,
+                      end_index: 16,
                       user_id: guest_id,
                       track_id: elsker_id,
-                      body: 'Yeah'
+                      body: 'we love'
                     },
                     {
-                      start_index: 70,
-                      end_index: 75,
+                      start_index: 79,
+                      end_index: 83,
                       user_id: guest_id,
                       track_id: elsker_id,
-                      body: 'Hi!'
+                      body: 'over'
                     },
                     {
-                      start_index: 14,
+                      start_index: 11,
                       end_index: 17,
                       user_id: guest_id,
                       track_id: mazurek_id,
-                      body: 'Lizards are cool'
+                      body: 'Poland'
                     },
                     {
-                      start_index: 100,
-                      end_index: 106,
+                      start_index: 101,
+                      end_index: 111,
                       user_id: guest_id,
                       track_id: mazurek_id,
-                      body: 'I do not speak Polish'
+                      body: '??? I do not speak Polish'
                     },
                     {
-                      start_index: 50,
-                      end_index: 60,
+                      start_index: 48,
+                      end_index: 62,
                       user_id: guest_id,
                       track_id: koro_id,
-                      body: 'Hi!'
+                      body: 'Chintz and brocade'
                     },
                     {
-                      start_index: 10,
+                      start_index: 7,
                       end_index: 13,
                       user_id: guest_id,
                       track_id: koro_id,
-                      body: 'This Russian is really weird!'
+                      body: 'my pack (?)'
                     },
                     {
-                      start_index: 10,
+                      start_index: 7,
                       end_index: 13,
                       user_id: guest_id,
                       track_id: finn_id,
-                      body: "This Russian is really weird! So weird it's actually Finnish!"
+                      body: "Finland"
                     },
                     {
-                      start_index: 60,
-                      end_index: 64,
+                      start_index: 27,
+                      end_index: 34,
                       user_id: guest_id,
                       track_id: finn_id,
-                      body: 'Finnish is spoken in Finland'
+                      body: 'Day/sun'
                     },
                     {
-                      start_index: 4,
-                      end_index: 13,
+                      start_index: 3,
+                      end_index: 18,
                       user_id: guest_id,
                       track_id: tum_id,
-                      body: 'Yiddish is great!'
+                      body: 'A boy stands [stands a boy]'
                     }
                   ])
