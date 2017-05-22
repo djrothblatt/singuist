@@ -10,31 +10,37 @@ $auth-border: #ddd;
     background-color: $singuist-blue;
     height: 40px;
     * {
-	padding: 0px 3px;
-	margin: 0 5px;
+        padding: 0px 3px;
+        margin: 0 5px;
+    }
+
+    .search {
     }
 }
 
 .auth {
     font-size: 90%;
     display: flex;
+    justify-content: flex-end;
+    width: 12%;
     button {
-	margin: 5px;
-	border-bottom: 4px solid $singuist-blue;
+        margin: 0 5px;
+        padding: 8px 1px;
+        border-bottom: 4px solid transparent;
     }
     button:hover {
-	transition: border-bottom 0.5s;
-	border-bottom: 4px solid maroon;
+        transition: border-bottom 0.5s;
+        border-bottom: 4px solid maroon;
     }
     .avatar {
-    	background-image: asset_url('takeda_shingen.jpg');
-    	background-size: cover;
-    	background-repeat: no-repeat;
-    	width: 30px;
-	border-radius: 50%;
+        background-image: asset_url('takeda_shingen.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 30px;
+        border-radius: 50%;
     }
     p {
-	margin: 5px;
+        margin: 8px 5px;
     }
 }
 
@@ -48,6 +54,7 @@ $auth-border: #ddd;
 }
 
 .logo {
+    width: 10%;
     font-weight: 700;
     letter-spacing: 3px;
     text-shadow: 1px -1px #000000;
@@ -55,7 +62,7 @@ $auth-border: #ddd;
 
 .auth-modal {
     position: relative;
-    left: 400px;
+    left: 650px;
     top: 40px;
     height: 250px;
     width: 350px;

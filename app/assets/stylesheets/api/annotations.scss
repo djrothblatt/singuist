@@ -20,19 +20,23 @@ p {
 
 .annotation-form {
     h2 {
-	font-weight: 700;
-	color: $singuist-blue;
+        font-weight: 700;
+        color: $singuist-blue;
     }
     .DraftEditor-editorContainer {
-	background-color: #eee;
-	border: 3px solid #ddd;
-	padding: 15px 5px;
-	margin: 10px 0;
+        background-color: #eee;
+        border: 3px solid #ddd;
+        padding: 15px 5px;
+        margin: 10px 0;
     }
 }
 
+.annotation-detail > *{
+    margin: 10px 0;
+}
+
 .annotation-submit, .edit-button, .create-button {
-    /* display: block; */
+    display: block;
     color: #3a3;
     border: 3px solid #3a3;
     padding: 4px;
@@ -47,6 +51,16 @@ p {
     padding-right: 5px;
 }
 
+.upvoted {
+    color: $singuist-blue;
+    transition: 0.25s;
+}
+
+.not-upvoted {
+    color: #000;
+    transition: 0.25s;
+}
+
 .annotation-display {
     margin-left: 20px;
 }
@@ -59,7 +73,7 @@ p {
     margin-right: 5px;
     border-top: 5px solid #fff;
     border-bottom: 5px solid #fff;
-    border-right: 20px solid $singuist-blue;    
+    border-right: 20px solid $singuist-blue;
 }
 
 .create-flex {
