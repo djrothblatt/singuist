@@ -113,21 +113,24 @@ class TrackDetail extends React.Component {
         let inAnnotation = false,
             spans = [],
             body = '',
-            start = 0,
             position;
-        function changeStates(span) {
-            spans.push(span);
-            start = position;
+        function toggleInAnnotation() {
             inAnnotation = !inAnnotation;
             body = '';
+        }
+        function isValidAnnotation(annotationId) {
+            return annotationId || annotationId === null;
         }
 
         for (position = 0; position < length; position++) {
             if (inAnnotation) {
                 const annoId = annotationEnds[position];
 
-                if (annoId || annoId === null) {
-                    const onClick = annoId ? (e => { this.handleAnnotationClick(e, annoId); }).bind(this) : (e => { this.openAnnotation(); }).bind(this);
+                if (isValidAnnotation(annoId)) {
+                    const onClick = (annoId ?
+                                     e => { this.handleAnnotationClick(e, annoId); } :
+                                     e => { this.openAnnotation(); }
+                                    ).bind(this);
                     const span = (
                         <span
                            key={position}
@@ -135,13 +138,16 @@ class TrackDetail extends React.Component {
                            onClick={onClick}
                            dangerouslySetInnerHTML={ { __html: body } }/>
                     );
-                    changeStates(span);
+                    spans.push(span);
+                    toggleInAnnotation();
                 }
-            } else if (annotationStarts[position] || annotationStarts[position] === null) {
+            } else if (isValidAnnotation(annotationStarts[position])) {
                 const span = (
-                    <span key={position || 0} dangerouslySetInnerHTML={ { __html: body } }/>
+                    <span key={position || 0}
+                          dangerouslySetInnerHTML={ { __html: body } }/>
                 );
-                changeStates(span);
+                spans.push(span);
+                toggleInAnnotation();
             }
             body += string[position];
         }
