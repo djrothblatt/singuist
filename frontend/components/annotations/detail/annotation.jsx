@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import * as UpvotesApiUtil from '../../../util/upvotes_api_util';
 
 class Annotation extends React.Component {
@@ -52,6 +53,9 @@ class Annotation extends React.Component {
               <div className=''>
                 {upvoteTag}
                 <p>{this.state.upvotes}</p>
+                <Link
+                   to={`/tracks/${this.props.params.trackId}/edit-annotation/${this.props.annotation.id}/`}
+                   className='edit-button'>Edit</Link>
               </div>
             </div>
         );

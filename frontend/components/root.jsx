@@ -16,7 +16,8 @@ const Root = ({ store }) => (
           <Route path="/new-track/" component={NewTrackForm}/>
           <Route path="/tracks/:trackId/" component={TrackDetailContainer}>
             <Route path="/tracks/:trackId/annotations/:annotationId/" component={AnnotationContainer}/>
-            <Route path="/tracks/:trackId/new-annotation" component={AnnotationForm}/>
+            <Route path="/tracks/:trackId/new-annotation/" component={AnnotationForm}/>
+            <Route path="/tracks/:trackId/edit-annotation/:annotationId/" component={AnnotationForm}/>
           </Route>
         </Route>
       </Router>

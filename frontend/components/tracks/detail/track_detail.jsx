@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import ClickOutHandler from 'react-onclickout';
 import AnnotationContainer from '../../annotations/detail/annotation_container';
 import AnnotationFormContainer from '../../annotations/annotation_form';
@@ -88,6 +89,7 @@ class TrackDetail extends React.Component {
     handleAnnotationClick(e, annoId) {
         this.openAnnotation();
         this.props.fetchAnnotation(annoId);
+        this.props.router.push(`/tracks/${this.props.params.trackId}/annotations/${annoId}/`);
     }
 
     handleClickOut(e) {
@@ -177,53 +179,20 @@ class TrackDetail extends React.Component {
         const description = this.props.trackDetail.description;
 
         if (this.state.selectedText) {
-            if (this.state.creatingAnnotation) {
-                return (
-                    <ClickOutHandler onClickOut={this.handleClickOut}>
-                      <AnnotationFormContainer
-                         body={undefined}
-                         editing={false}
-                         trackId={this.props.params.trackId}
-                         start={this.state.start}
-                         end={this.state.end}
-                         ref={(form => { this.form = form; }).bind(this)} />
-                    </ClickOutHandler>
-                );
-            } else {
-                return (
-                    <div className='create-flex'>
-                      <button
-                         className='create-button'
-                         onClick={this.openCreating}>Create Annotation</button>
-                    </div>
-                );
-            }
-
-        } else if (this.state.annotationOpen && this.props.annotation) {
-            if (this.state.editingAnnotation) {
-                return (
-                    <AnnotationFormContainer
-                       body={$(this.props.annotation.body).text()}
-                       editing={true}
-                       trackId={this.props.params.trackId} />
-                );
-            } else {
-                return (
-                    <ClickOutHandler onClickOut={this.handleClickOut}>
-                      <div className='detail-description annotation-display'>
-                        <AnnotationContainer/>
-                        <button
-                           className='edit-button'
-                           onClick={this.openEditing}>Edit</button>
-                      </div>
-                    </ClickOutHandler>
-                );
-            }
+            return (
+                <div className='create-flex'>
+                  <Link
+                     to={`/tracks/${this.props.params.trackId}/new-annotation/`}
+                     className='create-button'>Create Annotation</Link>
+                </div>
+            );
+        } else if (this.props.annotation || this.props.params.annotationId) {
+            return this.children;
         } else {
             return (
                 <div>
                   <h3 className="start-highlighting">
-                    Highlight a line of lyrics and start translating!
+                    Highlight a line of lyrics and start translating! 
                   </h3>
                   <p className="detail-description" dangerouslySetInnerHTML={ { __html: description } }/>
                 </div>
