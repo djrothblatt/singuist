@@ -41,14 +41,13 @@ class TrackDetail extends React.Component {
         if (text.length > 0) {
             const lyrics = this.props.trackDetail.lyrics,
                   index = lyrics.indexOf(text),
-                  end = text.length + index;
-
-            const newState = Object.assign({}, this.state, {
-                selectedText: text,
-                selection,
-                start: index,
-                end
-            });
+                  end = text.length + index,
+                  newState = Object.assign({}, this.state, {
+                      selectedText: text,
+                      selection,
+                      start: index,
+                      end
+                  });
             this.setState(newState);
             this.props.clearAnnotation();
         } else {
@@ -91,7 +90,7 @@ class TrackDetail extends React.Component {
                     const span = (
                         <Link to={`/tracks/${this.props.params.trackId}/annotations/${annoId}/`}>
                           <span
-                             key={annoId}
+                             key={position}
                              value={annoId}
                              className="annotation"
                             dangerouslySetInnerHTML={ { __html: body } }/>

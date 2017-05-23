@@ -74,13 +74,13 @@ class Annotation extends React.Component {
             <ClickOutHandler onClickOut={this.handleClickOut}>
               <div className='annotation-detail'>
                 <p dangerouslySetInnerHTML={ { __html: body } }/>
-                <div className=''>
+                <div className='upvotes'>
                   {upvoteTag}
                   <p>{this.state.upvotes}</p>
-                  <Link
-                     to={`/tracks/${trackId}/edit-annotation/${annoIdString}/`}
-                     className='edit-button'>Edit</Link>
                 </div>
+                <Link
+                   to={`/tracks/${trackId}/edit-annotation/${annoIdString}/`}
+                   className='edit-button'>Edit</Link>
               </div>
             </ClickOutHandler>
 

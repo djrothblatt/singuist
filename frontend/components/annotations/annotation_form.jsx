@@ -1,7 +1,7 @@
 import React from 'react';
 import ClickOutHandler from 'react-onclickout';
 import { connect } from 'react-redux';
-import { createAnnotation, updateAnnotation, clearAnnotation } from '../../actions/annotations_actions';
+import { createAnnotation, updateAnnotation, clearAnnotation, fetchAnnotations } from '../../actions/annotations_actions';
 import MyEditor from './my_editor.jsx';
 
 const SignupDisclaimer = () => (
