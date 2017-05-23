@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import ClickOutHandler from 'react-onclickout';
 import AnnotationContainer from '../../annotations/detail/annotation_container';
 import AnnotationFormContainer from '../../annotations/annotation_form';
@@ -7,10 +8,7 @@ const _defaultTrackState = {
     selection: null,
     selectedText: null,
     start: null,
-    end: null,
-    annotationOpen: false,
-    editingAnnotation: false,
-    creatingAnnotation: false
+    end: null
 };
 
 class TrackDetail extends React.Component {
@@ -23,14 +21,8 @@ class TrackDetail extends React.Component {
         this.renderDescription = this.renderDescription.bind(this);
 
         this.handleSelection = this.handleSelection.bind(this);
-        this.handleAnnotationClick = this.handleAnnotationClick.bind(this);
-        this.handleClickOut = this.handleClickOut.bind(this);
 
         this.stringToSpans = this.stringToSpans.bind(this);
-
-        this.openAnnotation = this.openAnnotation.bind(this);
-        this.openEditing = this.openEditing.bind(this);
-        this.openCreating = this.openCreating.bind(this);
     }
 
     componentDidMount() {
@@ -42,18 +34,6 @@ class TrackDetail extends React.Component {
         this.props.fetchTrack(trackId);
     }
 
-    openAnnotation() {
-        this.setState(Object.assign({}, this.state, { annotationOpen: true }));
-    }
-
-    openEditing() {
-        this.setState(Object.assign({}, this.state, { editingAnnotation: true }));
-    }
-
-    openCreating() {
-        this.setState(Object.assign({}, this.state, { creatingAnnotation: true }));
-    }
-
     handleSelection() {
         const selection = window.getSelection(),
               text = selection.toString().trim();
@@ -61,42 +41,22 @@ class TrackDetail extends React.Component {
         if (text.length > 0) {
             const lyrics = this.props.trackDetail.lyrics,
                   index = lyrics.indexOf(text),
-                  end = text.length + index;
-
-            const newState = Object.assign({}, this.state, {
-                start: index,
-                annotationOpen: false,
-                editingAnnotation: false,
-                creatingAnnotation: false,
-                selectedText: text,
-                selection,
-                end
-            });
+                  end = text.length + index,
+                  newState = Object.assign({}, this.state, {
+                      selectedText: text,
+                      selection,
+                      start: index,
+                      end
+                  });
             this.setState(newState);
             this.props.clearAnnotation();
         } else {
             const newState = Object.assign({}, this.state, {
-                selectedText: null,
-                annotationOpen: false,
-                editingAnnotation: false,
-                creatingAnnotation: false
+                selectedText: null
             });
             this.setState(newState);
         }
     }
-
-    handleAnnotationClick(e, annoId) {
-        this.openAnnotation();
-        this.props.fetchAnnotation(annoId);
-    }
-
-    handleClickOut(e) {
-        this.setState(Object.assign({}, this.state, {
-            annotationOpen: false,
-            editingAnnotation: false,
-            creatingAnnotation: false
-        }));
-    };
 
     stringToSpans(string) {
         const annotationStarts = {},
@@ -127,16 +87,14 @@ class TrackDetail extends React.Component {
                 const annoId = annotationEnds[position];
 
                 if (isValidAnnotation(annoId)) {
-                    const onClick = (annoId ?
-                                     e => { this.handleAnnotationClick(e, annoId); } :
-                                     e => { this.openAnnotation(); }
-                                    ).bind(this);
                     const span = (
-                        <span
-                           key={position}
-                           className="annotation"
-                           onClick={onClick}
-                           dangerouslySetInnerHTML={ { __html: body } }/>
+                        <Link to={`/tracks/${this.props.params.trackId}/annotations/${annoId}/`}>
+                          <span
+                             key={position}
+                             value={annoId}
+                             className="annotation"
+                            dangerouslySetInnerHTML={ { __html: body } }/>
+                        </Link>
                     );
                     spans.push(span);
                     toggleInAnnotation();
@@ -182,49 +140,23 @@ class TrackDetail extends React.Component {
     renderDescription() {
         const description = this.props.trackDetail.description;
 
-        if (this.state.selectedText) {
-            if (this.state.creatingAnnotation) {
-                return (
-                    <ClickOutHandler onClickOut={this.handleClickOut}>
-                      <AnnotationFormContainer
-                         body={undefined}
-                         editing={false}
-                         trackId={this.props.params.trackId}
-                         start={this.state.start}
-                         end={this.state.end}
-                         ref={(form => { this.form = form; }).bind(this)} />
-                    </ClickOutHandler>
-                );
-            } else {
-                return (
-                    <div className='create-flex'>
-                      <button
-                         className='create-button'
-                         onClick={this.openCreating}>Create Annotation</button>
-                    </div>
-                );
-            }
+        if (this.props.children) {
+            const childrenWithStartAndEnd = React.Children.map(
+                this.props.children, child => React.cloneElement(child, {
+                    start: this.state.start,
+                    end: this.state.end
+                }));
 
-        } else if (this.state.annotationOpen && this.props.annotation) {
-            if (this.state.editingAnnotation) {
-                return (
-                    <AnnotationFormContainer
-                       body={$(this.props.annotation.body).text()}
-                       editing={true}
-                       trackId={this.props.params.trackId} />
-                );
-            } else {
-                return (
-                    <ClickOutHandler onClickOut={this.handleClickOut}>
-                      <div className='detail-description annotation-display'>
-                        <AnnotationContainer/>
-                        <button
-                           className='edit-button'
-                           onClick={this.openEditing}>Edit</button>
-                      </div>
-                    </ClickOutHandler>
-                );
-            }
+            return childrenWithStartAndEnd;
+        }
+        if (this.state.selectedText) {
+            return (
+                <div className='create-flex'>
+                  <Link
+                     to={`/tracks/${this.props.params.trackId}/new-annotation/`}
+                     className='create-button'>Create Annotation</Link>
+                </div>
+            );
         } else {
             return (
                 <div>

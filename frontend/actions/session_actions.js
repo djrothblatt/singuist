@@ -6,16 +6,16 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 const thunkAction = promise => user => dispatch => {
     return promise(user)
-	.then(user => dispatch(receiveCurrentUser(user)),
-	      errors => dispatch(receiveErrors(errors.responseJSON)));
+        .then(user => dispatch(receiveCurrentUser(user)),
+              errors => dispatch(receiveErrors(errors.responseJSON)));
 };
 
 export const login = thunkAction(APIUtil.login);
 export const signup = thunkAction(APIUtil.signup);
 export const logout = () => dispatch => {
     return APIUtil.logout()
-	.then(() => dispatch(receiveCurrentUser(null)),
-	      error => dispatch(receiveErrors(error.responseJSON)));
+        .then(() => dispatch(receiveCurrentUser(null)),
+              error => dispatch(receiveErrors(error.responseJSON)));
 };
 
 export const receiveCurrentUser = currentUser => ({
@@ -25,8 +25,8 @@ export const receiveCurrentUser = currentUser => ({
 
 export const receiveErrors = errors => {
     return {
-	type: RECEIVE_ERRORS,
-	errors // errors: (array-of error)
+        type: RECEIVE_ERRORS,
+        errors // errors: (array-of error)
     };
 };
 

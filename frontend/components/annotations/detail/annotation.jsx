@@ -1,4 +1,6 @@
 import React from 'react';
+import ClickOutHandler from 'react-onclickout';
+import { Link } from 'react-router';
 import * as UpvotesApiUtil from '../../../util/upvotes_api_util';
 
 class Annotation extends React.Component {
@@ -9,8 +11,14 @@ class Annotation extends React.Component {
         this.state.upvotes = annotation ? annotation.upvotes : 0;
         this.state.upvoted = annotation ? !!annotation.upvote : false;
 
+        this.back = this.back.bind(this);
+        this.handleClickOut = this.handleClickOut.bind(this);
         this.handleUpvoteClick = this.handleUpvoteClick.bind(this);
         this.tickUpvotes = this.tickUpvotes.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.fetchAnnotation(this.props.params.annotationId);
     }
 
     handleUpvoteClick(e) {
@@ -33,9 +41,25 @@ class Annotation extends React.Component {
         });
     }
 
+    back() {
+        this.props.router.push(`/tracks/${this.props.params.trackId}/`);
+    }
+
+    handleClickOut(e) {
+        if (e.target.classList.contains('annotation')) {
+            const annoId = e.target.getAttribute('value');
+            this.props.fetchAnnotation(annoId);
+        } else {
+            this.back();
+        }
+    }
+
     render() {
         const annotation = this.props.annotation,
               upvotesClassName = annotation.upvote ? 'upvoted' : 'not-upvoted',
+              annoIdString = annotation && annotation.id,
+              body = annotation && annotation.body,
+              trackId = this.props.params.trackId,
               upvoteTag = this.props.currentUser ? (
                   <button className={`upvote ${upvotesClassName}`} onClick={this.handleUpvoteClick}>
                     <i className="fa fa-thumbs-up" aria-hidden="true"></i>
@@ -47,13 +71,19 @@ class Annotation extends React.Component {
               );
 
         return (
-            <div className='annotation-detail'>
-              <p dangerouslySetInnerHTML={ { __html: annotation.body} }/>
-              <div className=''>
-                {upvoteTag}
-                <p>{this.state.upvotes}</p>
+            <ClickOutHandler onClickOut={this.handleClickOut}>
+              <div className='annotation-detail'>
+                <p dangerouslySetInnerHTML={ { __html: body } }/>
+                <div className='upvotes'>
+                  {upvoteTag}
+                  <p>{this.state.upvotes}</p>
+                </div>
+                <Link
+                   to={`/tracks/${trackId}/edit-annotation/${annoIdString}/`}
+                   className='edit-button'>Edit</Link>
               </div>
-            </div>
+            </ClickOutHandler>
+
         );
     }
 }

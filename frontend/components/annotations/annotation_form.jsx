@@ -1,32 +1,8 @@
 import React from 'react';
 import ClickOutHandler from 'react-onclickout';
 import { connect } from 'react-redux';
-import { Editor, EditorState, ContentState } from 'draft-js';
-import { createAnnotation, updateAnnotation, clearAnnotation } from '../../actions/annotations_actions';
-
-class MyEditor extends React.Component {
-    constructor(props) {
-        super(props);
-        const body = this.props.body ? EditorState.createWithContent(ContentState.createFromText(this.props.body)) : EditorState.createEmpty();
-        this.state = { body };
-        this.handleChange = this.handleChange.bind(this);
-        this.focus = this.focus.bind(this);
-    }
-
-    handleChange(body) {
-        this.setState({body});
-    }
-
-    focus() {
-        this.editor.focus();
-    }
-
-    render() {
-        return (
-            <Editor editorState={this.state.body} onChange={this.handleChange} ref={editor => { this.editor = editor; }}/>
-        );
-    }
-}
+import { createAnnotation, updateAnnotation, clearAnnotation, fetchAnnotations } from '../../actions/annotations_actions';
+import MyEditor from './my_editor.jsx';
 
 const SignupDisclaimer = () => (
     <section className="detail-description">
@@ -37,18 +13,11 @@ const SignupDisclaimer = () => (
 class AnnotationForm extends React.Component {
     constructor(props) {
         super(props);
-        const {body, editing, currentUser} = this.props;
+        const body = props.annotation ? props.annotation.body : '';
+        this.back = this.back.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
-        this.editor = (
-            <MyEditor
-               className='editor'
-               body={body}
-               ref={(editor => {
-                   this.editor = editor;
-                  }).bind(this)
-              }/>
-        );
+        this.handleClickOut = this.handleClickOut.bind(this);
     }
 
     componentDidMount() {
@@ -57,39 +26,60 @@ class AnnotationForm extends React.Component {
         }
     }
 
+    back() {
+        this.props.router.push(`/tracks/${this.props.params.trackId}/`);
+    }
+
     handleSubmit(e) {
         e.preventDefault();
-        let { start, end, currentUser, trackId } = this.props,
+        let { start, end, currentUser } = this.props,
+            trackId = this.props.params.trackId,
             newAnnotation = {
+                userId: currentUser.id,
                 body: e.target.innerText,
                 start,
                 end,
-                userId: currentUser.id,
                 trackId
             };
         this.props.createAnnotation(newAnnotation);
+        this.back();
     }
 
     handleUpdate(e) {
         e.preventDefault();
         const updatedAnnotation = Object.assign({}, this.props.annotation, {body: e.target.innerText});
         this.props.updateAnnotation(updatedAnnotation);
+        this.back();
+    }
+
+    handleClickOut (e) {
+        this.back();
     }
 
     render() {
-        const {body, editing, currentUser} = this.props,
+        const editing = !!this.props.annotation,
+              currentUser = this.props.currentUser,
+              body = this.props.annotation ? this.props.annotation.body : '',
               onSubmit = editing ? this.handleUpdate : this.handleSubmit,
               text = editing ? 'Edit this translation!' : 'Start translating!';
         if (!currentUser) { return (<SignupDisclaimer/>); }
 
         return (
-            <section className="detail-description annotation-form">
-              <h2>{text}</h2>
-              <form className='annotation-form' onSubmit={onSubmit}>
-                {this.editor}
-                <input className='annotation-submit' type="submit" value="Submit" />
-              </form>
-            </section>
+            <ClickOutHandler onClickOut={this.handleClickOut}>
+              <section className="detail-description annotation-form">
+                <h2>{text}</h2>
+                <form className='annotation-form' onSubmit={onSubmit}>
+                  <MyEditor
+                     className='editor'
+                     body={body}
+                     ref={(editor => {
+                         this.editor = editor;
+                        }).bind(this)
+                    }/>
+                    <input className='annotation-submit' type="submit" value="Submit" />
+                </form>
+              </section>
+            </ClickOutHandler>
         );
     }
 };
