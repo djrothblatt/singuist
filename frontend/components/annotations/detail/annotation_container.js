@@ -13,9 +13,7 @@ const mapStateToProps = ({annotation, session, trackDetail}) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         fetchAnnotation: id => dispatch(fetchAnnotation(id)),
-        clearAnnotation: () => dispatch(clearAnnotation()),
-        createAnnotation: annotation => dispatch(createAnnotation(annotation)),
-        updateAnnotation: annotation => dispatch(updateAnnotation(annotation))
+        clearAnnotation: () => dispatch(clearAnnotation())
     };
 };
 
