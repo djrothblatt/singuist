@@ -56,7 +56,7 @@ class Annotation extends React.Component {
 
     render() {
         const annotation = this.props.annotation,
-              upvotesClassName = annotation.upvote ? 'upvoted' : 'not-upvoted',
+              upvotesClassName = annotation && annotation.upvote ? 'upvoted' : 'not-upvoted',
               annoIdString = annotation && annotation.id,
               body = annotation && annotation.body,
               trackId = this.props.params.trackId,

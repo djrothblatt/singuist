@@ -30,7 +30,7 @@ export const createAnnotation = annotation => dispatch => {
 
 export const updateAnnotation = annotation => dispatch => {
     return AnnotationsApiUtil.updateAnnotation(annotation)
-        .then(annotation => dispatch(fetchAnnotations(annotation.track_id)));
+        .then(annotation => dispatch(fetchAnnotation(annotation.id)));
 };
 
 export const destroyAnnotation = id => dispatch => {

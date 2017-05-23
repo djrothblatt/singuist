@@ -47,6 +47,7 @@ class AnnotationForm extends React.Component {
 
     handleUpdate(e) {
         e.preventDefault();
+        debugger
         const updatedAnnotation = Object.assign({}, this.props.annotation, {body: e.target.innerText});
         this.props.updateAnnotation(updatedAnnotation);
         this.back();

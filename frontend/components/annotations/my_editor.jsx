@@ -1,10 +1,11 @@
 import React from 'react';
-import { Editor, EditorState, ContentState } from 'draft-js';
+import { Editor, EditorState, ContentState, convertFromHTML } from 'draft-js';
 
 class MyEditor extends React.Component {
     constructor(props) {
         super(props);
-        const body = this.props.body ? EditorState.createWithContent(ContentState.createFromText(this.props.body)) : EditorState.createEmpty();
+        let blockArray = convertFromHTML(this.props.body);
+        const body = this.props.body ? EditorState.createWithContent(ContentState.createFromBlockArray(blockArray)) : EditorState.createEmpty();
         this.state = { body };
         this.handleChange = this.handleChange.bind(this);
         this.focus = this.focus.bind(this);

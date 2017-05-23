@@ -18,10 +18,10 @@ export const createNewAnnotation = annotation => {
         url: 'api/annotations',
         data: {
             annotation: {
+                user_id: annotation.userId,
                 body: annotation.body,
                 start_index: annotation.start,
                 end_index: annotation.end,
-                user_id: annotation.userId,
                 track_id: annotation.trackId
             }
         }
