@@ -35,6 +35,14 @@ class TrackDetail extends React.Component {
         this.props.clearAnnotation();
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.annotations.length !== nextProps.annotations.length) {
+            debugger
+            this.setState(_defaultTrackState);
+            this.props.fetchAnnotations(this.props.params.trackId);
+        }
+    }
+
     handleSelection() {
         const selection = window.getSelection(),
               text = selection.toString().trim();

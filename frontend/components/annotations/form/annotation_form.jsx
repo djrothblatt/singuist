@@ -29,15 +29,15 @@ class AnnotationForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let { start, end, currentUser } = this.props,
-            trackId = this.props.params.trackId,
-            newAnnotation = {
-                userId: currentUser.id,
-                body: e.target.innerText,
-                start,
-                end,
-                trackId
-            };
+        const { start, end, currentUser } = this.props,
+              trackId = this.props.params.trackId,
+              newAnnotation = {
+                  userId: currentUser.id,
+                  body: e.target.innerText,
+                  start,
+                  end,
+                  trackId
+              };
         this.props.createAnnotation(newAnnotation);
         this.back();
     }
