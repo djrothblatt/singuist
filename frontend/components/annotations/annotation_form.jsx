@@ -13,7 +13,6 @@ const SignupDisclaimer = () => (
 class AnnotationForm extends React.Component {
     constructor(props) {
         super(props);
-        const body = props.annotation ? props.annotation.body : '';
         this.back = this.back.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
