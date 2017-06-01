@@ -25,12 +25,14 @@ class TrackDetail extends React.Component {
     }
 
     componentDidMount() {
-        this.props.clearTrack();
-        this.props.clearAnnotation();
-
         const trackId = this.props.params.trackId;
         this.props.fetchAnnotations(trackId);
         this.props.fetchTrack(trackId);
+    }
+
+    componentWillUnmount() {
+        this.props.clearTrack();
+        this.props.clearAnnotation();
     }
 
     handleSelection() {
