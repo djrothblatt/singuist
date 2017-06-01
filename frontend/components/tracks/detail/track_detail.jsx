@@ -61,7 +61,8 @@ class TrackDetail extends React.Component {
     stringToSpans(string) {
         const annotationStarts = {},
               annotationEnds = {},
-              length = string.length;
+              length = string.length,
+              trackId = this.props.params.trackId;
         this.props.annotations.forEach(anno => {
             annotationStarts[anno.start] = anno.id;
             annotationEnds[anno.end] = anno.id;
@@ -81,6 +82,11 @@ class TrackDetail extends React.Component {
         function isValidAnnotation(annotationId) {
             return annotationId || annotationId === null;
         }
+        function addressOf(annotationId) {
+            return annotationId ?
+                `/tracks/${trackId}/annotations/${annotationId}/` :
+                `/tracks/${trackId}/new-annotation/`;
+        }
 
         for (position = 0; position < length; position++) {
             if (inAnnotation) {
@@ -88,11 +94,11 @@ class TrackDetail extends React.Component {
 
                 if (isValidAnnotation(annoId)) {
                     const span = (
-                        <Link to={`/tracks/${this.props.params.trackId}/annotations/${annoId}/`}>
+                        <Link to={addressOf(annoId)}>
                           <span
-                             key={position}
-                             value={annoId}
-                             className="annotation"
+                            key={position}
+                            value={annoId}
+                            className="annotation"
                             dangerouslySetInnerHTML={ { __html: body } }/>
                         </Link>
                     );
@@ -153,8 +159,8 @@ class TrackDetail extends React.Component {
             return (
                 <div className='create-flex'>
                   <Link
-                     to={`/tracks/${this.props.params.trackId}/new-annotation/`}
-                     className='create-button'>Create Annotation</Link>
+                    to={`/tracks/${this.props.params.trackId}/new-annotation/`}
+                    className='create-button'>Create Annotation</Link>
                 </div>
             );
         } else {
