@@ -1,7 +1,5 @@
 import React from 'react';
 import ClickOutHandler from 'react-onclickout';
-import { connect } from 'react-redux';
-import { createAnnotation, updateAnnotation, clearAnnotation, fetchAnnotations } from '../../actions/annotations_actions';
 import MyEditor from './my_editor.jsx';
 
 const SignupDisclaimer = () => (
@@ -46,8 +44,9 @@ class AnnotationForm extends React.Component {
 
     handleUpdate(e) {
         e.preventDefault();
-        debugger
-        const updatedAnnotation = Object.assign({}, this.props.annotation, {body: e.target.innerText});
+        const updatedAnnotation = Object.assign({},
+                                                this.props.annotation,
+                                                {body: e.target.innerText});
         this.props.updateAnnotation(updatedAnnotation);
         this.back();
     }
@@ -84,22 +83,4 @@ class AnnotationForm extends React.Component {
     }
 };
 
-const mapStateToProps = ({session, annotation}) => {
-    return {
-        currentUser: session.currentUser,
-        annotation
-    };
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        createAnnotation: annotation => dispatch(createAnnotation(annotation)),
-        updateAnnotation: annotation => dispatch(updateAnnotation(annotation)),
-        clearAnnotation: annotation => dispatch(clearAnnotation())
-    };
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(AnnotationForm);
+export default AnnotationForm;

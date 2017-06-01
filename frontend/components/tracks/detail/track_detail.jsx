@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import ClickOutHandler from 'react-onclickout';
 import AnnotationContainer from '../../annotations/detail/annotation_container';
-import AnnotationFormContainer from '../../annotations/annotation_form';
 
 const _defaultTrackState = {
     selection: null,
