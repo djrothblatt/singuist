@@ -72,15 +72,13 @@ class AuthForm extends React.Component {
 		 className="auth-input"
 		 onChange={ this.handleChange('email') }
 		 value={ this.state.email }/>
-	) : (<div />);
-
-	const maybeErrors = (this.props.session.errors.length !== 0) ? (
-	    this.props.session.errors.map(err => <li className="error">{err}</li>)
-	) : (<div />);
-
-	const maybeGuest = this.props.actionText === 'Log In' ? (
-	    <button className="auth-submit" onClick={this.loginGuest}>Log In As Guest</button>
-	) : (<div />);
+	) : (<div />),
+	      maybeErrors = (this.props.session.errors.length !== 0) ? (
+	          this.props.session.errors.map(err => <li className="error">{err}</li>)
+	      ) : (<div />),
+	      maybeGuest = this.props.actionText === 'Log In' ? (
+	          <button className="auth-submit" onClick={this.loginGuest}>Log In As Guest</button>
+	      ) : (<div />);
 
 	return (
 	    <div>
