@@ -41,16 +41,12 @@ class Annotation extends React.Component {
         });
     }
 
-    back() {
-        this.props.router.push(`/tracks/${this.props.params.trackId}/`);
-    }
-
     handleClickOut(e) {
         if (e.target.classList.contains('annotation')) {
             const annoId = e.target.getAttribute('value');
             this.props.fetchAnnotation(annoId);
         } else {
-            this.back();
+            this.props.router.push(`/tracks/${this.props.params.trackId}/`);
         }
     }
 
