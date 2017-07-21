@@ -1,4 +1,6 @@
-const path = require('path');
+const webpack = require('webpack'),
+      path = require('path');
+
 module.exports = {
   context: __dirname,
   entry: './frontend/singuist.jsx',
@@ -21,5 +23,12 @@ module.exports = {
       }
     ]
   },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+            }
+        })
+    ],
   devtool: 'source-maps'
 };
