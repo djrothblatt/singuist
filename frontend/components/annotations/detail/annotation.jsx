@@ -11,7 +11,6 @@ class Annotation extends React.Component {
         this.state.upvotes = annotation ? annotation.upvotes : 0;
         this.state.upvoted = annotation ? !!annotation.upvote : false;
 
-        this.back = this.back.bind(this);
         this.handleClickOut = this.handleClickOut.bind(this);
         this.handleUpvoteClick = this.handleUpvoteClick.bind(this);
         this.tickUpvotes = this.tickUpvotes.bind(this);
