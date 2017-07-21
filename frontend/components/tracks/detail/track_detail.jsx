@@ -102,7 +102,8 @@ class TrackDetail extends React.Component {
 
                 if (isValidAnnotation(annoId)) {
                     const span = (
-                        <Link to={addressOf(annoId)}>
+                        <Link to={addressOf(annoId)}
+                              key={position}>
                           <span
                             key={position}
                             value={annoId}
@@ -166,16 +167,17 @@ class TrackDetail extends React.Component {
         if (this.state.selectedText) {
             return (
                 <div className='create-flex'>
-                  <Link
-                    to={`/tracks/${this.props.params.trackId}/new-annotation/`}
-                    className='create-button'>Create Annotation</Link>
+                  <link
+                    key={this.props.params.trackid}
+                    to={`/tracks/${this.props.params.trackid}/new-annotation/`}
+                    className='create-button'>create annotation</link>
                 </div>
             );
         } else {
             return (
                 <div>
                   <h3 className="start-highlighting">
-                    Highlight a line of lyrics and start translating!
+                    highlight a line of lyrics and start translating!
                   </h3>
                   <p className="detail-description" dangerouslySetInnerHTML={ { __html: description } }/>
                 </div>
