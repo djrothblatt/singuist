@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+@font-face {
+  font-family: "PT Sans";
+  src: asset-url("assets/PT_Sans-Web-Regular.ttf") format("truetype");
+}
